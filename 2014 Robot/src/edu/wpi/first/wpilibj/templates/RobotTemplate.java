@@ -22,22 +22,27 @@ public class RobotTemplate extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+    Devices devices = new Devices();
     public void robotInit() {
-
+        devices.init();
+        //remove next line after testing
+     Devices.drive.move(.5,0,0,0);
     }
+    
+  
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-
+       step();
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        
+        step();
     }
     
     /**
@@ -45,6 +50,11 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void testPeriodic() {
     
+    }
+    public void step(){
+        for(int i = 0; i<Devices.devices.length;i++){
+            Devices.devices[i].step();
+        }
     }
     
 }

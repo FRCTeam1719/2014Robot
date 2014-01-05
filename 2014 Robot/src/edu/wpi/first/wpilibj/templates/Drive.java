@@ -47,9 +47,9 @@ public class Drive implements IStep {
         return this;
     }
 
-    public void init() {
+    public Drive init() {
         robotDrive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
-
+        return this;
     }
 
     public Drive move(double x, double y, double rotation, double gyro) {
