@@ -25,6 +25,7 @@ public class Drive implements IStep {
 
     public void step() {
         robotDrive.mecanumDrive_Cartesian(moveX, moveY, moveRotation, moveGyro);
+        
     }
 
     public Drive SetFrontLeft(SpeedController frontLeft) {
@@ -37,18 +38,21 @@ public class Drive implements IStep {
         return this;
     }
 
-    public Drive SetBackLeft(SpeedController BackLeft) {
+    public Drive SetBackLeft(SpeedController backLeft) {
         this.backLeft = backLeft;
         return this;
     }
 
-    public Drive SetBackRight(SpeedController BackRight) {
+    public Drive SetBackRight(SpeedController backRight) {
         this.backRight = backRight;
+        
         return this;
     }
 
     public Drive init() {
         robotDrive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
+        robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+        robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         return this;
     }
 

@@ -26,7 +26,7 @@ public class Devices {
                 .init();
         
         devices = new IStep[]{
-            
+            drive
         };
         //don't put anything after here
     }
