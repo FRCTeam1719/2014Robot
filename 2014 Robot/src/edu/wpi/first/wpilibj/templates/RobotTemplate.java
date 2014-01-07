@@ -27,6 +27,8 @@ public class RobotTemplate extends IterativeRobot {
         devices.init();
         //remove next line after testing
      Devices.drive.move(.5,0,0,0);
+        System.out.println("init");
+        
     }
     
   
@@ -42,6 +44,7 @@ public class RobotTemplate extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        System.out.println("teleopPeriodic");
         step();
     }
     
