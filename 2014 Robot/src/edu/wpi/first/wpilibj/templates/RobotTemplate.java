@@ -9,6 +9,7 @@ package edu.wpi.first.wpilibj.templates;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -45,6 +46,7 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void teleopPeriodic() {
         System.out.println("teleopPeriodic");
+        SmartDashboard.putNumber("test", 3); //Smartdashboard test
         step();
     }
     
