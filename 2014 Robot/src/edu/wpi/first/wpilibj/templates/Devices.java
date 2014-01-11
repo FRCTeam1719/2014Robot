@@ -5,7 +5,7 @@
 package edu.wpi.first.wpilibj.templates;
 
 import edu.wpi.first.wpilibj.Victor;
-
+import edu.wpi.first.wpilibj.templates.autonomous.*;
 /**
  *
  * @author Chance
@@ -14,6 +14,7 @@ public class Devices {
 
    static IStep[] devices;
    static Drive drive;
+   static Autonomous autonomous;
    static Controller controller;
     public void init() {
         controller = new Controller();
@@ -26,7 +27,7 @@ public class Devices {
                 .SetBackLeft(new Victor(9))
                 .SetBackRight(new Victor(10))
                 .init();
-        
+        autonomous = new Autonomous();
         devices = new IStep[]{
             drive,
             controller
