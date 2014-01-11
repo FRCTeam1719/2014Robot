@@ -37,9 +37,14 @@ public class Devices {
                 SetBackLeft(new Victor(9))
                 .SetBackRight(new Victor(2))
                 .init();
+        
+        CompressorController cc1 = new CompressorController();
+        cc1.init();
+        
         autonomous = new Autonomous();
         devices = new IStep[]{
             drive,
+            cc1,
             encoder,
             autonomous
         };
