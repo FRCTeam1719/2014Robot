@@ -16,21 +16,23 @@ public class Devices {
    static Drive drive;
    static Autonomous autonomous;
    static Controller controller;
+   static NewEncoder encoder;
     public void init() {
         controller = new Controller();
         controller.init();
+        encoder = new NewEncoder();
+        encoder.init();
         
         
         drive = new Drive().
-                SetFrontLeft(new Victor(1))
-                .SetFrontRight(new Victor(2))
-                .SetBackLeft(new Victor(9))
-                .SetBackRight(new Victor(10))
+                SetBackLeft(new Victor(9))
+                .SetBackRight(new Victor(2))
                 .init();
         autonomous = new Autonomous();
         devices = new IStep[]{
             drive,
-            controller
+            controller,
+            encoder
         };
         //don't put anything after here
     }
