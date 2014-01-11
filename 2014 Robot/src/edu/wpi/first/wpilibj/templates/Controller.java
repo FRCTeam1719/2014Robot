@@ -21,6 +21,14 @@ public class Controller implements IStep {
     boolean isArcade = true;
     
     public void step() {
+        
+        if(js1.getRawAxis(3)!=0){
+            Devices.solenoid.set(true);
+            System.out.println("trigger pressed");
+        }else{
+             Devices.solenoid.set(false);
+             System.out.println("trigger off");
+        }
         //Changing Varible Types
         Integer driveModeInti = (Integer) RobotTemplate.driveMode.getSelected();
         int driveModeInt = driveModeInti.intValue();
