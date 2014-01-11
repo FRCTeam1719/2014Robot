@@ -26,10 +26,6 @@ public class RobotTemplate extends IterativeRobot {
     Devices devices = new Devices();
     public void robotInit() {
         devices.init();
-        //remove next line after testing
-     
-        System.out.println("init");
-        
     }
     
   
@@ -38,7 +34,7 @@ public class RobotTemplate extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-       step();
+        Devices.autonomous.step();
     }
 
     /**
