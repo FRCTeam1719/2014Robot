@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.templates.autonomous.*;
 public class Devices {
 
    static IStep[] devices;
-   static Drive drive;
+   public static Drive drive;
    static Autonomous autonomous;
   
    static NewEncoder encoder;
@@ -37,10 +37,16 @@ public class Devices {
                 SetBackLeft(new Victor(9))
                 .SetBackRight(new Victor(2))
                 .init();
+        
+        CompressorController cc1 = new CompressorController();
+        cc1.init();
+        
         autonomous = new Autonomous();
         devices = new IStep[]{
             drive,
-            encoder
+            cc1,
+            encoder,
+            autonomous
         };
         //don't put anything after here
     }
