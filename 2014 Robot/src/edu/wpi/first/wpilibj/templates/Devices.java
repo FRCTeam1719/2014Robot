@@ -25,8 +25,11 @@ public class Devices {
                 .SetBackRight(new Victor(10))
                 .init();
         
+        CompressorController cc1 = new CompressorController();
+        cc1.init();
+        
         devices = new IStep[]{
-            
+                cc1
         };
         //don't put anything after here
     }
