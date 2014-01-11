@@ -1,5 +1,5 @@
 Dashboard - Aaron
-Vision -
+Vision - Aaron
 Autonomous - Thomas
 	Modes?
 	Hot or not?
@@ -10,3 +10,4 @@ Git
 Code - Chance
 	Initial project
 	Drive train
+    Encoders
