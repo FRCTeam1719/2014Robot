@@ -17,19 +17,20 @@ public class NewEncoder implements IStep {
        
     }
     Encoder encoder;
-    DigitalInput di1;
-    DigitalInput di2;
+    //DigitalInput di1;
+    //DigitalInput di2;
     
     public void step() {
         
         SmartDashboard.putNumber("speed swag", encoder.get());
-        System.out.println("speed swag " + encoder.get());
+        System.out.println("speed swag " + encoder.getDistance());
         
     }
  public void init(){
-     di1 = new DigitalInput(1, 1);
-     di2 = new DigitalInput(1, 2);
-   encoder = new Encoder(di2,di1);
+     //di1 = new DigitalInput(1, 7);
+        
+     //di2 = new DigitalInput(1, 8);
+   encoder = new Encoder(7,8);
      
     
  }   

@@ -15,11 +15,20 @@ public class Devices {
    static IStep[] devices;
    static Drive drive;
    static Autonomous autonomous;
-   static Controller controller;
+  
    static NewEncoder encoder;
+   
+   
+   public void step(){
+        for(int i = 0; i<Devices.devices.length;i++){
+            Devices.devices[i].step();
+        }
+    }
+   
+   
     public void init() {
-        controller = new Controller();
-        controller.init();
+        
+        
         encoder = new NewEncoder();
         encoder.init();
         
@@ -31,7 +40,6 @@ public class Devices {
         autonomous = new Autonomous();
         devices = new IStep[]{
             drive,
-            controller,
             encoder
         };
         //don't put anything after here
