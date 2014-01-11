@@ -12,15 +12,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  * @author Chance
  */
-public class Controller implements IStep{
+public class Controller implements IStep {
+
     Joystick js1;
-    
-    public void init(){
+
+    public void init() {
         js1 = new Joystick(1);
-        
+
     }
+    boolean isArcade = true;
+
     public void step() {
-           Devices.drive.moveArcade(js1.getRawAxis(2), js1.getRawAxis(1));
+        if (isArcade) {
+            Devices.drive.moveArcade(js1.getRawAxis(2), js1.getRawAxis(1));
+        }if(!isArcade){
+            Devices.drive.moveTank(js1.getRawAxis(2), js1.getRawAxis(5));
+        }
     }
-    
 }
