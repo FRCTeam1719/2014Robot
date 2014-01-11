@@ -21,7 +21,7 @@ public class Controller implements IStep {
 
     }
     boolean isArcade = true;
-
+    
     public void step() {
         if (isArcade) {
             Devices.drive.moveArcade(js1.getRawAxis(2), js1.getRawAxis(1));
