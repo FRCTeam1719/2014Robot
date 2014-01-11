@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.SensorBase;
  */
 public class CompressorController implements IStep{
 
+    /*
+     * Step doesn't do anything, because the compressor class already does the thredding.
+     */
     public void step() {
         
     }
@@ -25,6 +28,9 @@ public class CompressorController implements IStep{
     
     Compressor compressor; 
     
+    /*
+     * Creates and starts a new Compressor
+     */
     public void init() {
        compressor = new Compressor(pressureSwitchSlot,pressureSwitchChannel,compresssorRelaySlot,compressorRelayChannel);
        compressor.start();
