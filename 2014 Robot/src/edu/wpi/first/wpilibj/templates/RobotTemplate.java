@@ -9,6 +9,8 @@ package edu.wpi.first.wpilibj.templates;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,10 +25,14 @@ public class RobotTemplate extends IterativeRobot {
      * used for any initialization code.
      */
     Devices devices = new Devices();
+      static Controller controller = new Controller();;
     public void robotInit() {
+       
+        //Initialize Dashboard varible,, 0 is arcade, 1 is moveTank
+        SmartDashboard.putNumber("DriveMode", 0);
+        
+      controller.init();
         devices.init();
-        //remove next line after testing
-     Devices.drive.move(.5,0,0,0);
     }
     
   
@@ -35,14 +41,16 @@ public class RobotTemplate extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-       step();
+        Devices.autonomous.step();
     }
 
     /**
      * This function is called periodically during operator control
      */
+   
     public void teleopPeriodic() {
-        step();
+        controller.step();
+        devices.step();
     }
     
     /**
@@ -51,10 +59,6 @@ public class RobotTemplate extends IterativeRobot {
     public void testPeriodic() {
     
     }
-    public void step(){
-        for(int i = 0; i<Devices.devices.length;i++){
-            Devices.devices[i].step();
-        }
-    }
+    
     
 }

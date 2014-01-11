@@ -1,0 +1,13 @@
+Dashboard - Aaron
+Vision - Aaron
+Autonomous - Thomas
+	Modes?
+	Hot or not?
+cRios - Image
+Git
+	New Java project
+	New Dashboard project ?
+Code - Chance
+	Initial project
+	Drive train
+    Encoders

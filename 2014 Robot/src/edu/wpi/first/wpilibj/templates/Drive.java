@@ -13,52 +13,58 @@ import edu.wpi.first.wpilibj.SpeedController;
  */
 public class Drive implements IStep {
 
-    private double moveX = 0;
-    private double moveY = 0;
-    private double moveRotation = 0;
-    private double moveGyro = 0;
-    private SpeedController frontLeft, frontRight, backLeft, backRight;
+    private double moveX,rotation = 0;
+    private double leftWheelSpeed, rightWheelSpeed = 0;
+    private boolean isTankDrive = false;
+    private SpeedController leftMotor, rightMotor;
     private RobotDrive robotDrive;
 
     Drive() {
     }
 
     public void step() {
-        robotDrive.mecanumDrive_Cartesian(moveX, moveY, moveRotation, moveGyro);
+        if(isTankDrive){
+        robotDrive.tankDrive(leftWheelSpeed, rightWheelSpeed);
+        }if(!isTankDrive){
+            robotDrive.arcadeDrive(moveX, -rotation);
+        }
+
     }
 
-    public Drive SetFrontLeft(SpeedController frontLeft) {
-        this.frontLeft = frontLeft;
+    public Drive SetBackLeft(SpeedController leftMotor) {
+        this.leftMotor = leftMotor;
         return this;
     }
 
-    public Drive SetFrontRight(SpeedController frontRight) {
-        this.frontRight = frontRight;
-        return this;
-    }
+    public Drive SetBackRight(SpeedController rightMotor) {
+        this.rightMotor = rightMotor;
 
-    public Drive SetBackLeft(SpeedController BackLeft) {
-        this.backLeft = backLeft;
-        return this;
-    }
-
-    public Drive SetBackRight(SpeedController BackRight) {
-        this.backRight = backRight;
         return this;
     }
 
     public Drive init() {
-        robotDrive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
+        robotDrive = new RobotDrive(leftMotor, rightMotor);
+
+        // robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         return this;
     }
 
-    public Drive move(double x, double y, double rotation, double gyro) {
-        moveX = x;
-        moveY = y;
-        moveRotation = rotation;
-        moveGyro = gyro;
+   
+
+    public Drive moveArcade(double moveX, double rotaton) {
+       this.moveX = moveX;
+       this.rotation = rotaton;
+       isTankDrive = false;
 
 
         return this;
+    }
+    public Drive moveTank(double leftWheelSpeed, double rightWheelSpeed){
+        this.leftWheelSpeed = leftWheelSpeed;
+        this.rightWheelSpeed = rightWheelSpeed;
+        isTankDrive = true;
+        
+        return this;
+    
     }
 }
