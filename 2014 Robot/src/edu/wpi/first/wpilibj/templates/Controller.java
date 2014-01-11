@@ -20,15 +20,7 @@ public class Controller implements IStep{
         
     }
     public void step() {
-             
-            
-                
-           Devices.drive.move(-js1.getY(), -js1.getX(), js1.getRawAxis(4), 0);
-         
-        
-           
-           
-           
+           Devices.drive.moveArcade(js1.getRawAxis(2), js1.getRawAxis(1));
     }
     
 }
