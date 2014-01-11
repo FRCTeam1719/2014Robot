@@ -27,7 +27,7 @@ public class RobotTemplate extends IterativeRobot {
     public void robotInit() {
         devices.init();
         //remove next line after testing
-     Devices.drive.move(.5,0,0,0);
+     
         System.out.println("init");
         
     }
@@ -46,7 +46,7 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void teleopPeriodic() {
         System.out.println("teleopPeriodic");
-        SmartDashboard.putNumber("test", 3); //Smartdashboard test
+        SmartDashboard.putNumber("aaron is stupid", 87); //Smartdashboard test
         step();
     }
     

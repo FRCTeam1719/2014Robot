@@ -14,8 +14,10 @@ public class Devices {
 
    static IStep[] devices;
    static Drive drive;
+   static Controller controller;
     public void init() {
-        
+        controller = new Controller();
+        controller.init();
         
         
         drive = new Drive().
@@ -26,7 +28,8 @@ public class Devices {
                 .init();
         
         devices = new IStep[]{
-            drive
+            drive,
+            controller
         };
         //don't put anything after here
     }
