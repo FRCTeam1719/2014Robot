@@ -5,27 +5,26 @@
  */
 
 package edu.wpi.first.wpilibj.templates.autonomous.autoactions;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.templates.autonomous.Action;
-import edu.wpi.first.wpilibj.templates.*;
 
 /**
  *
  * @author Thomas
  */
-public class DriveAction extends Action{
-    public DriveAction(double moveX, double rotation){
-        xMove = moveX;
-        rotate = rotation;
+public class TimerWaitAction extends Action{
+    public TimerWaitAction(double timeAmt){
+        timer = new Timer();
+        waitTime = timeAmt;
     }
+    double waitTime;
+    Timer timer;
     public void init(){
-        //MY HANDS ARE TYPING WORDS
+        timer.reset();
+        timer.start();
     }
-    double xMove;
-    double rotate;
     public boolean doAct(){
-        //Drive forward
-        Devices.drive.moveArcade(-xMove, rotate);
-        return true;
-        //HAAAAAAAAAAAAAANDS
+        System.out.println(timer.get());
+        return timer.get()>=waitTime;
     }
 }

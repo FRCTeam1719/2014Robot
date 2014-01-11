@@ -37,8 +37,7 @@ public class RobotTemplate extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        System.out.println("autonomousPeriodic");
-        Devices.autonomous.step();
+        devices.step();
     }
 
     /**

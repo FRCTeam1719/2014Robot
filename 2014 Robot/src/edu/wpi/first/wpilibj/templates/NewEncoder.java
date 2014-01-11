@@ -23,7 +23,7 @@ public class NewEncoder implements IStep {
     public void step() {
         
         SmartDashboard.putNumber("speed swag", encoder.get());
-        System.out.println("speed swag " + encoder.getDistance());
+        //System.out.println("speed swag " + encoder.getDistance());
         
     }
  public void init(){
