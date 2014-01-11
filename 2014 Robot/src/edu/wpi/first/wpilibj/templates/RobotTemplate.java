@@ -9,6 +9,7 @@ package edu.wpi.first.wpilibj.templates;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -27,6 +28,9 @@ public class RobotTemplate extends IterativeRobot {
       static Controller controller = new Controller();;
     public void robotInit() {
        
+        //Initialize Dashboard varible,, 0 is arcade, 1 is moveTank
+        SmartDashboard.putNumber("DriveMode", 0);
+        
       controller.init();
         devices.init();
     }
