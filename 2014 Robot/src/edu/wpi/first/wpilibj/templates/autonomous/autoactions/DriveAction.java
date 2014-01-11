@@ -12,9 +12,15 @@ import edu.wpi.first.wpilibj.templates.autonomous.Action;
  * @author Thomas
  */
 public class DriveAction extends Action{
+    public DriveAction(double moveX, double rotation){
+        xMove = moveX;
+        rotate = rotation;
+    }
     public void init(){
         
     }
+    double xMove;
+    double rotate;
     public boolean doAct(){
         //Drive forward
         return false;
