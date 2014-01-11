@@ -23,9 +23,16 @@ public class Controller implements IStep {
     boolean isArcade = true;
 
     public void step() {
+        double i = SmartDashboard.getNumber("DriveMode");
+        if (i >= 1) {
+            isArcade = false;
+        } else {
+            isArcade = true;
+        }
         if (isArcade) {
             Devices.drive.moveArcade(js1.getRawAxis(2), js1.getRawAxis(1));
-        }if(!isArcade){
+        }
+        if (!isArcade) {
             Devices.drive.moveTank(js1.getRawAxis(2), js1.getRawAxis(5));
         }
     }
