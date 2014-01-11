@@ -26,7 +26,7 @@ public class Autonomous implements IStep{
     public void step(){
         //If all acts are not done
         if(!doneAllActs){
-            //Do an act
+            //Step the current act
             //The method doAct returns true when all acts are done.
             doneAllActs = run.doAct();
         }

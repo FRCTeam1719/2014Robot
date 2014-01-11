@@ -19,6 +19,7 @@ public class Chain extends Action{
     public boolean doAct(){
         //Step an act. If it has been finished
         if(actions[i].doAct()){
+            System.out.println("Done an act");
             //Move on to the next act
             i++;
             //If that wasn't the last act
