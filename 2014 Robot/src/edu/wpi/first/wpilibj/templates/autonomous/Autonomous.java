@@ -28,7 +28,8 @@ public class Autonomous implements IStep{
         //If all acts are not done
         if(!doneAllActs){
             //Step the current act
-            //The method doAct returns true when all acts are done.
+            //The doAct method of the Chain "run" returns true when all acts in
+            //the chain are done.
             doneAllActs = run.doAct();
         }
     }
