@@ -15,7 +15,7 @@ public class Devices {
    static IStep[] devices;
    public static Drive drive;
    static Autonomous autonomous;
-  
+   static NewSolenoid solenoid;
    static NewEncoder encoder;
    
    
@@ -28,7 +28,8 @@ public class Devices {
    
     public void init() {
         
-        
+        solenoid = new NewSolenoid();
+        solenoid.init();
         encoder = new NewEncoder();
         encoder.init();
         
@@ -46,7 +47,8 @@ public class Devices {
             drive,
             cc1,
             encoder,
-            autonomous
+            autonomous,
+            solenoid
         };
         //don't put anything after here
     }
