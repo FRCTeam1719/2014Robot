@@ -15,7 +15,7 @@ public class Devices {
    static IStep[] devices;
    public static Drive drive;
    static Autonomous autonomous;
-  
+   static NewSolenoid solenoid;
    static NewEncoder encoder;
    
    
@@ -28,7 +28,8 @@ public class Devices {
    
     public void init() {
         
-        
+        solenoid = new NewSolenoid();
+        solenoid.init();
         encoder = new NewEncoder();
         encoder.init();
         
@@ -37,11 +38,17 @@ public class Devices {
                 SetBackLeft(new Victor(9))
                 .SetBackRight(new Victor(2))
                 .init();
+        
+        CompressorController cc1 = new CompressorController();
+        cc1.init();
+        
         autonomous = new Autonomous();
         devices = new IStep[]{
             drive,
+            cc1,
             encoder,
-            autonomous
+            autonomous,
+            solenoid
         };
         //don't put anything after here
     }

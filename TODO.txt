@@ -1,13 +1,32 @@
 Dashboard - Aaron
+    Add feedback:
+        Gear-mode
 Vision - Aaron
 Autonomous - Thomas
 	Modes?
 	Hot or not?
-cRios - Image
+cRios - Image (Done)
 Git
-	New Java project
-	New Dashboard project ?
+	New Java project (Done)
+	New Dashboard project (Done)
 Code - Chance
 	Initial project
 	Drive train
+        Switch to tank drive
     Encoders
+
+Research two motors on single gearbox
+    should they be tuned to send same power
+    Does this require indepetnedt speed conrollers
+    
+Look into sensors:
+    encoders
+    distance sensors
+    gyro 
+    accelerometer
+    potentiometer
+    limit switch
+
+Logging
+    Corrolate log to video feed
+Scouting System

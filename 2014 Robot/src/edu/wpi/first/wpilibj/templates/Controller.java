@@ -4,9 +4,7 @@
  */
 package edu.wpi.first.wpilibj.templates;
 
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -21,11 +19,30 @@ public class Controller implements IStep {
 
     }
     boolean isArcade = true;
-
+    
     public void step() {
+        
+        if(js1.getRawAxis(3)!=0){
+            Devices.solenoid.set(true);
+            System.out.println("trigger pressed");
+        }else{
+             Devices.solenoid.set(false);
+             System.out.println("trigger off");
+        }
+        //Change SendableChooser Object to an Integer, then to an int for reasions
+        Integer driveModeInti = (Integer) RobotTemplate.driveMode.getSelected();
+        int driveModeInt = driveModeInti.intValue();
+        //Pick DriveMode
+        if(driveModeInt==1){
+            isArcade = true;
+        }else{
+            isArcade = false;
+        }
+        
         if (isArcade) {
             Devices.drive.moveArcade(js1.getRawAxis(2), js1.getRawAxis(1));
-        }if(!isArcade){
+        }
+        if (!isArcade) {
             Devices.drive.moveTank(js1.getRawAxis(2), js1.getRawAxis(5));
         }
     }

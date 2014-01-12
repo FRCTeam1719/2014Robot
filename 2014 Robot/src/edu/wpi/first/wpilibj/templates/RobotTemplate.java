@@ -9,7 +9,9 @@ package edu.wpi.first.wpilibj.templates;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 
 /**
@@ -24,12 +26,17 @@ public class RobotTemplate extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+    static SendableChooser driveMode;
     Devices devices = new Devices();
       static Controller controller = new Controller();;
     public void robotInit() {
        
-        //Initialize Dashboard varible,, 0 is arcade, 1 is moveTank
-        SmartDashboard.putNumber("DriveMode", 0);
+        
+        //Create new SendableChooser, with two options.
+        driveMode = new SendableChooser();
+        driveMode.addDefault("Arcade Mode", Integer.valueOf(1));
+        driveMode.addObject("Tank Mode", Integer.valueOf(2));
+        SmartDashboard.putData("Drive Mode Options", driveMode);
         
       controller.init();
         devices.init();
