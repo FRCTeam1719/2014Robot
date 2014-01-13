@@ -33,16 +33,11 @@ public class Controller implements IStep {
         Integer driveModeInti = (Integer) RobotTemplate.driveMode.getSelected();
         int driveModeInt = driveModeInti.intValue();
         //Pick DriveMode
-        if(driveModeInt==1){
-            isArcade = true;
-        }else{
-            isArcade = false;
-        }
         
-        if (isArcade) {
+        if (driveModeInt==1) {
             Devices.drive.moveArcade(js1.getRawAxis(2), js1.getRawAxis(1));
         }
-        if (!isArcade) {
+        if (driveModeInt!=1) {
             Devices.drive.moveTank(js1.getRawAxis(2), js1.getRawAxis(5));
         }
     }

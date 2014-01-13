@@ -13,25 +13,28 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author Chance
  */
 public class NewEncoder implements IStep {
-    NewEncoder(){
-       
+
+    NewEncoder() {
     }
     Encoder encoder;
-    //DigitalInput di1;
-    //DigitalInput di2;
-    
+   DigitalInput di1;
+    DigitalInput di2; 
+    //Counter counter;
     public void step() {
-        
-        SmartDashboard.putNumber("speed swag", encoder.get());
-        //System.out.println("speed swag " + encoder.getDistance());
-        
+        //send robot speed to dashboard
+        SmartDashboard.putNumber("speed",encoder.getRate());
+      
+      
+
     }
- public void init(){
-     //di1 = new DigitalInput(1, 7);
+
+    public void init() {
+      di1 = new DigitalInput(1, 3);
+      di2 = new DigitalInput(1, 4);
+      encoder = new Encoder(di2, di1);
+      encoder.setSamplesToAverage(50);
+      encoder.start();
         
-     //di2 = new DigitalInput(1, 8);
-   encoder = new Encoder(7,8);
-     
-    
- }   
+
+    }
 }
