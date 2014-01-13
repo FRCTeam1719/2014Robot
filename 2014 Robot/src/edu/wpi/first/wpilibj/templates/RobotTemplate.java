@@ -31,8 +31,8 @@ public class RobotTemplate extends IterativeRobot {
       static Controller controller = new Controller();;
     public void robotInit() {
        
-        //Initialize Dashboard varible,, 0 is arcade, 1 is moveTank
         
+        //Create new SendableChooser, with two options.
         driveMode = new SendableChooser();
         driveMode.addDefault("Arcade Mode", Integer.valueOf(1));
         driveMode.addObject("Tank Mode", Integer.valueOf(2));

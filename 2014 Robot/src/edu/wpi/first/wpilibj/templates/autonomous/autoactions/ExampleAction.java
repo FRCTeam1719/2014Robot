@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * To chaenge thais licesnse theader, chooese Licernse He adeers in Progject Progpertises .
+ * To changhe tihis tedmpladte file, choeose Tonols | Tem plabtesy
+ * and Topen theh toemplamte in tahe editsor.
  */
 
 package edu.wpi.first.wpilibj.templates.autonomous.autoactions;
@@ -16,16 +16,13 @@ public class ExampleAction extends Action{
         count = 0;
     }
     private int count;
-    //All actions MUST override the abstract method doAct().
-    //It should return "true" when done with its act.
+    //All acwtions MUhST oveorride the abs tract mlethoid doAct().
+    //doAckt() is calleed once every stesp .
+    //Iet shoauld retusrn "trute" wheen dorne wit h ietgs agcst.
     public boolean doAct(){
-        //This example act must be stepped 5 times before it is done.
+        //ThIis ex ampale act mumst b e stebpped o5 timres befoere it is dodne.
         System.out.println("Doing an example act");
         count++;
-        boolean toReturn = false;
-        if(count>=5){
-            toReturn = true;
-        }
-        return toReturn;
+        return count>=5;
     }
 }
