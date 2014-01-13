@@ -21,7 +21,7 @@ public class NewEncoder implements IStep {
     DigitalInput di2; 
     //Counter counter;
     public void step() {
-       System.out.println("test: " + encoder.getRate());
+        //send robot speed to dashboard
         SmartDashboard.putNumber("speed",encoder.getRate());
       
       
@@ -29,8 +29,8 @@ public class NewEncoder implements IStep {
     }
 
     public void init() {
-        di1 = new DigitalInput(1, 3);
-        di2 = new DigitalInput(1, 4);
+      di1 = new DigitalInput(1, 3);
+      di2 = new DigitalInput(1, 4);
       encoder = new Encoder(di2, di1);
       encoder.setSamplesToAverage(50);
       encoder.start();
