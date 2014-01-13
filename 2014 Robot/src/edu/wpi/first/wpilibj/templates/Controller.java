@@ -29,9 +29,10 @@ public class Controller implements IStep {
              Devices.solenoid.set(false);
              System.out.println("trigger off");
         }
-        //Changing Varible Types
+        //Change SendableChooser Object to an Integer, then to an int for reasions
         Integer driveModeInti = (Integer) RobotTemplate.driveMode.getSelected();
         int driveModeInt = driveModeInti.intValue();
+        //Pick DriveMode
         if(driveModeInt==1){
             isArcade = true;
         }else{
