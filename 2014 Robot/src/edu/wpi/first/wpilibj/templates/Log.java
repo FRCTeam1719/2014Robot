@@ -17,6 +17,7 @@ public class Log {
     public void sendLog() {
         
         SmartDashboard.putString("Log",logMessage);
+        System.out.println("Log transfered");
         
     }
     
