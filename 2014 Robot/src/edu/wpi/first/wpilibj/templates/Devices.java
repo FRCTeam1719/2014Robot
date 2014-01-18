@@ -36,7 +36,7 @@ public class Devices {
         
         
         drive = new Drive().
-                SetBackLeft(new Victor(9))
+                SetBackLeft(new Victor(1))
                 .SetBackRight(new Victor(2))
                 .init();
         uss = new UltrasonicSensor();

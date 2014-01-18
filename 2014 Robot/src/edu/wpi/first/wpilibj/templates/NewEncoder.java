@@ -37,4 +37,8 @@ public class NewEncoder implements IStep {
         
 
     }
+    public double get(){
+        
+        return encoder.getRate();
+    }
 }

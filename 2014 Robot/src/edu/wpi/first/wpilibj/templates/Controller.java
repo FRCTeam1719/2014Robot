@@ -22,12 +22,12 @@ public class Controller implements IStep {
     
     public void step() {
         
-        if(js1.getRawAxis(3)!=0){
+        if(Devices.encoder.get()>600){
             Devices.solenoid.set(true);
-            System.out.println("trigger pressed");
+           
         }else{
              Devices.solenoid.set(false);
-             System.out.println("trigger off");
+       
         }
         //Change SendableChooser Object to an Integer, then to an int for reasions
         Integer driveModeInti = (Integer) RobotTemplate.driveMode.getSelected();
