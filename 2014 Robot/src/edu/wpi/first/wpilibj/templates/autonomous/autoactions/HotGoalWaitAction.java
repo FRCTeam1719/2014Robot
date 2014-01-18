@@ -5,23 +5,20 @@
  */
 
 package edu.wpi.first.wpilibj.templates.autonomous.autoactions;
+
 import edu.wpi.first.wpilibj.templates.autonomous.Action;
 
 /**
  *
  * @author Thomas
  */
-public class ShooterAction extends Action{
-    public ShooterAction(){
-        
-    }
-    public void init(){
-        
-    }
-    public boolean doAct(){
+public class HotGoalWaitAction extends Action{
+    public boolean doAct() {
         boolean toReturn = false;
-        //Replace next line of code with code to change toReturn to true once
-        //shooter is done shooting.
+        //Replace the following line of code with code that sets toReturn to
+        //true as soon as the goal becomes hot. This involves complicated vision
+        //stuff that I don't know, so it'll have to be done later. Preferably by
+        //someone else.
         toReturn = true;
         return toReturn;
     }
