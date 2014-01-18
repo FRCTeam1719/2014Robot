@@ -17,6 +17,7 @@ public class Devices {
    static Autonomous autonomous;
    static NewSolenoid solenoid;
    static NewEncoder encoder;
+   static UltrasonicSensor uss;
    
    
    public void step(){
@@ -38,6 +39,8 @@ public class Devices {
                 SetBackLeft(new Victor(9))
                 .SetBackRight(new Victor(2))
                 .init();
+        uss = new UltrasonicSensor();
+        uss.init();
         
         CompressorController cc1 = new CompressorController();
         cc1.init();
@@ -48,7 +51,8 @@ public class Devices {
             cc1,
             encoder,
             autonomous,
-            solenoid
+            solenoid,
+            uss
         };
         //don't put anything after here
     }
