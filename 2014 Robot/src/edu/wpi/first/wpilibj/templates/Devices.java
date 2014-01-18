@@ -17,6 +17,7 @@ public class Devices {
    static Autonomous autonomous;
    static NewSolenoid solenoid;
    static NewEncoder encoder;
+   static Log logger = new Log();
    
    
    public void step(){

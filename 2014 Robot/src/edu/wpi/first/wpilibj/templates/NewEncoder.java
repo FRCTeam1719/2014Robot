@@ -34,6 +34,7 @@ public class NewEncoder implements IStep {
       encoder = new Encoder(di2, di1);
       encoder.setSamplesToAverage(50);
       encoder.start();
+      Devices.logger.sendMessage("Encoder started");
         
 
     }

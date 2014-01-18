@@ -32,7 +32,10 @@ public class CompressorController implements IStep{
      * Creates and starts a new Compressor
      */
     public void init() {
+       
        compressor = new Compressor(pressureSwitchSlot,pressureSwitchChannel,compresssorRelaySlot,compressorRelayChannel);
        compressor.start();
+       Devices.logger.sendMessage("Compressor Started");
+       
     }
 }

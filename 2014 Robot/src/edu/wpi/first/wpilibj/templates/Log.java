@@ -12,13 +12,34 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Log {
 
-    public String logMessage;
+    String logMessage;
     
-    public void sendLog() {
+    public void sendMessage(String message){
         
-        SmartDashboard.putString("Log",logMessage);
-        System.out.println("Log transfered");
+        logMessage += ", "+message;
         
     }
     
+     public void send() {
+        
+        if(!logMessage.equals("")) {
+            SmartDashboard.putString("Log",logMessage);
+            System.out.println("Log sent");
+        }else{
+            
+        }
+    }
+     
+     public void refresh(){
+         
+         while(true) {
+             
+             Devices.logger.send();
+             
+         }
+         
+     }
+    
 }
+    
+
