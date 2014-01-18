@@ -17,8 +17,8 @@ public class Autonomous implements IStep{
         run = new Chain(new Action[]{
             //list actions here
             new DriveAction(0.75,0.0),
-            new TimerWaitAction(10),
-            new DriveAction(0.0,0.0)
+            new UltrasonicWaitAction(true, 70),
+            new DriveAction(0.0,0.0),
         });
         doneAllActs = false;
     }

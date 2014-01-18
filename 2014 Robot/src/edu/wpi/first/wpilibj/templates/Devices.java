@@ -12,12 +12,12 @@ import edu.wpi.first.wpilibj.templates.autonomous.*;
  */
 public class Devices {
 
-   static IStep[] devices;
+   public static IStep[] devices;
    public static Drive drive;
-   static Autonomous autonomous;
-   static NewSolenoid solenoid;
-   static NewEncoder encoder;
-   static UltrasonicSensor uss;
+   public static Autonomous autonomous;
+   public static NewSolenoid solenoid;
+   public static NewEncoder encoder;
+   public static UltrasonicSensor uss;
    
    
    public void step(){
