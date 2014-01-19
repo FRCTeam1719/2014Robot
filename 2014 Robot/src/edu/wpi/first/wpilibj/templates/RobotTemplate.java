@@ -27,6 +27,7 @@ public class RobotTemplate extends IterativeRobot {
      * used for any initialization code.
      */
     static SendableChooser driveMode;
+     static SendableChooser autoTransmision;
     Devices devices = new Devices();
       static Controller controller = new Controller();;
     public void robotInit() {
@@ -37,6 +38,14 @@ public class RobotTemplate extends IterativeRobot {
         driveMode.addDefault("Arcade Mode", Integer.valueOf(1));
         driveMode.addObject("Tank Mode", Integer.valueOf(2));
         SmartDashboard.putData("Drive Mode Options", driveMode);
+        
+        autoTransmision = new SendableChooser();
+        autoTransmision.addDefault("Automatic transmition", Integer.valueOf(1));
+        autoTransmision.addObject("Manual transmition", Integer.valueOf(2));
+        SmartDashboard.putData("Transmition options", autoTransmision);
+        
+        
+        
         
       controller.init();
         devices.init();

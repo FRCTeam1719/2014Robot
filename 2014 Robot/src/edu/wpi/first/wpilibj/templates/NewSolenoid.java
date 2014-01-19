@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.Solenoid;
  */
 public class NewSolenoid implements IStep{
    Solenoid solenoid;
-   private boolean isOn = false;
+   private boolean isOn = true;
     public void step(){
        solenoid.set(isOn);
    }
