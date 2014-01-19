@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.templates.*;
  *
  * @author Thomas
  */
-public class DriveAction extends Action{
-    public DriveAction(double moveX, double rotation){
+public class ArcadeDriveAction extends Action{
+    public ArcadeDriveAction(double moveX, double rotation){
         xMove = moveX;
         rotate = rotation;
     }

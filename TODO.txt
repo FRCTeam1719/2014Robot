@@ -5,6 +5,7 @@ Vision - Aaron
 Autonomous - Thomas
 	Modes?
 	Hot or not?
+    Drive until near wall
 cRios - Image (Done)
 Git
 	New Java project (Done)
@@ -14,6 +15,7 @@ Code - Chance
 	Drive train
         Switch to tank drive
     Encoders
+        PID
 
 Research two motors on single gearbox
     should they be tuned to send same power

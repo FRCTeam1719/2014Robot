@@ -10,7 +10,10 @@ package edu.wpi.first.wpilibj.templates.autonomous;
  *
  * @author Thomas
  */
+//Ancestor class for all autonomous actions
 public abstract class Action{
+    //All actions must implement doAct()...
     abstract public boolean doAct();
+    //...and may override init() if they wish.
     public void init(){};
 }
