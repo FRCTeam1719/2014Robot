@@ -32,6 +32,8 @@ public class Devices {
         solenoid = new NewSolenoid();
         solenoid.init();
         encoder = new NewEncoder();
+        encoder.setEncoder1(6);
+        encoder.setEncoder2(7);
         encoder.init();
         
         

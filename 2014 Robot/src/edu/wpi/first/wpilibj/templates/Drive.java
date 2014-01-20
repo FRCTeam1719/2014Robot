@@ -54,7 +54,7 @@ public class Drive implements IStep {
 
     public Drive moveArcade(double moveX, double rotaton) {
        this.moveX = moveX;
-       this.rotation = rotaton;
+       this.rotation = -rotaton;
        isTankDrive = false;
 
 
