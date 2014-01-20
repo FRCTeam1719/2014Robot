@@ -24,7 +24,6 @@ public class TimerWaitAction extends Action{
         timer.start();
     }
     public boolean doAct(){
-        System.out.println(timer.get());
         return timer.get()>=waitTime;
     }
 }
