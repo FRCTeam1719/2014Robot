@@ -16,7 +16,7 @@ public class Drive implements IStep {
     private double moveX,rotation = 0;
     private double leftWheelSpeed, rightWheelSpeed = 0;
     private boolean isTankDrive = false;
-    private SpeedController leftMotor, rightMotor;
+    private SpeedController backLeftMotor, frontLeftMotor, backRightMotor, frontRightMotor;
     private RobotDrive robotDrive;
 
     Drive() {
@@ -32,18 +32,28 @@ public class Drive implements IStep {
     }
 
     public Drive SetBackLeft(SpeedController leftMotor) {
-        this.leftMotor = leftMotor;
+        this.backLeftMotor = leftMotor;
         return this;
     }
 
+    public Drive SetFrontLeft(SpeedController leftMotor) {
+        this.frontLeftMotor = leftMotor;
+        return this;
+    }
+    
+    public Drive SetFrontRight(SpeedController rightMotor) {
+        this.frontRightMotor = rightMotor;
+        return this;
+    }
+    
     public Drive SetBackRight(SpeedController rightMotor) {
-        this.rightMotor = rightMotor;
+        this.backRightMotor = rightMotor;
 
         return this;
     }
 
     public Drive init() {
-        robotDrive = new RobotDrive(leftMotor, rightMotor);
+        robotDrive = new RobotDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
 
         // robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         return this;

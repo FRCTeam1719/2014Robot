@@ -4,6 +4,7 @@
  */
 package edu.wpi.first.wpilibj.templates;
 
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.templates.autonomous.*;
 /**
@@ -36,8 +37,10 @@ public class Devices {
         
         
         drive = new Drive().
-                SetBackLeft(new Victor(9))
-                .SetBackRight(new Victor(2))
+                SetFrontLeft(new Jaguar(9))
+                .SetBackLeft(new Jaguar(10))
+                .SetFrontRight(new Jaguar(7))
+                .SetBackRight(new Jaguar(8))
                 .init();
         uss = new UltrasonicSensor();
         uss.init();
