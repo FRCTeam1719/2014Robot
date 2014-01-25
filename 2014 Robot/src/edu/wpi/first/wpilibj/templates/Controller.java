@@ -13,11 +13,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Controller implements IStep {
 
-    Joystick js1;
+    Joystick joyStick1;
     private boolean isSlow = true;
+    static final int CONTROLLER_1 = 1;
 
     public void init() {
-        js1 = new Joystick(1);
+        joyStick1 = new Joystick(CONTROLLER_1);
 
     }
     boolean isArcade = true;
@@ -26,46 +27,45 @@ public class Controller implements IStep {
         Integer transmition = (Integer) RobotTemplate.autoTransmision.getSelected();
         int t = transmition.intValue();
 
-        if ((js1.getRawAxis(3) > 0)) {
+        if ((joyStick1.getRawAxis(3) > 0)) {
             if (isSlow) {
                 Devices.drive.stop(500);
-                isSlow = false
-                        ;
-                System.out.println("solonoid on");
+                isSlow = false;
+
             }
         } else {
-            if (Devices.encoder.get() > 800 && t == 1) {
-               if(isSlow){
-                   
-                Devices.drive.stop(200);
-                
-                isSlow = false;
-               }
-            } else if(Devices.encoder.get()<600) {
-                if(!isSlow){
-                Devices.drive.stop(200);
-                isSlow = true;
-                System.out.println("solonoid on");
+            if (Devices.wheelEncoder1.get() > 800 && t == 1) {
+                if (isSlow) {
+
+                    Devices.drive.stop(200);
+
+                    isSlow = false;
                 }
-                if(isSlow){
+            } else if (Devices.wheelEncoder1.get() < 600) {
+                if (!isSlow) {
+                    Devices.drive.stop(200);
+                    isSlow = true;
+                    System.out.println("solonoid on");
+                }
+                if (isSlow) {
                     SmartDashboard.putString("speed", "slow");
-                }else{
+                } else {
                     SmartDashboard.putString("speed", "fast");
                 }
             }
 
         }
-        Devices.solenoid.set(isSlow);
+        Devices.gearShiftSolonoid.set(isSlow);
         //Change SendableChooser Object to an Integer, then to an int for reasions
         Integer driveModeInti = (Integer) RobotTemplate.driveMode.getSelected();
         int driveModeInt = driveModeInti.intValue();
         //Pick DriveMode
 
         if (driveModeInt == 1) {
-            Devices.drive.moveArcade(js1.getRawAxis(2), js1.getRawAxis(1));
+            Devices.drive.moveArcade(joyStick1.getRawAxis(2), joyStick1.getRawAxis(1));
         }
         if (driveModeInt != 1) {
-            Devices.drive.moveTank(js1.getRawAxis(2), js1.getRawAxis(5));
+            Devices.drive.moveTank(joyStick1.getRawAxis(2), joyStick1.getRawAxis(5));
         }
     }
 }

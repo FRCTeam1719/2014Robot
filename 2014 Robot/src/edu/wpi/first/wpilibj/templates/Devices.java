@@ -16,9 +16,9 @@ public class Devices {
    public static IStep[] devices;
    public static Drive drive;
    public static Autonomous autonomous;
-   public static NewSolenoid solenoid;
-   public static NewEncoder encoder;
-   public static UltrasonicSensor uss;
+   public static NewSolenoid gearShiftSolonoid;
+   public static NewEncoder wheelEncoder1;
+   public static UltrasonicSensor ultraSonicSensor1;
    public static CameraLEDController cameraLED;
    
    
@@ -31,12 +31,12 @@ public class Devices {
    
     public void init() {
         
-        solenoid = new NewSolenoid();
-        solenoid.init();
-        encoder = new NewEncoder();
-        encoder.setEncoder1(6);
-        encoder.setEncoder2(7);
-        encoder.init();
+        gearShiftSolonoid = new NewSolenoid();
+        gearShiftSolonoid.init();
+        wheelEncoder1 = new NewEncoder();
+        wheelEncoder1.setEncoder1(6);
+        wheelEncoder1.setEncoder2(7);
+        wheelEncoder1.init();
         cameraLED = new CameraLEDController(2,1);
         cameraLED.init();
         
@@ -44,20 +44,20 @@ public class Devices {
                 SetBackLeft(new Victor(1))
                 .SetBackRight(new Victor(2))
                 .init();
-        uss = new UltrasonicSensor();
-        uss.init(7);
+        ultraSonicSensor1 = new UltrasonicSensor();
+        ultraSonicSensor1.init(7);
         
-        CompressorController cc1 = new CompressorController();
-        cc1.init();
+        CompressorController compressorController = new CompressorController();
+        compressorController.init();
         
         autonomous = new Autonomous();
         devices = new IStep[]{
             drive,
-            cc1,
-            encoder,
+            compressorController,
+            wheelEncoder1,
             autonomous,
-            solenoid,
-            uss,
+            gearShiftSolonoid,
+            ultraSonicSensor1,
             cameraLED
         };
         //don't put anything after here

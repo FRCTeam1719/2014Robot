@@ -24,11 +24,11 @@ public class UltrasonicWaitAction extends Action{
         //If you're waiting for the value to be less than something
         if(maxDist){
             //Return if the value is less than that something
-            toReturn = Devices.uss.getValue()<distance;
+            toReturn = Devices.ultraSonicSensor1.getValue()<distance;
         //If you're waiting for the value to be greater than something
         }else{
             //Return if the value is greater than that something
-            toReturn = Devices.uss.getValue()>distance;
+            toReturn = Devices.ultraSonicSensor1.getValue()>distance;
         }
         return toReturn;
     }
