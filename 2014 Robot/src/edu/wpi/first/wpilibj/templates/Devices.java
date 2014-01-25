@@ -4,6 +4,7 @@
  */
 package edu.wpi.first.wpilibj.templates;
 
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.templates.autonomous.*;
 /**
@@ -18,6 +19,7 @@ public class Devices {
    public static NewSolenoid solenoid;
    public static NewEncoder encoder;
    public static UltrasonicSensor uss;
+   public static CameraLEDController cameraLED;
    
    
    public void step(){
@@ -35,14 +37,15 @@ public class Devices {
         encoder.setEncoder1(6);
         encoder.setEncoder2(7);
         encoder.init();
-        
+        cameraLED = new CameraLEDController(2,1);
+        cameraLED.init();
         
         drive = new Drive().
                 SetBackLeft(new Victor(1))
                 .SetBackRight(new Victor(2))
                 .init();
         uss = new UltrasonicSensor();
-        uss.init();
+        uss.init(7);
         
         CompressorController cc1 = new CompressorController();
         cc1.init();
@@ -54,7 +57,8 @@ public class Devices {
             encoder,
             autonomous,
             solenoid,
-            uss
+            uss,
+            cameraLED
         };
         //don't put anything after here
     }
