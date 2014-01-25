@@ -5,6 +5,7 @@
 package edu.wpi.first.wpilibj.templates;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -13,6 +14,7 @@ import edu.wpi.first.wpilibj.Joystick;
 public class Controller implements IStep {
 
     Joystick js1;
+    private boolean isSlow = true;
 
     public void init() {
         js1 = new Joystick(1);
@@ -24,18 +26,36 @@ public class Controller implements IStep {
         Integer transmition = (Integer) RobotTemplate.autoTransmision.getSelected();
         int t = transmition.intValue();
 
-        if ((js1.getRawAxis(3) > 0) ) {
-            
-                Devices.solenoid.set(false);
-            
-
-        } else {
-            if(Devices.encoder.get() > 800&&t==1){
-                Devices.solenoid.set(false);
-            }else{
-            Devices.solenoid.set(true);
+        if ((js1.getRawAxis(3) > 0)) {
+            if (isSlow) {
+                Devices.drive.stop(500);
+                isSlow = false
+                        ;
+                System.out.println("solonoid on");
             }
+        } else {
+            if (Devices.encoder.get() > 800 && t == 1) {
+               if(isSlow){
+                   
+                Devices.drive.stop(200);
+                
+                isSlow = false;
+               }
+            } else if(Devices.encoder.get()<600) {
+                if(!isSlow){
+                Devices.drive.stop(200);
+                isSlow = true;
+                System.out.println("solonoid on");
+                }
+                if(isSlow){
+                    SmartDashboard.putString("speed", "slow");
+                }else{
+                    SmartDashboard.putString("speed", "fast");
+                }
+            }
+
         }
+        Devices.solenoid.set(isSlow);
         //Change SendableChooser Object to an Integer, then to an int for reasions
         Integer driveModeInti = (Integer) RobotTemplate.driveMode.getSelected();
         int driveModeInt = driveModeInti.intValue();
