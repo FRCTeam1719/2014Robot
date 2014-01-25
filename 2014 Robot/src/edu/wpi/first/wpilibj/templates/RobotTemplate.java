@@ -51,7 +51,7 @@ public class RobotTemplate extends IterativeRobot {
         devices.init();
     }
     
-  
+    
     public void autonomousInit(){
         Devices.autonomous.init();
     }

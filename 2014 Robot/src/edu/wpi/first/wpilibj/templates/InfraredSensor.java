@@ -21,6 +21,7 @@ public class InfraredSensor implements IStep{
     public void init(int slot){
         infrared = new AnalogChannel(slot);
     }
+    //gets the value of the infared sensor
     public int getValue(){
         return infrared.getAverageValue();
     }

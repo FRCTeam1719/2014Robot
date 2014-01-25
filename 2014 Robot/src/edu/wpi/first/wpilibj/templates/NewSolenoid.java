@@ -21,6 +21,7 @@ public class NewSolenoid implements IStep{
         solenoid = new Solenoid(SOLONOID_PORT_1);
         
     }
+    //turns the solonoid on and off
     public void set(boolean isOn){
         this.isOn = isOn;
     }

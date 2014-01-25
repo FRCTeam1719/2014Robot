@@ -43,9 +43,11 @@ public class NewEncoder implements IStep {
         
         return Math.abs(encoder.getRate());
     }
+    //sets the port for the first encoder
     public void setEncoder1(int encoderNumber){
         num1 = encoderNumber;
     }
+    //sets the port for the second encoder
      public void setEncoder2(int encoderNumber){
         num2 = encoderNumber;
     }

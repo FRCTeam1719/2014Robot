@@ -39,12 +39,12 @@ public class Drive implements IStep {
           checkTime();
         }
     }
-
+    //sets the back left motor
     public Drive SetBackLeft(SpeedController leftMotor) {
         this.leftMotor = leftMotor;
         return this;
     }
-
+    // sets the back right motor
     public Drive SetBackRight(SpeedController rightMotor) {
         this.rightMotor = rightMotor;
 
