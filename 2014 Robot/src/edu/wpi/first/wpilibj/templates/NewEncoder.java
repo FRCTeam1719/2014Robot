@@ -29,8 +29,8 @@ public class NewEncoder implements IStep {
     }
 
     public void init() {
-      di1 = new DigitalInput(1, 3);
-      di2 = new DigitalInput(1, 4);
+      di1 = new DigitalInput(1, 2);
+      di2 = new DigitalInput(1, 3);
       encoder = new Encoder(di2, di1);
       encoder.setSamplesToAverage(50);
       encoder.start();

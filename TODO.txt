@@ -1,6 +1,6 @@
 Dashboard - Aaron
     Add feedback:
-        Gear-mode
+        Gear-mode (Chance)
         Drive-mode
 Vision - Aaron
 Autonomous - Thomas
@@ -33,3 +33,5 @@ Look into sensors:
 Logging
     Corrolate log to video feed
 Scouting System
+Clean Code
+Disable vision processing when appropriate`
