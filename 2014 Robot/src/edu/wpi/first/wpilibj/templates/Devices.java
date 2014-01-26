@@ -24,20 +24,20 @@ public class Devices {
    public static CameraLEDController cameraLED;
    
    //ports
-   final public static int ENCODER_1_PWM = 2;
-   final public static int ENCODER_2_PWM = 3;
-   final public static int ENCODER_3_PWM = 4;
-   final public static int ENCODER_4_PWM = 5;
-   final public static int WHEEL_lEFT_PWM = 10;
-   final public static int WHEEL_RIGHT_PWM = 8;
-   final public static int GEAR_SHIFT_SOLONOID_1_PWM = 1;
-   final public static int GEAR_SHIFT_SOLONOID_2_PWM = 2;
-   final public static int PRESSURE_SWITCH_SLOT = 1;
-   final public static int PRESSURE_SWITCH_CHANEL = 1;
-   final public static int COMPRESSOR_RELAY_SLOT = 1;
-   final public static int COMPRESSOR_RELAY_CHANNEL = 1;
-   final public static int ULTRASONIC_PWM = 7;
-   static final int CONTROLLER_1 = 1;
+   final private static int ENCODER_1_PWM = 2;
+   final private static int ENCODER_2_PWM = 3;
+   final private static int ENCODER_3_PWM = 4;
+   final private static int ENCODER_4_PWM = 5;
+   final private static int WHEEL_lEFT_PWM = 10;
+   final private static int WHEEL_RIGHT_PWM = 8;
+   final private static int GEAR_SHIFT_SOLONOID_1_PWM = 1;
+   final private static int GEAR_SHIFT_SOLONOID_2_PWM = 2;
+   final private static int PRESSURE_SWITCH_SLOT = 1;
+   final private static int PRESSURE_SWITCH_CHANEL = 1;
+   final private static int COMPRESSOR_RELAY_SLOT = 1;
+   final private static int COMPRESSOR_RELAY_CHANNEL = 1;
+   final private static int ULTRASONIC_PWM = 7;
+   final private static int CONTROLLER_1 = 1;
     
    
    
@@ -50,7 +50,7 @@ public class Devices {
    
    
     public void init() {
-        
+        //make gear shift solonoids
         gearShiftSolonoid = new NewSolenoid();
         gearShiftSolonoid.init();
         gearShiftSolonoid2 = new NewSolenoid();
@@ -59,28 +59,40 @@ public class Devices {
         gearShiftSolonoid2.set(GEAR_SHIFT_SOLONOID_2_PWM);
         
         //other encoders 1-2
-        
         //2- 3
-        
+        //make wheel encoders
         wheelEncoder1 = new NewEncoder();
         wheelEncoder1.setEncoder1(ENCODER_3_PWM);
         wheelEncoder1.setEncoder2(ENCODER_4_PWM);
         wheelEncoder1.init();
+        
+        //make camera
         cameraLED = new CameraLEDController(2,1);
         cameraLED.init();
         
-        
+        //make drive
         drive = new Drive().
                 SetBackLeft(new Victor(WHEEL_lEFT_PWM))
                 .SetBackRight(new Victor(WHEEL_RIGHT_PWM))
                 .init();
+        //make ultrasonic sensor
         ultraSonicSensor1 = new UltrasonicSensor();
-        ultraSonicSensor1.init(ULTRASONIC_PWM);
+        ultraSonicSensor1
+                .setSlot(ULTRASONIC_PWM)
+                .init();
         
+        //make compressor
         CompressorController compressorController = new CompressorController();
-        compressorController.init();
-        
+        compressorController
+                .setCompressorRelayChannel(COMPRESSOR_RELAY_CHANNEL)
+                .setCompressorRelaySlot(COMPRESSOR_RELAY_SLOT)
+                .setPressureSwitchChannel(PRESSURE_SWITCH_SLOT)
+                .setPressureSwitchSlot(PRESSURE_SWITCH_SLOT)
+                .init();
+        //make autonomous
         autonomous = new Autonomous();
+        
+        //devices array
         devices = new IStep[]{
             drive,
             compressorController,

@@ -12,19 +12,23 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author Chance
  */
 public class Controller implements IStep {
-
+    int port;
     Joystick joyStick1;
     private boolean isSlow = true;
       GearShiftController gearShiftController;
     
 
     public void init() {
-        joyStick1 = new Joystick(Devices.CONTROLLER_1);
+        joyStick1 = new Joystick(port);
         gearShiftController = new GearShiftController();
         gearShiftController.setJoystick(joyStick1);
     }
     boolean isArcade = true;
-
+    public Controller set(int port){
+        this.port = port;
+        return this;
+    }
+    
     public void step() {
       gearShiftController.step();
        

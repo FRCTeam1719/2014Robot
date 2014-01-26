@@ -21,10 +21,10 @@ public class CompressorController implements IStep{
         
     }
     
-    int pressureSwitchSlot = Devices.PRESSURE_SWITCH_SLOT;
-    int pressureSwitchChannel = Devices.PRESSURE_SWITCH_CHANEL;
-    int compresssorRelaySlot = Devices.COMPRESSOR_RELAY_SLOT;
-    int compressorRelayChannel = Devices.COMPRESSOR_RELAY_CHANNEL;
+    int pressureSwitchSlot;
+    int pressureSwitchChannel;
+    int compresssorRelaySlot; 
+    int compressorRelayChannel; 
     
     Compressor compressor; 
     
@@ -35,4 +35,23 @@ public class CompressorController implements IStep{
        compressor = new Compressor(pressureSwitchSlot,pressureSwitchChannel,compresssorRelaySlot,compressorRelayChannel);
        compressor.start();
     }
+    public CompressorController setPressureSwitchSlot(int psl){
+        pressureSwitchSlot = psl;
+        return this;
+    }
+     public CompressorController setPressureSwitchChannel(int psc){
+        pressureSwitchChannel = psc;
+        return this;
+    }
+      public CompressorController setCompressorRelaySlot(int crs){
+        compresssorRelaySlot = crs;
+        return this;
+        
+    }
+       public CompressorController setCompressorRelayChannel(int crc){
+        compressorRelayChannel = crc;
+        return this;
+        
+    }
+    
 }

@@ -47,7 +47,7 @@ public class RobotTemplate extends IterativeRobot {
         
         
         
-      controller.init();
+      controller.set(1).init();
         devices.init();
     }
     
