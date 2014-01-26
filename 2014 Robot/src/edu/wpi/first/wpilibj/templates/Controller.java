@@ -15,48 +15,19 @@ public class Controller implements IStep {
 
     Joystick joyStick1;
     private boolean isSlow = true;
-    static final int CONTROLLER_1 = 1;
+      GearShiftController gearShiftController;
+    
 
     public void init() {
-        joyStick1 = new Joystick(CONTROLLER_1);
-
+        joyStick1 = new Joystick(Devices.CONTROLLER_1);
+        gearShiftController = new GearShiftController();
+        gearShiftController.setJoystick(joyStick1);
     }
     boolean isArcade = true;
 
     public void step() {
-        Integer transmition = (Integer) RobotTemplate.autoTransmision.getSelected();
-        int t = transmition.intValue();
-
-        if ((joyStick1.getRawAxis(3) > 0)) {
-            if (isSlow) {
-                Devices.drive.stop(500);
-                isSlow = false;
-
-            }
-        } else {
-            if (Devices.wheelEncoder1.get() > 800 && t == 1) {
-                if (isSlow) {
-
-                    Devices.drive.stop(200);
-
-                    isSlow = false;
-                }
-            } else if (Devices.wheelEncoder1.get() < 600) {
-                if (!isSlow) {
-                    Devices.drive.stop(200);
-                    isSlow = true;
-                    System.out.println("solonoid on");
-                }
-                if (isSlow) {
-                    SmartDashboard.putString("speed", "slow");
-                } else {
-                    SmartDashboard.putString("speed", "fast");
-                }
-            }
-
-        }
-        Devices.gearShiftSolonoid.set(!isSlow);
-        Devices.gearShiftSolonoid2.set(isSlow);
+      gearShiftController.step();
+       
         
         
         //Change SendableChooser Object to an Integer, then to an int for reasions
