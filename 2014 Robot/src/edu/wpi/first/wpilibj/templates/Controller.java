@@ -55,7 +55,10 @@ public class Controller implements IStep {
             }
 
         }
-        Devices.gearShiftSolonoid.set(isSlow);
+        Devices.gearShiftSolonoid.set(!isSlow);
+        Devices.gearShiftSolonoid2.set(isSlow);
+        
+        
         //Change SendableChooser Object to an Integer, then to an int for reasions
         Integer driveModeInti = (Integer) RobotTemplate.driveMode.getSelected();
         int driveModeInt = driveModeInti.intValue();

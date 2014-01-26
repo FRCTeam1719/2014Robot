@@ -18,8 +18,11 @@ public class NewSolenoid implements IStep{
        solenoid.set(isOn);
    }
     public void init(){
-        solenoid = new Solenoid(SOLONOID_PORT_1);
         
+        
+    }
+    public void set(int a){
+        solenoid = new Solenoid(a);
     }
     //turns the solonoid on and off
     public void set(boolean isOn){

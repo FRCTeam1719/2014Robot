@@ -21,10 +21,10 @@ public class CompressorController implements IStep{
         
     }
     
-    int pressureSwitchSlot = 1;
-    int pressureSwitchChannel = 1;
-    int compresssorRelaySlot = 1;
-    int compressorRelayChannel = 1;
+    int pressureSwitchSlot = Devices.PRESSURE_SWITCH_SLOT;
+    int pressureSwitchChannel = Devices.PRESSURE_SWITCH_CHANEL;
+    int compresssorRelaySlot = Devices.COMPRESSOR_RELAY_SLOT;
+    int compressorRelayChannel = Devices.COMPRESSOR_RELAY_CHANNEL;
     
     Compressor compressor; 
     
