@@ -49,7 +49,8 @@ public class Devices {
             cc1,
             encoder,
             autonomous,
-            solenoid
+            solenoid,
+            logger
         };
         //don't put anything after here
     }

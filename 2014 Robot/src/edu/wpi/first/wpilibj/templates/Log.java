@@ -10,18 +10,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  * @author Zach
  */
-public class Log {
+public class Log implements IStep{
 
     String logMessage;
     
     public void sendMessage(String message){
         
+        //apends message to the queue of log messages
         logMessage += ", "+message;
+        System.out.println(message);
         
     }
     
      public void send() {
         
+        //tests to see if the queue is empty, and then sends the next queue of logs to the Dashboard
         if(!logMessage.equals("")) {
             SmartDashboard.putString("Log",logMessage);
             System.out.println("Log sent");
@@ -30,14 +33,8 @@ public class Log {
         }
     }
      
-     public void refresh(){
-         
-         while(true) {
-             
-             Devices.logger.send();
-             
-         }
-         
+     public void step(){
+             send();
      }
     
 }
