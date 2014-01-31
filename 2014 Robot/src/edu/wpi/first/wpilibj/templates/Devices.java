@@ -53,7 +53,6 @@ public class Devices {
             drive,
             cc1,
             encoder,
-            autonomous,
             solenoid,
             uss,
             cameraLED

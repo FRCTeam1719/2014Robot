@@ -19,17 +19,17 @@ public class CameraLEDController implements IStep{
         ledController = new Relay(slot, channel, Relay.Direction.kForward);
     }
     public void init(){
-        SmartDashboard.putBoolean("Is Camera LED On?", false);
-        SmartDashboard.putBoolean("Camera LED", false);
+        SmartDashboard.putBoolean("cameraLEDOn", false);
+        SmartDashboard.putBoolean("cameraLED", false);
     }
     public void step() {
-        boolean cameraOn = SmartDashboard.getBoolean("Camera LED");
+        boolean cameraOn = SmartDashboard.getBoolean("cameraLED");
         if(cameraOn){
             ledController.set(Relay.Value.kOn);
         }else{
             ledController.set(Relay.Value.kOff);
         }
-        SmartDashboard.putBoolean("Is Camera LED On?", cameraOn);
+        SmartDashboard.putBoolean("cameraLEDOn", cameraOn);
     }
     
 }
