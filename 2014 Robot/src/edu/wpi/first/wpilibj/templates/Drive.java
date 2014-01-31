@@ -29,11 +29,11 @@ public class Drive implements IStep {
 
             if (isTankDrive) {
                 robotDrive.tankDrive(leftWheelSpeed, rightWheelSpeed);
-                System.out.println("Driving");
+               
             }
             if (!isTankDrive) {
                 robotDrive.arcadeDrive(moveX, -rotation);
-                System.out.println("Driving");
+               
             }
         }else{
           checkTime();

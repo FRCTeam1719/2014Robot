@@ -39,17 +39,19 @@ public class Devices {
     private static int COMPRESSOR_RELAY_CHANNEL = 1;
     private static int ULTRASONIC_PWM = 7;
     private static int CONTROLLER_1 = 1;
-    Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
-    int sri = selectedRobot.intValue();
+    //Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
+    int sri = 1;
+    // NewPotenciomitor p = new NewPotenciomitor();
 
     public void step() {
         for (int i = 0; i < Devices.devices.length; i++) {
+            //System.out.println(i);
             Devices.devices[i].step();
         }
     }
 
     public void init() {
-
+       // p.setPort(5);
         if (sri == 1) {
             ENCODER_1_PWM = 2;
             ENCODER_2_PWM = 3;
@@ -142,11 +144,11 @@ public class Devices {
 
         //devices array
         devices = new IStep[]{
-            drive,
-            compressorController,
-            wheelEncoder1,
+           drive,
+          compressorController,
+          wheelEncoder1,
             autonomous,
-            gearShiftSolonoid,
+          gearShiftSolonoid,
             gearShiftSolonoid2,
             ultraSonicSensor1,
             cameraLED

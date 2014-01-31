@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author Chance
  */
 public class GearShiftController {
-    public boolean isSlow = false;
+    public boolean isSlow = true;
     Joystick joyStick1;
    
     
@@ -31,17 +31,16 @@ public class GearShiftController {
                 if (isSlow) {
 
                     Devices.drive.stop(200);
-
                     isSlow = false;
                 }
-            } else if (Devices.wheelEncoder1.get() < 600) {
+                
+            } else if ((t==1 && Devices.wheelEncoder1.get() < 600 )|| (t==2 && joyStick1.getRawAxis(3)<=0)) {
                 if (!isSlow) {
                     Devices.drive.stop(200);
                     isSlow = true;
                     System.out.println("solonoid on");
                 }
                 if (isSlow) {
-                    SmartDashboard.putString("speed", "slow");
                 } else {
                     SmartDashboard.putString("speed", "fast");
                 }
