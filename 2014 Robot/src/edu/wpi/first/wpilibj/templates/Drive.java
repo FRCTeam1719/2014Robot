@@ -13,29 +13,38 @@ import edu.wpi.first.wpilibj.SpeedController;
  */
 public class Drive implements IStep {
 
-    private double moveX,rotation = 0;
+    private double moveX, rotation = 0;
     private double leftWheelSpeed, rightWheelSpeed = 0;
     private boolean isTankDrive = false;
     private SpeedController leftMotor, rightMotor;
     private RobotDrive robotDrive;
-
+    private boolean isEnabled = true;
+    private double time = 0;
     Drive() {
     }
 
     public void step() {
-        if(isTankDrive){
-        robotDrive.tankDrive(leftWheelSpeed, rightWheelSpeed);
-        }if(!isTankDrive){
-            robotDrive.arcadeDrive(moveX, -rotation);
+        if (isEnabled) {
+
+
+            if (isTankDrive) {
+                robotDrive.tankDrive(leftWheelSpeed, rightWheelSpeed);
+//                System.out.println("Driving");
+            }
+            if (!isTankDrive) {
+                robotDrive.arcadeDrive(moveX, -rotation);
+//                System.out.println("Driving");
+            }
+        }else{
+          checkTime();
         }
-
     }
-
+    //sets the back left motor
     public Drive SetBackLeft(SpeedController leftMotor) {
         this.leftMotor = leftMotor;
         return this;
     }
-
+    // sets the back right motor
     public Drive SetBackRight(SpeedController rightMotor) {
         this.rightMotor = rightMotor;
 
@@ -49,22 +58,29 @@ public class Drive implements IStep {
         return this;
     }
 
-   
-
     public Drive moveArcade(double moveX, double rotaton) {
-       this.moveX = moveX;
-       this.rotation = rotaton;
-       isTankDrive = false;
+        this.moveX = moveX;
+        this.rotation = -rotaton;
+        isTankDrive = false;
 
 
         return this;
     }
-    public Drive moveTank(double leftWheelSpeed, double rightWheelSpeed){
+
+    public Drive moveTank(double leftWheelSpeed, double rightWheelSpeed) {
         this.leftWheelSpeed = leftWheelSpeed;
         this.rightWheelSpeed = rightWheelSpeed;
         isTankDrive = true;
-        
+
         return this;
-    
+
     }
+  public void checkTime(){
+      if (System.currentTimeMillis()>=time ){
+          isEnabled = true;
+      }
+  }
+  public void stop(double sTime){
+      time = System.currentTimeMillis() + sTime;
+  }
 }

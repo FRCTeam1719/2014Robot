@@ -26,7 +26,10 @@ public class RobotTemplate extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+    //TODO clean up, move portions into their own class
     static SendableChooser driveMode;
+    static SendableChooser robot;
+     static SendableChooser autoTransmision;
     Devices devices = new Devices();
       static Controller controller = new Controller();;
     public void robotInit() {
@@ -38,11 +41,24 @@ public class RobotTemplate extends IterativeRobot {
         driveMode.addObject("Tank Mode", Integer.valueOf(2));
         SmartDashboard.putData("Drive Mode Options", driveMode);
         
-      controller.init();
+        autoTransmision = new SendableChooser();
+        autoTransmision.addDefault("Automatic transmition", Integer.valueOf(1));
+        autoTransmision.addObject("Manual transmition", Integer.valueOf(2));
+        SmartDashboard.putData("Transmition options", autoTransmision);
+        
+        robot = new SendableChooser();
+        robot.addDefault("compotition robot 1", Integer.valueOf(1));
+        robot.addObject("test robot 1", Integer.valueOf(2));
+        robot.addObject("test robot 2", Integer.valueOf(3));
+        SmartDashboard.putData("robot", robot);
+        
+        
+        
+      controller.set(1).init();
         devices.init();
     }
     
-  
+    
     public void autonomousInit(){
         Devices.autonomous.init();
     }
