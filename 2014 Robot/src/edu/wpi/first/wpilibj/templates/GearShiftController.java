@@ -13,12 +13,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class GearShiftController {
     public boolean isSlow = false;
+    //TODO we shouldn't know about the joystick. The Controller class should tell us when to change
     Joystick joyStick1;
    
     
     public void step(){
          Integer transmition = (Integer) RobotTemplate.autoTransmision.getSelected();
-        int t = transmition.intValue();
+         //TODO do we do anything with this
+        int t = transmition.intValue(); 
 
         if ((joyStick1.getRawAxis(3) > 0)) {
             if (isSlow) {
