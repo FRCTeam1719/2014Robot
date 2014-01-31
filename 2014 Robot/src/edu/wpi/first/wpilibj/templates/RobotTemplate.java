@@ -27,6 +27,8 @@ public class RobotTemplate extends IterativeRobot {
      * used for any initialization code.
      */
     static SendableChooser driveMode;
+    static SendableChooser robot;
+     static SendableChooser autoTransmision;
     Devices devices = new Devices();
       static Controller controller = new Controller();;
     public void robotInit() {
@@ -38,12 +40,27 @@ public class RobotTemplate extends IterativeRobot {
         driveMode.addObject("Tank Mode", Integer.valueOf(2));
         SmartDashboard.putData("Drive Mode Options", driveMode);
         
-      controller.init();
+        autoTransmision = new SendableChooser();
+        autoTransmision.addDefault("Automatic transmition", Integer.valueOf(1));
+        autoTransmision.addObject("Manual transmition", Integer.valueOf(2));
+        SmartDashboard.putData("Transmition options", autoTransmision);
+        
+        robot = new SendableChooser();
+        robot.addDefault("compotition robot 1", Integer.valueOf(1));
+        robot.addObject("test robot 1", Integer.valueOf(2));
+        robot.addObject("test robot 2", Integer.valueOf(3));
+        SmartDashboard.putData("robot", robot);
+        
+        
+        
+      controller.set(1).init();
         devices.init();
     }
     
-  
-
+    
+    public void autonomousInit(){
+        Devices.autonomous.init();
+    }
     /**
      * This function is called periodically during autonomous
      */
@@ -54,7 +71,9 @@ public class RobotTemplate extends IterativeRobot {
     /**
      * This function is called periodically during operator control
      */
-   
+   public void teleopInit(){
+       Devices.autonomous.stop();
+   }
     public void teleopPeriodic() {
         controller.step();
         devices.step();

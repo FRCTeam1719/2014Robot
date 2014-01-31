@@ -12,14 +12,19 @@ import edu.wpi.first.wpilibj.Solenoid;
  */
 public class NewSolenoid implements IStep{
    Solenoid solenoid;
-   private boolean isOn = false;
+   final static int SOLONOID_PORT_1 = 1;
+   private boolean isOn = true;
     public void step(){
        solenoid.set(isOn);
    }
     public void init(){
-        solenoid = new Solenoid(1, 1);
+        
         
     }
+    public void set(int a){
+        solenoid = new Solenoid(a);
+    }
+    //turns the solonoid on and off
     public void set(boolean isOn){
         this.isOn = isOn;
     }
