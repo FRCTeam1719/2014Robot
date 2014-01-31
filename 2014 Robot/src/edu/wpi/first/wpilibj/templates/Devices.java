@@ -24,6 +24,8 @@ public class Devices {
     public static NewEncoder wheelEncoder1;
     public static UltrasonicSensor ultraSonicSensor1;
     public static CameraLEDController cameraLED;
+    static Log logger = new Log();
+    Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
     //ports
     private static int ENCODER_1_PWM = 2;
     private static int ENCODER_2_PWM = 3;
