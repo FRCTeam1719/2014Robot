@@ -21,6 +21,7 @@ public class CompressorController implements IStep{
         
     }
     
+    //TODO we shouldn't know about slots and channels in this class
     int pressureSwitchSlot;
     int pressureSwitchChannel;
     int compresssorRelaySlot; 

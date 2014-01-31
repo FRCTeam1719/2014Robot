@@ -18,6 +18,8 @@ public class InfraredSensor implements IStep{
         SmartDashboard.putNumber("infrared", infrared.getAverageValue());
     }
     AnalogChannel infrared;
+    //TODO this class shouldn't know about slots
+    //      Also, the input should have its own setter. init should take no arguements
     public void init(int slot){
         infrared = new AnalogChannel(slot);
     }

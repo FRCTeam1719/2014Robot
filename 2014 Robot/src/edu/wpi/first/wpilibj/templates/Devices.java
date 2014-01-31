@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.templates.autonomous.*;
  * @author Chance
  */
 public class Devices {
-
+    //TODO unused variables
     public static NewSolenoid gearShiftSolonoid2;
     public static IStep[] devices;
     public static Drive drive;
@@ -39,8 +39,11 @@ public class Devices {
     private static int COMPRESSOR_RELAY_CHANNEL = 1;
     private static int ULTRASONIC_PWM = 7;
     private static int CONTROLLER_1 = 1;
-    static Log logger = new Log();
-    Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
+    //TODO this gave me a null pointer
+//    Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
+    private static Integer selectedRobot = new Integer(1);
+
+    //TODO move to init
     int sri = selectedRobot.intValue();
 
     public void step() {
@@ -50,7 +53,8 @@ public class Devices {
     }
 
     public void init() {
-
+        //TODO which robot do these go to
+        //TODO should we arrange these by module? 
         if (sri == 1) {
             ENCODER_1_PWM = 2;
             ENCODER_2_PWM = 3;
@@ -98,6 +102,8 @@ public class Devices {
             ULTRASONIC_PWM = 7;
             CONTROLLER_1 = 1;
         }
+        
+        //TODO make these constructions follow a consistent format
         
         //make gear shift solonoids
         gearShiftSolonoid = new NewSolenoid();

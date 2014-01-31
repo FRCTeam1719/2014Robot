@@ -12,9 +12,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author Chance
  */
 public class Controller implements IStep {
+    //TODO we shouldn't know about ports in this class
     int port;
+    //TODO give this joystick a more descriptive name
+    //      we will likely have multiple joysticks, one for the driver and one for the operator
     Joystick joyStick1;
     private boolean isSlow = true;
+    //TODO do we want this as a member, or are we using the globals.
+    //  This way is probably better, but we should be consistent
       GearShiftController gearShiftController;
     
 
@@ -24,12 +29,14 @@ public class Controller implements IStep {
         gearShiftController.setJoystick(joyStick1);
     }
     boolean isArcade = true;
+    //TODO make name more useful
     public Controller set(int port){
         this.port = port;
         return this;
     }
     
     public void step() {
+      //TODO if we move gearShiftController to a global, this should be moved to the devices array
       gearShiftController.step();
        
         
