@@ -39,6 +39,7 @@ public class Devices {
     private static int COMPRESSOR_RELAY_CHANNEL = 1;
     private static int ULTRASONIC_PWM = 7;
     private static int CONTROLLER_1 = 1;
+    static Log logger = new Log();
     Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
     int sri = selectedRobot.intValue();
 
@@ -149,7 +150,8 @@ public class Devices {
             gearShiftSolonoid,
             gearShiftSolonoid2,
             ultraSonicSensor1,
-            cameraLED
+            cameraLED,
+            logger
         };
         //don't put anything after here
     }
