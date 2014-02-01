@@ -24,8 +24,6 @@ public class Devices {
     public static NewEncoder wheelEncoder1;
     public static UltrasonicSensor ultraSonicSensor1;
     public static CameraLEDController cameraLED;
-    public static Potentiometer potentiometer1;
-    public static NewServo servo;
     static Log logger = new Log();
    // Integer selectedRobot=1;
     //ports
@@ -42,9 +40,7 @@ public class Devices {
     private static int COMPRESSOR_RELAY_SLOT = 1;
     private static int COMPRESSOR_RELAY_CHANNEL = 1;
     private static int ULTRASONIC_PWM = 7;
-    private static int POTENTIOMETER_PORT = 3;
     private static int CONTROLLER_1 = 1;
-    private static int SERVO_PORT = 1;
     //TODO this gave me a null pointer
 //    Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
 
@@ -75,7 +71,6 @@ public class Devices {
             COMPRESSOR_RELAY_SLOT = 1;
             COMPRESSOR_RELAY_CHANNEL = 1;
             ULTRASONIC_PWM = 7;
-            POTENTIOMETER_PORT = 3;
             CONTROLLER_1 = 1;
 
         }else if(sri == 2){
@@ -92,7 +87,6 @@ public class Devices {
             COMPRESSOR_RELAY_SLOT = 1;
             COMPRESSOR_RELAY_CHANNEL = 1;
             ULTRASONIC_PWM = 7;
-            POTENTIOMETER_PORT = 3;
             CONTROLLER_1 = 1;
         }else if(sri == 3){
                 ENCODER_1_PWM = 2;
@@ -108,7 +102,6 @@ public class Devices {
             COMPRESSOR_RELAY_SLOT = 1;
             COMPRESSOR_RELAY_CHANNEL = 1;
             ULTRASONIC_PWM = 7;
-            POTENTIOMETER_PORT = 3;
             CONTROLLER_1 = 1;
         }
         
@@ -144,16 +137,7 @@ public class Devices {
         ultraSonicSensor1
                 .setSlot(ULTRASONIC_PWM)
                 .init();
-        //make potentiometer
-        potentiometer1 = new Potentiometer();
-        potentiometer1
-                .setSlot(POTENTIOMETER_PORT)
-                .init();
-        //make servo
-        servo = new NewServo();
-        servo
-                .setPort(1)
-                .init();
+
         //make compressor
         CompressorController compressorController = new CompressorController();
         compressorController
@@ -174,8 +158,6 @@ public class Devices {
           gearShiftSolonoid,
             gearShiftSolonoid2,
             ultraSonicSensor1,
-            potentiometer1,
-            servo,
             cameraLED,
             logger
         };
