@@ -43,7 +43,6 @@ public class Devices {
     private static int CONTROLLER_1 = 1;
     //TODO this gave me a null pointer
 //    Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
-    private static Integer selectedRobot = new Integer(1);
 
     //TODO move to init
     int sri = selectedRobot.intValue();
