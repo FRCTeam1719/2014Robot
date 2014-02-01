@@ -30,7 +30,8 @@ public class Controller implements IStep {
     }
     
     public void step() {
-      gearShiftController.step();
+     gearShiftController.step();
+      
        
         
         
@@ -45,5 +46,13 @@ public class Controller implements IStep {
         if (driveModeInt != 1) {
             Devices.drive.moveTank(joyStick1.getRawAxis(2), joyStick1.getRawAxis(5));
         }
+        
+        if(joyStick1.getRawButton(1)){
+            Devices.shooterController.setReleased(true);
+                    
+        }else{
+             Devices.shooterController.setReleased(false);
+        }
+            
     }
 }
