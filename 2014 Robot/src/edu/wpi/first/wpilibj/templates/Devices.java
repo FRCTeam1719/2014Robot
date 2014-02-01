@@ -46,11 +46,7 @@ public class Devices {
     private static int SHOOTER_SOLONOID_PORT =4;
     private static int SHOOTER_POTENTIOMETER_PORT = 3;
     
-    //TODO this gave me a null pointer
-//    Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
-
-    //TODO move to init
-    int sri = 1;
+    
 
     public void step() {
         for (int i = 0; i < Devices.devices.length; i++) {
@@ -108,11 +104,9 @@ public class Devices {
         compressorController
                 .setCompressorRelayChannel(COMPRESSOR_RELAY_CHANNEL)
                 .setCompressorRelaySlot(COMPRESSOR_RELAY_SLOT)
-                .setPressureSwitchChannel(PRESSURE_SWITCH_SLOT)
+                .setPressureSwitchChannel(PRESSURE_SWITCH_CHANEL)
                 .setPressureSwitchSlot(PRESSURE_SWITCH_SLOT)
                 .init();
-        //make autonomous
-        autonomous = new Autonomous();
 
         //devices array
         devices = new IStep[]{
