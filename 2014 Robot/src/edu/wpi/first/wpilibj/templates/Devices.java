@@ -25,6 +25,7 @@ public class Devices {
     public static UltrasonicSensor ultraSonicSensor1;
     public static CameraLEDController cameraLED;
     public static Potentiometer potentiometer1;
+    public static NewServo servo;
     static Log logger = new Log();
    // Integer selectedRobot=1;
     //ports
@@ -43,6 +44,7 @@ public class Devices {
     private static int ULTRASONIC_PWM = 7;
     private static int POTENTIOMETER_PORT = 3;
     private static int CONTROLLER_1 = 1;
+    private static int SERVO_PORT = 1;
     //TODO this gave me a null pointer
 //    Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
 
@@ -147,7 +149,11 @@ public class Devices {
         potentiometer1
                 .setSlot(POTENTIOMETER_PORT)
                 .init();
-        
+        //make servo
+        servo = new NewServo();
+        servo
+                .setPort(1)
+                .init();
         //make compressor
         CompressorController compressorController = new CompressorController();
         compressorController
@@ -169,6 +175,7 @@ public class Devices {
             gearShiftSolonoid2,
             ultraSonicSensor1,
             potentiometer1,
+            servo,
             cameraLED,
             logger
         };
