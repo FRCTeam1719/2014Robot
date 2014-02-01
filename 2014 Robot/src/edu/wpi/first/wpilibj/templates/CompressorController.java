@@ -21,6 +21,7 @@ public class CompressorController implements IStep{
         
     }
     
+    //TODO we shouldn't know about slots and channels in this class
     int pressureSwitchSlot;
     int pressureSwitchChannel;
     int compresssorRelaySlot; 
@@ -32,8 +33,11 @@ public class CompressorController implements IStep{
      * Creates and starts a new Compressor
      */
     public void init() {
+       
        compressor = new Compressor(pressureSwitchSlot,pressureSwitchChannel,compresssorRelaySlot,compressorRelayChannel);
        compressor.start();
+       Devices.logger.sendMessage("Compressor Started");
+       
     }
     public CompressorController setPressureSwitchSlot(int psl){
         pressureSwitchSlot = psl;

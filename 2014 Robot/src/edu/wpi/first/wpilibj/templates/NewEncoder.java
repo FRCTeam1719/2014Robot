@@ -13,12 +13,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author Chance
  */
 public class NewEncoder implements IStep {
-
+    //TODO rename class
     NewEncoder() {
     }
     Encoder encoder;
    DigitalInput di1;
     DigitalInput di2; 
+    //TODO what are num1, num2?
     int num1 = 0;
     int num2 = 0;
     //Counter counter;
@@ -36,6 +37,7 @@ public class NewEncoder implements IStep {
       encoder = new Encoder(di2, di1);
       encoder.setSamplesToAverage(50);
       encoder.start();
+      Devices.logger.sendMessage("Encoder started");
         
 
     }

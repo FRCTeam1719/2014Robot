@@ -18,7 +18,8 @@ public class GearShiftController {
     
     public void step(){
          Integer transmition = (Integer) RobotTemplate.autoTransmision.getSelected();
-        int t = transmition.intValue();
+         //TODO do we do anything with this
+        int t = transmition.intValue(); 
 
         if ((joyStick1.getRawAxis(3) > 0)) {
             if (isSlow) {

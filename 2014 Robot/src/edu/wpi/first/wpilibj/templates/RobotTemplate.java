@@ -26,6 +26,7 @@ public class RobotTemplate extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+    //TODO clean up, move portions into their own class
     static SendableChooser driveMode;
     static SendableChooser robot;
      static SendableChooser autoTransmision;
@@ -65,15 +66,12 @@ public class RobotTemplate extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        devices.step();
+        Devices.autonomous.step();
     }
 
     /**
      * This function is called periodically during operator control
      */
-   public void teleopInit(){
-       Devices.autonomous.stop();
-   }
     public void teleopPeriodic() {
         controller.step();
         devices.step();

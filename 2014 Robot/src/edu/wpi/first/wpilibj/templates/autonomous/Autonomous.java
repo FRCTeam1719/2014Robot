@@ -14,6 +14,13 @@ import edu.wpi.first.wpilibj.templates.autonomous.autoactions.*;
  */
 public class Autonomous implements IStep{
     public Autonomous(){
+        
+    }
+    private Chain run;
+    private boolean doneAllActs;
+    //Called during Device's step() method, which is called in RobotTemplate's
+    //autonomousPeriodic method.
+    public void init(){
         run = new Chain(new Action[]{
             //ArcadeDriveAction takes 2 ints. The first should be positive if
             //  you want to go forward, negative if you want to go backwards, 0
@@ -36,13 +43,6 @@ public class Autonomous implements IStep{
             new HotGoalWaitAction(),//Wait for goal to become hot (NOT WORKING)
             new ShooterAction()//Shoot the ball (NOT WORKING)
         });
-        doneAllActs = true;
-    }
-    private Chain run;
-    private boolean doneAllActs;
-    //Called during Device's step() method, which is called in RobotTemplate's
-    //autonomousPeriodic method.
-    public void init(){
         doneAllActs = false;
         run.init();
     }

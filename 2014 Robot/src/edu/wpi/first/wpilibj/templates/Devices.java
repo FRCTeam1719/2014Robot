@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.templates.autonomous.*;
  * @author Chance
  */
 public class Devices {
-
+    //TODO unused variables
     public static NewSolenoid gearShiftSolonoid2;
     public static IStep[] devices;
     public static Drive drive;
@@ -24,6 +24,8 @@ public class Devices {
     public static NewEncoder wheelEncoder1;
     public static UltrasonicSensor ultraSonicSensor1;
     public static CameraLEDController cameraLED;
+    static Log logger = new Log();
+    Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
     //ports
     private static int ENCODER_1_PWM = 2;
     private static int ENCODER_2_PWM = 3;
@@ -39,9 +41,12 @@ public class Devices {
     private static int COMPRESSOR_RELAY_CHANNEL = 1;
     private static int ULTRASONIC_PWM = 7;
     private static int CONTROLLER_1 = 1;
-    //Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
-    int sri = 1;
-    // NewPotenciomitor p = new NewPotenciomitor();
+    //TODO this gave me a null pointer
+//    Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
+    private static Integer selectedRobot = new Integer(1);
+
+    //TODO move to init
+    int sri = selectedRobot.intValue();
 
     public void step() {
         for (int i = 0; i < Devices.devices.length; i++) {
@@ -51,7 +56,8 @@ public class Devices {
     }
 
     public void init() {
-       // p.setPort(5);
+        //TODO which robot do these go to
+        //TODO should we arrange these by module? 
         if (sri == 1) {
             ENCODER_1_PWM = 2;
             ENCODER_2_PWM = 3;
@@ -99,6 +105,8 @@ public class Devices {
             ULTRASONIC_PWM = 7;
             CONTROLLER_1 = 1;
         }
+        
+        //TODO make these constructions follow a consistent format
         
         //make gear shift solonoids
         gearShiftSolonoid = new NewSolenoid();
@@ -151,7 +159,8 @@ public class Devices {
           gearShiftSolonoid,
             gearShiftSolonoid2,
             ultraSonicSensor1,
-            cameraLED
+            cameraLED,
+            logger
         };
         //don't put anything after here
     }
