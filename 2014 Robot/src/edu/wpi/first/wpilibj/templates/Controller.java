@@ -48,8 +48,7 @@ public class Controller implements IStep {
 
         if (driveModeInt == 1) {
             Devices.drive.moveArcade(joyStick1.getRawAxis(2), joyStick1.getRawAxis(1));
-        }
-        if (driveModeInt != 1) {
+        } else {
             Devices.drive.moveTank(joyStick1.getRawAxis(2), joyStick1.getRawAxis(5));
         }
     }

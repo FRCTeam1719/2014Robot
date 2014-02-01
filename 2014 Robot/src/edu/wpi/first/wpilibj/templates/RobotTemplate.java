@@ -68,7 +68,9 @@ public class RobotTemplate extends IterativeRobot {
     public void autonomousPeriodic() {
         Devices.autonomous.step();
     }
-
+    public void teleopInit(){
+        Devices.autonomous.stop();
+    }
     /**
      * This function is called periodically during operator control
      */
