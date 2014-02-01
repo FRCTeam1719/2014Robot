@@ -5,7 +5,8 @@
  */
 
 package edu.wpi.first.wpilibj.templates.autonomous.autoactions;
-
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.autonomous.Action;
 
 /**
@@ -13,13 +14,17 @@ import edu.wpi.first.wpilibj.templates.autonomous.Action;
  * @author Thomas
  */
 public class HotGoalWaitAction extends Action{
+    Timer timer;
+    public HotGoalWaitAction(){
+        timer = new Timer();
+        timer.reset();
+        timer.start();
+    }
     public boolean doAct() {
         boolean toReturn = false;
-        //Replace the following line of code with code that sets toReturn to
-        //true as soon as the goal becomes hot. This involves complicated vision
-        //stuff that I don't know, so it'll have to be done later. Preferably by
-        //someone else.
-        toReturn = true;
+        //Returns true if we've found the target or it's 9 seconds into 
+        //autonomous and we should shoot no matter what.
+        toReturn = (SmartDashboard.getBoolean("found"))||(timer.get()>=9);
         return toReturn;
     }
 }
