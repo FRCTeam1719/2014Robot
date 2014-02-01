@@ -25,7 +25,7 @@ public class Devices {
     public static UltrasonicSensor ultraSonicSensor1;
     public static CameraLEDController cameraLED;
     static Log logger = new Log();
-    Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
+   // Integer selectedRobot=1;
     //ports
     private static int ENCODER_1_PWM = 2;
     private static int ENCODER_2_PWM = 3;
@@ -45,7 +45,7 @@ public class Devices {
 //    Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
 
     //TODO move to init
-    int sri = selectedRobot.intValue();
+    int sri = 1;
 
     public void step() {
         for (int i = 0; i < Devices.devices.length; i++) {
