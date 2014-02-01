@@ -16,7 +16,7 @@ public class UltrasonicSensor implements IStep{
     AnalogChannel ultrasonic;
     public void step() {
         
-        SmartDashboard.putNumber("ultrasonic", ultrasonic.getAverageValue());
+        //SmartDashboard.putNumber("ultrasonic", ultrasonic.getAverageValue());
     }
     public void init(){
         ultrasonic = new AnalogChannel(slot);

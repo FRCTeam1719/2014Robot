@@ -25,6 +25,8 @@ public class Devices {
     public static UltrasonicSensor ultraSonicSensor1;
     public static CameraLEDController cameraLED;
     public static Potentiometer potentiometer1;
+    static Log logger = new Log();
+   // Integer selectedRobot=1;
     //ports
     private static int ENCODER_1_PWM = 2;
     private static int ENCODER_2_PWM = 3;
@@ -38,18 +40,18 @@ public class Devices {
     private static int PRESSURE_SWITCH_CHANEL = 1;
     private static int COMPRESSOR_RELAY_SLOT = 1;
     private static int COMPRESSOR_RELAY_CHANNEL = 1;
-    private static int ULTRASONIC_PORT = 7;
+    private static int ULTRASONIC_PWM = 7;
     private static int POTENTIOMETER_PORT = 3;
     private static int CONTROLLER_1 = 1;
     //TODO this gave me a null pointer
 //    Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
-    private static Integer selectedRobot = new Integer(1);
 
     //TODO move to init
-    int sri = selectedRobot.intValue();
+    int sri = 1;
 
     public void step() {
         for (int i = 0; i < Devices.devices.length; i++) {
+            //System.out.println(i);
             Devices.devices[i].step();
         }
     }
@@ -70,7 +72,8 @@ public class Devices {
             PRESSURE_SWITCH_CHANEL = 1;
             COMPRESSOR_RELAY_SLOT = 1;
             COMPRESSOR_RELAY_CHANNEL = 1;
-            ULTRASONIC_PORT = 7;
+            ULTRASONIC_PWM = 7;
+            POTENTIOMETER_PORT = 3;
             CONTROLLER_1 = 1;
 
         }else if(sri == 2){
@@ -86,7 +89,8 @@ public class Devices {
             PRESSURE_SWITCH_CHANEL = 1;
             COMPRESSOR_RELAY_SLOT = 1;
             COMPRESSOR_RELAY_CHANNEL = 1;
-            ULTRASONIC_PORT = 7;
+            ULTRASONIC_PWM = 7;
+            POTENTIOMETER_PORT = 3;
             CONTROLLER_1 = 1;
         }else if(sri == 3){
                 ENCODER_1_PWM = 2;
@@ -101,7 +105,8 @@ public class Devices {
             PRESSURE_SWITCH_CHANEL = 1;
             COMPRESSOR_RELAY_SLOT = 1;
             COMPRESSOR_RELAY_CHANNEL = 1;
-            ULTRASONIC_PORT = 7;
+            ULTRASONIC_PWM = 7;
+            POTENTIOMETER_PORT = 3;
             CONTROLLER_1 = 1;
         }
         
@@ -135,13 +140,14 @@ public class Devices {
         //make ultrasonic sensor
         ultraSonicSensor1 = new UltrasonicSensor();
         ultraSonicSensor1
-                .setSlot(ULTRASONIC_PORT)
+                .setSlot(ULTRASONIC_PWM)
                 .init();
         //make potentiometer
         potentiometer1 = new Potentiometer();
         potentiometer1
                 .setSlot(POTENTIOMETER_PORT)
                 .init();
+        
         //make compressor
         CompressorController compressorController = new CompressorController();
         compressorController
@@ -155,15 +161,16 @@ public class Devices {
 
         //devices array
         devices = new IStep[]{
-            drive,
-            compressorController,
-            wheelEncoder1,
+           drive,
+          compressorController,
+          wheelEncoder1,
             autonomous,
-            gearShiftSolonoid,
+          gearShiftSolonoid,
             gearShiftSolonoid2,
             ultraSonicSensor1,
             potentiometer1,
-            cameraLED
+            cameraLED,
+            logger
         };
         //don't put anything after here
     }
