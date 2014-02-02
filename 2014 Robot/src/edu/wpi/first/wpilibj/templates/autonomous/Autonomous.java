@@ -34,7 +34,7 @@ public class Autonomous implements IStep{
             //  how far away from the object you want to be, in centimeters (we
             //  think).
             //TimerWaitAction takes a double: how long to wait (in seconds).
-            //!!!AS OF NOW, HotGoalWaitAction AND ShooterAction DO NOTHING!!!
+            //!!!AS OF NOW, ShooterAction DOES NOTHING!!!
             //List actions here in the order in which you want them to happen.
             //Choose from the actions listed above.
 //            new ArcadeDriveAction(0.75,0.0),//Drive straight forward at 75%

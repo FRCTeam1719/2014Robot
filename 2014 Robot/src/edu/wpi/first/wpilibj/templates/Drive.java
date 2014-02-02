@@ -32,7 +32,7 @@ public class Drive implements IStep {
                
             }
             if (!isTankDrive) {
-                robotDrive.arcadeDrive(moveX, -rotation);
+                robotDrive.arcadeDrive(moveX, rotation);
                
             }
         }else{
@@ -58,9 +58,9 @@ public class Drive implements IStep {
         return this;
     }
 
-    public Drive moveArcade(double moveX, double rotaton) {
+    public Drive moveArcade(double moveX, double rotation) {
         this.moveX = moveX;
-        this.rotation = -rotaton;
+        this.rotation = rotation;
         isTankDrive = false;
 
 

@@ -29,7 +29,8 @@ public class RobotTemplate extends IterativeRobot {
     //TODO clean up, move portions into their own class
     static SendableChooser driveMode;
     static SendableChooser robot;
-     static SendableChooser autoTransmision;
+    static SendableChooser autoTransmision;
+    public static SendableChooser testMode;
     Devices devices = new Devices();
       static Controller controller = new Controller();;
     public void robotInit() {
@@ -82,8 +83,24 @@ public class RobotTemplate extends IterativeRobot {
     /**
      * This function is called periodically during test mode
      */
-    public void testPeriodic() {
     
+    public void testInit() {
+        GearShiftController.setIsTest(true);
+        
+    }
+    public void testPeriodic() {
+            
+        testMode = new SendableChooser();
+        //Menu
+        testMode.addDefault("No Test", Integer.valueOf(0));
+        testMode.addObject("All", Integer.valueOf(1));
+        testMode.addObject("Motors", Integer.valueOf(2));
+        testMode.addObject("pneumatics", Integer.valueOf(3));
+        //Add more options as we understand more devices
+        Devices.autonomous.step();
+        
+        
+        
     }
     
     
