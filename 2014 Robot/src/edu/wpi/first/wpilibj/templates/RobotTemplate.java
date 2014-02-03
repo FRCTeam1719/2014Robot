@@ -9,8 +9,11 @@ package edu.wpi.first.wpilibj.templates;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.tables.ITable;
+import edu.wpi.first.wpilibj.templates.testmode.TestMode;
 
 
 
@@ -31,6 +34,7 @@ public class RobotTemplate extends IterativeRobot {
     static SendableChooser robot;
     static SendableChooser autoTransmision;
     public static SendableChooser testMode;
+    NetworkTable testTable = NetworkTable.getTable("LiveWindow");
     Devices devices = new Devices();
       static Controller controller = new Controller();;
     public void robotInit() {
@@ -52,6 +56,21 @@ public class RobotTemplate extends IterativeRobot {
         robot.addObject("test robot 1", Integer.valueOf(2));
         robot.addObject("test robot 2", Integer.valueOf(3));
         SmartDashboard.putData("robot", robot);
+        
+        //Test
+        System.out.println("TestInit");
+        GearShiftController.setIsTest(true);
+        testMode = new SendableChooser();
+        //Menu
+        testMode.addDefault("No Test", Integer.valueOf(0));
+        testMode.addObject("All", Integer.valueOf(1));
+        testMode.addObject("Motors", Integer.valueOf(2));
+        testMode.addObject("pneumatics", Integer.valueOf(3));
+        //Add more options as we understand more devices
+        ITable dataTable = testTable.getSubTable("Ungrouped");
+        dataTable.putString("~TYPE", testMode.getSmartDashboardType());
+        testMode.initTable(dataTable);
+        
         
         
         
@@ -85,11 +104,8 @@ public class RobotTemplate extends IterativeRobot {
      */
     
     public void testInit() {
+        System.out.println("TestInit");
         GearShiftController.setIsTest(true);
-        
-    }
-    public void testPeriodic() {
-            
         testMode = new SendableChooser();
         //Menu
         testMode.addDefault("No Test", Integer.valueOf(0));
@@ -97,7 +113,16 @@ public class RobotTemplate extends IterativeRobot {
         testMode.addObject("Motors", Integer.valueOf(2));
         testMode.addObject("pneumatics", Integer.valueOf(3));
         //Add more options as we understand more devices
-        Devices.autonomous.step();
+        ITable dataTable = testTable.getSubTable("Ungrouped");
+        dataTable.putString("~TYPE", testMode.getSmartDashboardType());
+        testMode.initTable(dataTable);
+        //tablesToData.put(testMode, "Test Mode Options");
+    }
+    public void testPeriodic() {
+       TestMode test = new TestMode();
+       test.init();
+        
+        
         
         
         

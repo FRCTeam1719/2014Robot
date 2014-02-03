@@ -16,6 +16,7 @@ public class TestMode {
     
     private Chain runDrive;
     public void init(){
+        
         Integer testModeInti = (Integer) RobotTemplate.testMode.getSelected();
         int testModeInt = testModeInti.intValue();
         runDrive = new Chain(new Action[]{
