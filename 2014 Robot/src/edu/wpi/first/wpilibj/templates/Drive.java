@@ -20,6 +20,7 @@ public class Drive implements IStep {
     private RobotDrive robotDrive;
     private boolean isEnabled = true;
     private double time = 0;
+    private int steer = 0;
     Drive() {
     }
 
@@ -28,6 +29,7 @@ public class Drive implements IStep {
 
 
             if (isTankDrive) {
+                
                 robotDrive.tankDrive(leftWheelSpeed, rightWheelSpeed);
                
             }
@@ -82,5 +84,14 @@ public class Drive implements IStep {
   }
   public void stop(double sTime){
       time = System.currentTimeMillis() + sTime;
+  }
+  public void driveStright(double speed){
+      moveArcade(speed, steer);
+       if(Devices.wheelEncoder1.get()>Devices.wheelEncoder2.get()){
+           steer+=.1;
+           
+       }else if(Devices.wheelEncoder2.get()>Devices.wheelEncoder1.get()){
+           steer-=.1;
+       }
   }
 }

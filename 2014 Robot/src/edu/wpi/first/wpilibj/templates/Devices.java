@@ -22,6 +22,8 @@ public class Devices {
     public static Autonomous autonomous;
     public static NewSolenoid gearShiftSolonoid;
     public static NewEncoder wheelEncoder1;
+    public static NewEncoder wheelEncoder2;
+    
     public static UltrasonicSensor ultraSonicSensor1;
     public static CameraLEDController cameraLED;
     public static ShooterController shooterController;
@@ -42,7 +44,7 @@ public class Devices {
     private static int COMPRESSOR_RELAY_CHANNEL = 1;
     private static int ULTRASONIC_PWM = 7;
     private static int CONTROLLER_1 = 1;
-    private static int SHOOTER_MOTOR_PORT = 6;
+    private static int SHOOTER_MOTOR_PORT = 2;
     private static int SHOOTER_SOLONOID_PORT =4;
     private static int SHOOTER_POTENTIOMETER_PORT = 3;
     
@@ -84,6 +86,12 @@ public class Devices {
         wheelEncoder1.setEncoder2(ENCODER_4_PWM);
         wheelEncoder1.init();
 
+        
+                wheelEncoder2 = new NewEncoder();
+        wheelEncoder2.setEncoder1(ENCODER_1_PWM);
+        wheelEncoder2.setEncoder2(ENCODER_2_PWM);
+        wheelEncoder2.init();
+
         //make camera
         cameraLED = new CameraLEDController(2, 1);
         cameraLED.init();
@@ -113,7 +121,7 @@ public class Devices {
            drive,
           compressorController,
           wheelEncoder1,
-            
+            wheelEncoder2,
           gearShiftSolonoid,
             gearShiftSolonoid2,
             ultraSonicSensor1,

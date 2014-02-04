@@ -9,6 +9,8 @@ package edu.wpi.first.wpilibj.templates;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.camera.AxisCamera;
+import edu.wpi.first.wpilibj.camera.AxisCameraException;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -27,6 +29,7 @@ public class RobotTemplate extends IterativeRobot {
      * used for any initialization code.
      */
     //TODO clean up, move portions into their own class
+    AxisCamera camera = AxisCamera.getInstance();
     static SendableChooser driveMode;
     static SendableChooser robot;
      static SendableChooser autoTransmision;
@@ -54,27 +57,36 @@ public class RobotTemplate extends IterativeRobot {
         
         
         
+        
       controller.set(1).init();
         devices.init();
     }
     
     
     public void autonomousInit(){
-        Devices.autonomous.init();
+        
+       SmartDashboard.putBoolean("isAtonomus", true);
+        //Devices.autonomous.init();
     }
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+        devices.step();
        // Devices.autonomous.step();
     }
     public void teleopInit(){
+        //HttpWraper.send("http://10.17.19.11/sm/sm.srv?root_ImageSource_I0_Sensor_Contrast=100&action=modify");
+        
+        SmartDashboard.putBoolean("isAtonomus", false);
+         
        // Devices.autonomous.stop();
     }
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        //HttpWraper.send("http://10.17.19.11/sm/sm.srv?root_ImageSource_I0_Sensor_Contrast=50&action=modify");
         controller.step();
         devices.step();
     }
