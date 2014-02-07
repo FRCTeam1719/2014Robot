@@ -15,7 +15,9 @@ public class UltrasonicSensor implements IStep{
     int slot;
     AnalogChannel ultrasonic;
     public void step() {
-        
+        String tempValueForLog;
+        tempValueForLog = String.valueOf(ultrasonic.getAverageValue());
+        Devices.logChecker.sendLog(tempValueForLog,2);
         //SmartDashboard.putNumber("ultrasonic", ultrasonic.getAverageValue());
     }
     public void init(){

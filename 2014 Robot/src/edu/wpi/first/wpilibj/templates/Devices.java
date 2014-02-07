@@ -19,13 +19,15 @@ public class Devices {
     public static NewSolenoid gearShiftSolonoid2;
     public static IStep[] devices;
     public static Drive drive;
+    //TODO why is autonomous a device
     public static Autonomous autonomous;
     public static NewSolenoid gearShiftSolonoid;
     public static NewEncoder wheelEncoder1;
     public static UltrasonicSensor ultraSonicSensor1;
     public static CameraLEDController cameraLED;
     static Log logger = new Log();
-    Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
+    static LogLevelCheck logChecker = new LogLevelCheck();
+   
     //ports
     private static int ENCODER_1_PWM = 2;
     private static int ENCODER_2_PWM = 3;
@@ -45,8 +47,8 @@ public class Devices {
 //    Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
 
     //TODO move to init
-    int sri = selectedRobot.intValue();
-
+    
+    int foo=0;
     public void step() {
         for (int i = 0; i < Devices.devices.length; i++) {
             //System.out.println(i);
@@ -57,6 +59,8 @@ public class Devices {
     public void init() {
         //TODO which robot do these go to
         //TODO should we arrange these by module? 
+        Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
+        int sri = selectedRobot.intValue();
         if (sri == 1) {
             ENCODER_1_PWM = 2;
             ENCODER_2_PWM = 3;
@@ -151,15 +155,14 @@ public class Devices {
 
         //devices array
         devices = new IStep[]{
-           drive,
+          drive,
           compressorController,
           wheelEncoder1,
-            autonomous,
           gearShiftSolonoid,
-            gearShiftSolonoid2,
-            ultraSonicSensor1,
-            cameraLED,
-            logger
+          gearShiftSolonoid2,
+          ultraSonicSensor1,
+          cameraLED,
+          logger
         };
         //don't put anything after here
     }

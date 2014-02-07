@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class InfraredSensor implements IStep{
     public void step() {
         SmartDashboard.putNumber("infrared", infrared.getAverageValue());
+        String tempValueForLog;
+        tempValueForLog = "Infared value: "+infrared.getAverageValue();
+        Devices.logChecker.sendLog(tempValueForLog, 2);
     }
     AnalogChannel infrared;
     //TODO this class shouldn't know about slots

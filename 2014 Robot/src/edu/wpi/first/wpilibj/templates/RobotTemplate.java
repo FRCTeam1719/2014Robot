@@ -29,7 +29,9 @@ public class RobotTemplate extends IterativeRobot {
     //TODO clean up, move portions into their own class
     static SendableChooser driveMode;
     static SendableChooser robot;
-     static SendableChooser autoTransmision;
+    static SendableChooser autoTransmision;
+    
+    static SendableChooser logLevel;
     Devices devices = new Devices();
       static Controller controller = new Controller();;
     public void robotInit() {
@@ -51,6 +53,16 @@ public class RobotTemplate extends IterativeRobot {
         robot.addObject("test robot 1", Integer.valueOf(2));
         robot.addObject("test robot 2", Integer.valueOf(3));
         SmartDashboard.putData("robot", robot);
+        
+        //Leg Level
+        logLevel = new SendableChooser();
+        logLevel.addDefault("1", Integer.valueOf(1));
+        logLevel.addObject("2", Integer.valueOf(2));
+        logLevel.addObject("3", Integer.valueOf(3));
+        logLevel.addObject("4", Integer.valueOf(4));
+        SmartDashboard.putData("logLevel",logLevel);
+        SmartDashboard.putString("Log", "");
+        
         
         
         
