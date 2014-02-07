@@ -30,7 +30,8 @@ public class Controller implements IStep {
     }
     
     public void step() {
-      gearShiftController.step();
+     gearShiftController.step();
+      
        
         
         
@@ -47,5 +48,13 @@ public class Controller implements IStep {
             Devices.drive.moveTank(joyStick1.getRawAxis(2), joyStick1.getRawAxis(5));
             Devices.logChecker.sendLog("Tank mode activated",2);
         }
+        
+        if(joyStick1.getRawButton(1)){
+            Devices.shooterController.setReleased(true);
+                    
+        }else{
+             Devices.shooterController.setReleased(false);
+        }
+            
     }
 }

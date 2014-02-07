@@ -26,6 +26,7 @@ public class NewEncoder implements IStep {
     public void step() {
         //send robot speed to dashboard
        // SmartDashboard.putNumber("speed",Math.abs(encoder.getRate()));
+        System.out.println("thingy" + get());
       
       
 

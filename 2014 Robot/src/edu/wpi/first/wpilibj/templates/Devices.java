@@ -23,11 +23,14 @@ public class Devices {
     public static Autonomous autonomous;
     public static NewSolenoid gearShiftSolonoid;
     public static NewEncoder wheelEncoder1;
+    public static NewEncoder wheelEncoder2;
+    
     public static UltrasonicSensor ultraSonicSensor1;
     public static CameraLEDController cameraLED;
+    public static ShooterController shooterController;
     static Log logger = new Log();
     static LogLevelCheck logChecker = new LogLevelCheck();
-   
+   // Integer selectedRobot=1;
     //ports
     private static int ENCODER_1_PWM = 2;
     private static int ENCODER_2_PWM = 3;
@@ -49,6 +52,13 @@ public class Devices {
     //TODO move to init
     
     int foo=0;
+    private static int SHOOTER_MOTOR_PORT = 2;
+    private static int SHOOTER_SOLONOID_PORT =4;
+    private static int SHOOTER_POTENTIOMETER_PORT = 3;
+    
+    
+
+
     public void step() {
         for (int i = 0; i < Devices.devices.length; i++) {
             //System.out.println(i);
@@ -57,8 +67,15 @@ public class Devices {
     }
 
     public void init() {
+       shooterController = new ShooterController();
+        shooterController.setMotorPort(SHOOTER_MOTOR_PORT);
+        shooterController.setPotentiometerPort(SHOOTER_POTENTIOMETER_PORT);
+        shooterController.setSolonoidPort(SHOOTER_SOLONOID_PORT);
+        shooterController.init();
+        
         //TODO which robot do these go to
         //TODO should we arrange these by module? 
+
         Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
         int sri = selectedRobot.intValue();
         if (sri == 1) {
@@ -127,6 +144,12 @@ public class Devices {
         wheelEncoder1.setEncoder2(ENCODER_4_PWM);
         wheelEncoder1.init();
 
+        
+                wheelEncoder2 = new NewEncoder();
+        wheelEncoder2.setEncoder1(ENCODER_1_PWM);
+        wheelEncoder2.setEncoder2(ENCODER_2_PWM);
+        wheelEncoder2.init();
+
         //make camera
         cameraLED = new CameraLEDController(2, 1);
         cameraLED.init();
@@ -147,22 +170,22 @@ public class Devices {
         compressorController
                 .setCompressorRelayChannel(COMPRESSOR_RELAY_CHANNEL)
                 .setCompressorRelaySlot(COMPRESSOR_RELAY_SLOT)
-                .setPressureSwitchChannel(PRESSURE_SWITCH_SLOT)
+                .setPressureSwitchChannel(PRESSURE_SWITCH_CHANEL)
                 .setPressureSwitchSlot(PRESSURE_SWITCH_SLOT)
                 .init();
-        //make autonomous
-        autonomous = new Autonomous();
 
         //devices array
         devices = new IStep[]{
           drive,
           compressorController,
           wheelEncoder1,
+            wheelEncoder2,
           gearShiftSolonoid,
-          gearShiftSolonoid2,
-          ultraSonicSensor1,
-          cameraLED,
-          logger
+            gearShiftSolonoid2,
+            ultraSonicSensor1,
+            cameraLED,
+            logger,
+            shooterController
         };
         //don't put anything after here
     }

@@ -14,7 +14,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class GearShiftController {
     public boolean isSlow = true;
     Joystick joyStick1;
-   
+    private static boolean isTest;
+    private static boolean testIsSlow;
     
     public void step(){
          Integer transmition = (Integer) RobotTemplate.autoTransmision.getSelected();
@@ -48,6 +49,9 @@ public class GearShiftController {
             }
 
         }
+        if(isTest){
+            isSlow = testIsSlow;
+        }
         Devices.gearShiftSolonoid.set(!isSlow);
         Devices.gearShiftSolonoid2.set(isSlow);
         
@@ -56,6 +60,11 @@ public class GearShiftController {
         joyStick1 = js1;
     }
     
-    
+    static public void setIsTest(boolean nIsTest){
+         isTest = nIsTest;
+    }
+    static public void setTestIsSlow(boolean nTestIsSlow){
+        testIsSlow = nTestIsSlow;
+    }
     
 }

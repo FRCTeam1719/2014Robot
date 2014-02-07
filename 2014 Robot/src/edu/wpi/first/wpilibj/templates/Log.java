@@ -22,8 +22,7 @@ public class Log implements IStep{
         System.out.println(message);
     }
     
-    
-    
+
     public void send() {
         //Tests to see if the queue is empty, and then sends the next queue of logs to the Dashboard
         if(SmartDashboard.getString("Log").equals("")) {

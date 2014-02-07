@@ -5,7 +5,7 @@
  */
 
 package edu.wpi.first.wpilibj.templates.autonomous;
-
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.templates.IStep;
 import edu.wpi.first.wpilibj.templates.autonomous.autoactions.*;
 /**
@@ -34,13 +34,13 @@ public class Autonomous implements IStep{
             //  how far away from the object you want to be, in centimeters (we
             //  think).
             //TimerWaitAction takes a double: how long to wait (in seconds).
-            //!!!AS OF NOW, HotGoalWaitAction AND ShooterAction DO NOTHING!!!
+            //!!!AS OF NOW, ShooterAction DOES NOTHING!!!
             //List actions here in the order in which you want them to happen.
             //Choose from the actions listed above.
-            new ArcadeDriveAction(0.75,0.0),//Drive straight forward at 75%
-            new UltrasonicWaitAction(true, 300),//Wait until within 3m of object
-            new ArcadeDriveAction(0.0,0.0),//Stop driving (drive at 0% speed)
-            new HotGoalWaitAction(),//Wait for goal to become hot (NOT WORKING)
+//            new ArcadeDriveAction(0.75,0.0),//Drive straight forward at 75%
+//            new UltrasonicWaitAction(true, 300),//Wait until within 3m of object
+//            new ArcadeDriveAction(0.0,0.0),//Stop driving (drive at 0% speed)
+            new HotGoalWaitAction(),//Wait for goal to become hot
             new ShooterAction()//Shoot the ball (NOT WORKING)
         });
         doneAllActs = false;

@@ -9,8 +9,13 @@ package edu.wpi.first.wpilibj.templates;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.camera.AxisCamera;
+import edu.wpi.first.wpilibj.camera.AxisCameraException;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.tables.ITable;
+import edu.wpi.first.wpilibj.templates.testmode.TestMode;
 
 
 
@@ -27,11 +32,13 @@ public class RobotTemplate extends IterativeRobot {
      * used for any initialization code.
      */
     //TODO clean up, move portions into their own class
+    AxisCamera camera = AxisCamera.getInstance();
     static SendableChooser driveMode;
     static SendableChooser robot;
     static SendableChooser autoTransmision;
-    
     static SendableChooser logLevel;
+    public static SendableChooser testMode;
+    NetworkTable testTable = NetworkTable.getTable("LiveWindow");
     Devices devices = new Devices();
       static Controller controller = new Controller();;
     public void robotInit() {
@@ -54,6 +61,7 @@ public class RobotTemplate extends IterativeRobot {
         robot.addObject("test robot 2", Integer.valueOf(3));
         SmartDashboard.putData("robot", robot);
         
+
         //Leg Level
         logLevel = new SendableChooser();
         logLevel.addDefault("1", Integer.valueOf(1));
@@ -62,6 +70,20 @@ public class RobotTemplate extends IterativeRobot {
         logLevel.addObject("4", Integer.valueOf(4));
         SmartDashboard.putData("logLevel",logLevel);
         SmartDashboard.putString("Log", "");
+        //Test
+        System.out.println("TestInit");
+        GearShiftController.setIsTest(true);
+        testMode = new SendableChooser();
+        //Menu
+        testMode.addDefault("No Test", Integer.valueOf(0));
+        testMode.addObject("All", Integer.valueOf(1));
+        testMode.addObject("Motors", Integer.valueOf(2));
+        testMode.addObject("pneumatics", Integer.valueOf(3));
+        //Add more options as we understand more devices
+        ITable dataTable = testTable.getSubTable("Ungrouped");
+        dataTable.putString("~TYPE", testMode.getSmartDashboardType());
+        testMode.initTable(dataTable);
+        
         
         
         
@@ -72,19 +94,29 @@ public class RobotTemplate extends IterativeRobot {
     
     
     public void autonomousInit(){
-        Devices.autonomous.init();
+        
+       SmartDashboard.putBoolean("isAtonomus", true);
+        //Devices.autonomous.init();
     }
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        Devices.autonomous.step();
+        devices.step();
+       // Devices.autonomous.step();
     }
-
+    public void teleopInit(){
+        //HttpWraper.send("http://10.17.19.11/sm/sm.srv?root_ImageSource_I0_Sensor_Contrast=100&action=modify");
+        
+        SmartDashboard.putBoolean("isAtonomus", false);
+         
+       // Devices.autonomous.stop();
+    }
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        //HttpWraper.send("http://10.17.19.11/sm/sm.srv?root_ImageSource_I0_Sensor_Contrast=50&action=modify");
         controller.step();
         devices.step();
     }
@@ -92,8 +124,30 @@ public class RobotTemplate extends IterativeRobot {
     /**
      * This function is called periodically during test mode
      */
-    public void testPeriodic() {
     
+    public void testInit() {
+        System.out.println("TestInit");
+        GearShiftController.setIsTest(true);
+        testMode = new SendableChooser();
+        //Menu
+        testMode.addDefault("No Test", Integer.valueOf(0));
+        testMode.addObject("All", Integer.valueOf(1));
+        testMode.addObject("Motors", Integer.valueOf(2));
+        testMode.addObject("pneumatics", Integer.valueOf(3));
+        //Add more options as we understand more devices
+        ITable dataTable = testTable.getSubTable("Ungrouped");
+        dataTable.putString("~TYPE", testMode.getSmartDashboardType());
+        testMode.initTable(dataTable);
+        //tablesToData.put(testMode, "Test Mode Options");
+    }
+    public void testPeriodic() {
+       TestMode test = new TestMode();
+       test.init();
+        
+        
+        
+        
+        
     }
     
     
