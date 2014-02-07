@@ -56,8 +56,6 @@ public class Devices {
     private static int SHOOTER_SOLONOID_PORT =4;
     private static int SHOOTER_POTENTIOMETER_PORT = 3;
     
-    
-
 
     public void step() {
         for (int i = 0; i < Devices.devices.length; i++) {
@@ -125,6 +123,7 @@ public class Devices {
             ULTRASONIC_PWM = 7;
             CONTROLLER_1 = 1;
         }
+
         
         //TODO make these constructions follow a consistent format
         
@@ -143,6 +142,12 @@ public class Devices {
         wheelEncoder1.setEncoder1(ENCODER_3_PWM);
         wheelEncoder1.setEncoder2(ENCODER_4_PWM);
         wheelEncoder1.init();
+
+        
+                wheelEncoder2 = new NewEncoder();
+        wheelEncoder2.setEncoder1(ENCODER_1_PWM);
+        wheelEncoder2.setEncoder2(ENCODER_2_PWM);
+        wheelEncoder2.init();
 
         
                 wheelEncoder2 = new NewEncoder();

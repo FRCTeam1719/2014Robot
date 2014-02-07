@@ -45,6 +45,7 @@ public class Controller implements IStep {
             Devices.logChecker.sendLog("Arcade mode activated",2);
         }
         if (driveModeInt != 1) {
+        } else {
             Devices.drive.moveTank(joyStick1.getRawAxis(2), joyStick1.getRawAxis(5));
             Devices.logChecker.sendLog("Tank mode activated",2);
         }

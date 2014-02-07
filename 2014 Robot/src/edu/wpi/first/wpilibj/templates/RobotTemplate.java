@@ -37,6 +37,7 @@ public class RobotTemplate extends IterativeRobot {
     static SendableChooser robot;
     static SendableChooser autoTransmision;
     static SendableChooser logLevel;
+
     public static SendableChooser testMode;
     NetworkTable testTable = NetworkTable.getTable("LiveWindow");
     Devices devices = new Devices();

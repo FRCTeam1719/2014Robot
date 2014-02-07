@@ -28,6 +28,7 @@ public class Log implements IStep{
         if(SmartDashboard.getString("Log").equals("")) {
             SmartDashboard.putString("Log",logMessage.toString());
             logMessage = new StringBuffer();
+
         }else{
             
         }
