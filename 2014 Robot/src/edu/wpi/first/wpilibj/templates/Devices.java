@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
 
 import edu.wpi.first.wpilibj.templates.autonomous.*;
+import edu.wpi.first.wpilibj.templates.testmode.TestMode;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Devices {
     public static IStep[] devices;
     public static Drive drive;
     public static Autonomous autonomous;
+    public static TestMode testMode;
     public static NewSolenoid gearShiftSolonoid;
     public static NewEncoder wheelEncoder1;
     public static UltrasonicSensor ultraSonicSensor1;
@@ -56,6 +58,8 @@ public class Devices {
     }
 
     public void init() {
+        testMode = new TestMode();
+        
        shooterController = new ShooterController();
         shooterController.setMotorPort(SHOOTER_MOTOR_PORT);
         shooterController.setPotentiometerPort(SHOOTER_POTENTIOMETER_PORT);

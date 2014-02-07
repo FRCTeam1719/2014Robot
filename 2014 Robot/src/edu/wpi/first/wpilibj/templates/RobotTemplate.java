@@ -33,7 +33,7 @@ public class RobotTemplate extends IterativeRobot {
     static SendableChooser driveMode;
     static SendableChooser robot;
     static SendableChooser autoTransmision;
-    public static SendableChooser testMode;
+    public static SendableChooser testModeGUI;
     NetworkTable testTable = NetworkTable.getTable("LiveWindow");
     Devices devices = new Devices();
       static Controller controller = new Controller();;
@@ -60,16 +60,16 @@ public class RobotTemplate extends IterativeRobot {
         //Test
         System.out.println("TestInit");
         GearShiftController.setIsTest(true);
-        testMode = new SendableChooser();
+        testModeGUI = new SendableChooser();
         //Menu
-        testMode.addDefault("No Test", Integer.valueOf(0));
-        testMode.addObject("All", Integer.valueOf(1));
-        testMode.addObject("Motors", Integer.valueOf(2));
-        testMode.addObject("pneumatics", Integer.valueOf(3));
+        testModeGUI.addDefault("No Test", Integer.valueOf(0));
+        testModeGUI.addObject("All", Integer.valueOf(1));
+        testModeGUI.addObject("Motors", Integer.valueOf(2));
+        testModeGUI.addObject("pneumatics", Integer.valueOf(3));
         //Add more options as we understand more devices
         ITable dataTable = testTable.getSubTable("Ungrouped");
-        dataTable.putString("~TYPE", testMode.getSmartDashboardType());
-        testMode.initTable(dataTable);
+        dataTable.putString("~TYPE", testModeGUI.getSmartDashboardType());
+        testModeGUI.initTable(dataTable);
         
         
         
@@ -104,23 +104,24 @@ public class RobotTemplate extends IterativeRobot {
      */
     
     public void testInit() {
-        System.out.println("TestInit");
+        System.out.println("TestInit2");
         GearShiftController.setIsTest(true);
-        testMode = new SendableChooser();
+        testModeGUI = new SendableChooser();
         //Menu
-        testMode.addDefault("No Test", Integer.valueOf(0));
-        testMode.addObject("All", Integer.valueOf(1));
-        testMode.addObject("Motors", Integer.valueOf(2));
-        testMode.addObject("pneumatics", Integer.valueOf(3));
+        testModeGUI.addDefault("No Test", Integer.valueOf(0));
+        testModeGUI.addObject("All", Integer.valueOf(1));
+        testModeGUI.addObject("Motors", Integer.valueOf(2));
+        testModeGUI.addObject("pneumatics", Integer.valueOf(3));
         //Add more options as we understand more devices
         ITable dataTable = testTable.getSubTable("Ungrouped");
-        dataTable.putString("~TYPE", testMode.getSmartDashboardType());
-        testMode.initTable(dataTable);
-        //tablesToData.put(testMode, "Test Mode Options");
+        dataTable.putString("~TYPE", testModeGUI.getSmartDashboardType());
+        testModeGUI.initTable(dataTable);
+        //tablesToData.put(testModeGUI, "Test Mode Options");
+        Devices.testMode.init();
     }
     public void testPeriodic() {
-       TestMode test = new TestMode();
-       test.init();
+        Devices.testMode.step();
+        devices.step();
         
         
         
