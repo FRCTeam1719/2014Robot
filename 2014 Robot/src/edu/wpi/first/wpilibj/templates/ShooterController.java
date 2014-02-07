@@ -25,7 +25,6 @@ public class ShooterController implements IStep {
     private boolean isReleased = false;
 
     public void step() {
-        System.out.println(potentiometer.get());
         if (potentiometer.get() < ALL_THE_WAY_BACK) {
             victor.set(.5);
             

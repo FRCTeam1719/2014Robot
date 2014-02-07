@@ -21,7 +21,7 @@ boolean isSlow;
         
         GearShiftController.setTestIsSlow(isSlow);
         
-        
+        toReturn = true;
         return toReturn;
    }
     
