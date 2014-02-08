@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Relay;
  *
  * @author aaroneline
  */
+//TODO: Not implemented anywhere in code
 public class IntakeSpinner implements IStep{
 
     private int relayPort1;
@@ -37,6 +38,7 @@ public class IntakeSpinner implements IStep{
         }    
     }
     public void init(){
+        //Open relays, set them all as bidirectional, then tell them to stop
         relay1 = new Relay(relayPort1);
         relay2 = new Relay(relayPort2);
         relay1.setDirection(Relay.Direction.kBoth);
