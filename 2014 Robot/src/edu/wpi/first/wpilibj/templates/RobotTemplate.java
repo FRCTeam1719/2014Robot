@@ -82,7 +82,7 @@ public class RobotTemplate extends IterativeRobot {
     
     
     public void autonomousInit(){
-        
+        GearShiftController.setIsTest(false);        
        SmartDashboard.putBoolean("isAtonomus", true);
         //Devices.autonomous.init();
     }
@@ -94,8 +94,7 @@ public class RobotTemplate extends IterativeRobot {
        // Devices.autonomous.step();
     }
     public void teleopInit(){
-        //HttpWraper.send("http://10.17.19.11/sm/sm.srv?root_ImageSource_I0_Sensor_Contrast=100&action=modify");
-        
+        GearShiftController.setIsTest(false);
         SmartDashboard.putBoolean("isAtonomus", false);
          
        // Devices.autonomous.stop();
@@ -104,7 +103,6 @@ public class RobotTemplate extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        //HttpWraper.send("http://10.17.19.11/sm/sm.srv?root_ImageSource_I0_Sensor_Contrast=50&action=modify");
         controller.step();
         devices.step();
     }

@@ -21,7 +21,6 @@ public class GearShiftController {
          Integer transmition = (Integer) RobotTemplate.autoTransmision.getSelected();
          //TODO do we do anything with this
         int t = transmition.intValue(); 
-
         if ((joyStick1.getRawAxis(3) > 0)) {
             if (isSlow) {
                 Devices.drive.stop(500);
