@@ -9,8 +9,6 @@ package edu.wpi.first.wpilibj.templates;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.camera.AxisCamera;
-import edu.wpi.first.wpilibj.camera.AxisCameraException;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -32,7 +30,7 @@ public class RobotTemplate extends IterativeRobot {
      * used for any initialization code.
      */
     //TODO clean up, move portions into their own class
-    AxisCamera camera = AxisCamera.getInstance();
+   
     static SendableChooser driveMode;
     static SendableChooser robot;
     static SendableChooser autoTransmision;
@@ -109,6 +107,7 @@ public class RobotTemplate extends IterativeRobot {
         //HttpWraper.send("http://10.17.19.11/sm/sm.srv?root_ImageSource_I0_Sensor_Contrast=50&action=modify");
         controller.step();
         devices.step();
+        devices.drive.DriveStraight(400);
     }
     
     /**
