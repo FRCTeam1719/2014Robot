@@ -16,23 +16,24 @@ import edu.wpi.first.wpilibj.templates.testmode.TestMode;
  * @author Chance
  */
 public class Devices {
+
     //TODO unused variables
-    public static NewSolenoid gearShiftSolonoid2;
     public static IStep[] devices;
     public static Drive drive;
     //TODO why is autonomous a device
     public static Autonomous autonomous;
     public static TestMode testMode;
     public static NewSolenoid gearShiftSolonoid;
-    public static NewEncoder wheelEncoder1;
-    public static NewEncoder wheelEncoder2;
-    
+    public static NewEncoder leftWheelEncoder;
+    public static NewEncoder rightWheelEncoder;
+    public static GearShiftController gearShiftController;
+
     public static UltrasonicSensor ultraSonicSensor1;
     public static CameraLEDController cameraLED;
     public static ShooterController shooterController;
     static Log logger = new Log();
     static LogLevelCheck logChecker = new LogLevelCheck();
-   // Integer selectedRobot=1;
+    // Integer selectedRobot=1;
     //ports
     private static int ENCODER_1_PWM = 2;
     private static int ENCODER_2_PWM = 3;
@@ -52,12 +53,10 @@ public class Devices {
 //    Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
 
     //TODO move to init
-    
-    int foo=0;
+    int foo = 0;
     private static int SHOOTER_MOTOR_PORT = 2;
-    private static int SHOOTER_SOLONOID_PORT =4;
+    private static int SHOOTER_SOLONOID_PORT = 4;
     private static int SHOOTER_POTENTIOMETER_PORT = 3;
-    
 
     public void step() {
         for (int i = 0; i < Devices.devices.length; i++) {
@@ -67,16 +66,15 @@ public class Devices {
 
     public void init() {
         testMode = new TestMode();
-        
-       shooterController = new ShooterController();
+
+        shooterController = new ShooterController();
         shooterController.setMotorPort(SHOOTER_MOTOR_PORT);
         shooterController.setPotentiometerPort(SHOOTER_POTENTIOMETER_PORT);
         shooterController.setSolonoidPort(SHOOTER_SOLONOID_PORT);
         shooterController.init();
-        
+
         //TODO which robot do these go to
         //TODO should we arrange these by module? 
-
         Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
         int sri = selectedRobot.intValue();
         if (sri == 1) {
@@ -95,7 +93,7 @@ public class Devices {
             ULTRASONIC_PWM = 7;
             CONTROLLER_1 = 1;
 
-        }else if(sri == 2){
+        } else if (sri == 2) {
             ENCODER_1_PWM = 2;
             ENCODER_2_PWM = 3;
             ENCODER_3_PWM = 4;
@@ -110,8 +108,8 @@ public class Devices {
             COMPRESSOR_RELAY_CHANNEL = 1;
             ULTRASONIC_PWM = 7;
             CONTROLLER_1 = 1;
-        }else if(sri == 3){
-                ENCODER_1_PWM = 2;
+        } else if (sri == 3) {
+            ENCODER_1_PWM = 2;
             ENCODER_2_PWM = 3;
             ENCODER_3_PWM = 4;
             ENCODER_4_PWM = 5;
@@ -127,31 +125,31 @@ public class Devices {
             CONTROLLER_1 = 1;
         }
 
-        
         //TODO make these constructions follow a consistent format
-        
         //make gear shift solonoids
-        gearShiftSolonoid = new NewSolenoid();
-        gearShiftSolonoid.init();
-        gearShiftSolonoid2 = new NewSolenoid();
-        gearShiftSolonoid2.init();
-        gearShiftSolonoid.set(GEAR_SHIFT_SOLONOID_1_PWM);
-        gearShiftSolonoid2.set(GEAR_SHIFT_SOLONOID_2_PWM);
+        gearShiftSolonoid = new NewSolenoid()
+                .setPort(GEAR_SHIFT_SOLONOID_1_PWM)
+                .setSecondaryPort(GEAR_SHIFT_SOLONOID_2_PWM)
+                .init();
 
         //other encoders 1-2
         //2- 3
         //make wheel encoders
-        wheelEncoder1 = new NewEncoder();
-        wheelEncoder1.setEncoderAChannelPort(ENCODER_3_PWM);
-        wheelEncoder1.setEncoderBChannelPort(ENCODER_4_PWM);
-        wheelEncoder1.init();
+        leftWheelEncoder = new NewEncoder()
+                .setEncoderAChannelPort(ENCODER_3_PWM)
+                .setEncoderBChannelPort(ENCODER_4_PWM)
+                .init();
 
-        
-                wheelEncoder2 = new NewEncoder();
-        wheelEncoder2.setEncoderAChannelPort(ENCODER_1_PWM);
-        wheelEncoder2.setEncoderBChannelPort(ENCODER_2_PWM);
-        wheelEncoder2.init();
+        rightWheelEncoder = new NewEncoder()
+                .setEncoderAChannelPort(ENCODER_1_PWM)
+                .setEncoderBChannelPort(ENCODER_2_PWM)
+                .init();
 
+        gearShiftController = new GearShiftController()
+                .setLeftEncoder(leftWheelEncoder)
+                .setRightEncoder(rightWheelEncoder)
+                .setSolenoid(gearShiftSolonoid)
+                .init();
 
         //make camera
         cameraLED = new CameraLEDController(2, 1);
@@ -179,16 +177,16 @@ public class Devices {
 
         //devices array
         devices = new IStep[]{
-          drive,
-          compressorController,
-          wheelEncoder1,
-            wheelEncoder2,
-          gearShiftSolonoid,
-            gearShiftSolonoid2,
+            drive,
+            compressorController,
+            leftWheelEncoder,
+            rightWheelEncoder,
+            gearShiftSolonoid,
             ultraSonicSensor1,
             cameraLED,
             logger,
-            shooterController
+            shooterController,
+            gearShiftController
         };
         //don't put anything after here
     }

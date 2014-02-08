@@ -87,10 +87,10 @@ public class Drive implements IStep {
   }
   public void driveStright(double speed){
       moveArcade(speed, steer);
-       if(Devices.wheelEncoder1.get()>Devices.wheelEncoder2.get()){
+       if(Devices.leftWheelEncoder.get()>Devices.rightWheelEncoder.get()){
            steer+=.1;
            
-       }else if(Devices.wheelEncoder2.get()>Devices.wheelEncoder1.get()){
+       }else if(Devices.rightWheelEncoder.get()>Devices.leftWheelEncoder.get()){
            steer-=.1;
        }
   }

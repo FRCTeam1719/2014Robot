@@ -32,7 +32,7 @@ public class NewEncoder implements IStep {
 
     }
 
-    public void init() {
+    public NewEncoder init() {
       di1 = new DigitalInput(encoderAChannelSlot, encoderAChannelPort);
       di2 = new DigitalInput(encoderBChannelSlot, encoderBChannelPort);
       encoder = new Encoder(di2, di1);
@@ -40,7 +40,7 @@ public class NewEncoder implements IStep {
       encoder.start();
       
       Devices.logChecker.sendLog("Encoder started", 3);
-        
+        return this;
 
     }
     public double get(){
@@ -48,11 +48,13 @@ public class NewEncoder implements IStep {
         return Math.abs(encoder.getRate());
     }
     //sets the port for the first encoder
-    public void setEncoderAChannelPort(int portNumber){
+    public NewEncoder setEncoderAChannelPort(int portNumber){
         encoderAChannelPort = portNumber;
+        return this;
     }
     //sets the port for the second encoder
-     public void setEncoderBChannelPort(int portNumber){
+     public NewEncoder setEncoderBChannelPort(int portNumber){
         encoderBChannelPort = portNumber;
+        return this;
     }
 }

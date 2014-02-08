@@ -68,7 +68,6 @@ public class RobotTemplate extends IterativeRobot {
         SmartDashboard.putData("logLevel",logLevel);
         SmartDashboard.putString("Log", "");
         //Test
-        GearShiftController.setIsTest(true);
         
         //Test Mode boolean
         boolean shouldLiveWindow = false;
@@ -81,8 +80,7 @@ public class RobotTemplate extends IterativeRobot {
     }
     
     
-    public void autonomousInit(){
-        GearShiftController.setIsTest(false);        
+    public void autonomousInit(){      
        SmartDashboard.putBoolean("isAtonomus", true);
         //Devices.autonomous.init();
     }
@@ -94,7 +92,6 @@ public class RobotTemplate extends IterativeRobot {
        // Devices.autonomous.step();
     }
     public void teleopInit(){
-        GearShiftController.setIsTest(false);
         SmartDashboard.putBoolean("isAtonomus", false);
          
        // Devices.autonomous.stop();
@@ -112,7 +109,6 @@ public class RobotTemplate extends IterativeRobot {
      */
     
     public void testInit() {
-        GearShiftController.setIsTest(true);
         Devices.testMode.init();
     }
     public void testPeriodic() {

@@ -16,8 +16,6 @@ public class AllActionsDoneAction extends Action{
     public boolean doAct() {
         boolean toReturn = false;
         
-        GearShiftController.setIsTest(false);
-        
         toReturn = true;
         return toReturn;
     }
