@@ -61,6 +61,7 @@ public class Devices {
         for (int i = 0; i < Devices.devices.length; i++) {
             Devices.devices[i].step();
         }
+
     }
 
     public void init() {

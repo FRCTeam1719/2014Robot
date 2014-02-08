@@ -33,12 +33,10 @@ public class Controller implements IStep {
 
         if (driveModeInt == 1) {
             Devices.drive.moveArcade(joyStick1.getRawAxis(2), joyStick1.getRawAxis(1));
-            Devices.logChecker.sendLog("Arcade mode activated",2);
-        }
-        if (driveModeInt != 1) {
+            Devices.logChecker.sendLog("Arcade mode activated",LogLevelCheck.sensor);
         } else {
             Devices.drive.moveTank(joyStick1.getRawAxis(2), joyStick1.getRawAxis(5));
-            Devices.logChecker.sendLog("Tank mode activated",2);
+            Devices.logChecker.sendLog("Tank mode activated",LogLevelCheck.sensor);
         }
         
         if(joyStick1.getRawButton(1)){

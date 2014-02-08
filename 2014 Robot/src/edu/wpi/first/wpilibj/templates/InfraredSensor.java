@@ -18,7 +18,7 @@ public class InfraredSensor implements IStep{
         SmartDashboard.putNumber("infrared", infrared.getAverageValue());
         String tempValueForLog;
         tempValueForLog = "Infared value: "+infrared.getAverageValue();
-        Devices.logChecker.sendLog(tempValueForLog, 2);
+        Devices.logChecker.sendLog(tempValueForLog, LogLevelCheck.sensor);
     }
     AnalogChannel infrared;
     //TODO this class shouldn't know about slots

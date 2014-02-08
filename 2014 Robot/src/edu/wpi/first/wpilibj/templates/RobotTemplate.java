@@ -61,10 +61,10 @@ public class RobotTemplate extends IterativeRobot {
 
         //Leg Level
         logLevel = new SendableChooser();
-        logLevel.addDefault("1", Integer.valueOf(1));
-        logLevel.addObject("2", Integer.valueOf(2));
-        logLevel.addObject("3", Integer.valueOf(3));
-        logLevel.addObject("4", Integer.valueOf(4));
+        logLevel.addDefault("1 - Nothing", Integer.valueOf(1));
+        logLevel.addObject("2 - Sensor Logs", Integer.valueOf(2));
+        logLevel.addObject("3 - Physical Logs", Integer.valueOf(3));
+        logLevel.addObject("4 - Everything", Integer.valueOf(4));
         SmartDashboard.putData("logLevel",logLevel);
         SmartDashboard.putString("Log", "");
         //Test
