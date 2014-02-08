@@ -30,6 +30,7 @@ public class Devices {
     public static UltrasonicSensor ultraSonicSensor1;
     public static CameraLEDController cameraLED;
     public static ShooterController shooterController;
+    public static IntakeArm intakeArm;
     static Log logger = new Log();
     static LogLevelCheck logChecker = new LogLevelCheck();
     // Integer selectedRobot=1;
@@ -41,6 +42,9 @@ public class Devices {
     private static int RIGHT_ENCODER_B_DIO = 3;
     private static int LEFT_ENCODER_A_DIO = 4;
     private static int LEFT_ENCODER_B_DIO = 5;
+    
+    private static int INTAKE_ARM_MOTOR_PORT = 4;
+    private static int INTAKE_POTENTIOMETER_PORT = 2;
     
     private static int WHEEL_lEFT_PWM = 10;
     private static int WHEEL_RIGHT_PWM = 8;
@@ -78,6 +82,11 @@ public class Devices {
         shooterController.setSolonoidPort(SHOOTER_SOLONOID_PORT);
         shooterController.init();
 
+        
+        intakeArm = new IntakeArm();
+        intakeArm.setMotorPort(INTAKE_ARM_MOTOR_PORT);
+        intakeArm.setPotentiometerPort(INTAKE_POTENTIOMETER_PORT);
+        
         //TODO which robot do these go to
         //TODO should we arrange these by module? 
         Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();

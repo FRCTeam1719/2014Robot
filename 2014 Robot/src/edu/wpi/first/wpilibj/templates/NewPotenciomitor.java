@@ -15,6 +15,7 @@ public class NewPotenciomitor implements IStep {
     int port;
     AnalogPotentiometer p;
     public void step() {
+        
     }
 
     public NewPotenciomitor init() {
