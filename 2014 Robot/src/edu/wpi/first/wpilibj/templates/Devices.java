@@ -27,7 +27,6 @@ public class Devices {
     public static NewEncoder leftWheelEncoder;
     public static NewEncoder rightWheelEncoder;
     public static GearShiftController gearShiftController;
-
     public static UltrasonicSensor ultraSonicSensor1;
     public static CameraLEDController cameraLED;
     public static ShooterController shooterController;
@@ -131,7 +130,6 @@ public class Devices {
                 .setPort(GEAR_SHIFT_SOLONOID_1_PWM)
                 .setSecondaryPort(GEAR_SHIFT_SOLONOID_2_PWM)
                 .init();
-
         //other encoders 1-2
         //2- 3
         //make wheel encoders
@@ -151,6 +149,7 @@ public class Devices {
                 .setSolenoid(gearShiftSolonoid)
                 .init();
 
+        
         //make camera
         cameraLED = new CameraLEDController(2, 1);
         cameraLED.init();
