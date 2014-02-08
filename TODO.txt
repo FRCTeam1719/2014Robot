@@ -1,11 +1,12 @@
 Test Mode
-Change camera settings after (and during) autonomous
+    Motors not working?
+Figure out intake system
+Change camera settings after (and during) autonomous (Done)
 Save video feed
-Implement Logging Levels
+Implement Logging Levels (Done)
 Test vision in different environments
     Validate in different lighting conditions
     Validate with autonomous
 Add move to autonomous
 Make sure we drive straight in autonomous
-Clean up comments
-Figure out intake system
+Clean up comments/Rename Variables

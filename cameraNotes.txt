@@ -1,0 +1,26 @@
+The camera API provided by first does not provide access to all of the features of the camera.
+This format is reverse engineered from a packet sniff of manually sending the settings from the web UI.
+Multiple values can be set by a single request
+
+Examples:
+http://10.17.19.11/sm/sm.srv?root_ImageSource_I0_Sensor_ExposureValue=0&action=modify
+http://10.17.19.11/sm/sm.srv?root_ImageSource_I0_Sensor_Contrast=0&action=modify
+
+Known parameters:
+root_ImageSource_I0_Sensor_ColorLevel=50
+root_ImageSource_I0_Sensor_Brightness=50
+root_ImageSource_I0_Sensor_Sharpness=50
+root_ImageSource_I0_Sensor_Contrast=100
+root_ImageSource_I0_Sensor_WhiteBalance=auto
+root_ImageSource_I0_Sensor_ExposureValue=0
+root_ImageSource_I0_Sensor_Exposure=flickerfree50
+root_ImageSource_I0_Sensor_BacklightCompensation=no
+root_ImageSource_I0_Sensor_ExposureWindow=center
+zoneType=other
+root_ImageSource_I0_Sensor_ExposurePriority=0
+root_ImageSource_I0_Sensor_MinExposureTime=10000
+root_ImageSource_I0_Sensor_MaxExposureTime=10000
+root_ImageSource_I0_Sensor_MinGain=0
+root_ImageSource_I0_Sensor_MaxGain=0
+return_page=%2Foperator%2Fadvanced.shtml%3Fnbr%3D0%26id%3D19
+action=modify
