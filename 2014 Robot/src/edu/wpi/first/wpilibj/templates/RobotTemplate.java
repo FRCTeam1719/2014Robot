@@ -68,7 +68,6 @@ public class RobotTemplate extends IterativeRobot {
         SmartDashboard.putData("logLevel",logLevel);
         SmartDashboard.putString("Log", "");
         //Test
-        System.out.println("TestInit");
         GearShiftController.setIsTest(true);
         
         //Test Mode boolean
@@ -115,7 +114,6 @@ public class RobotTemplate extends IterativeRobot {
      */
     
     public void testInit() {
-        System.out.println("TestInit2");
         GearShiftController.setIsTest(true);
         Devices.testMode.init();
     }

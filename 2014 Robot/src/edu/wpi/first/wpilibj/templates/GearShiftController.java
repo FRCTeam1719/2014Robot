@@ -40,7 +40,6 @@ public class GearShiftController {
                 if (!isSlow) {
                     Devices.drive.stop(200);
                     isSlow = true;
-                    System.out.println("solonoid on");
                 }
                 if (isSlow) {
                 } else {

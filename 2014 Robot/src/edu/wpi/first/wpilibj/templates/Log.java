@@ -19,7 +19,6 @@ public class Log implements IStep{
     public void sendMessage(String message){
         //Apends message to the queue of log messages
         logMessage.append(", ").append("[").append(System.currentTimeMillis()/3600000).append(":").append(System.currentTimeMillis()/600000).append("]").append(" ") .append(message).append("\r\n");
-        System.out.println(message);
     }
     
 
