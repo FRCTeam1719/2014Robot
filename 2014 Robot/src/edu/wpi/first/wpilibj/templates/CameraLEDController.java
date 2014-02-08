@@ -26,8 +26,10 @@ public class CameraLEDController implements IStep{
         boolean cameraOn = SmartDashboard.getBoolean("cameraLED");
         if(cameraOn){
             ledController.set(Relay.Value.kOn);
+            
         }else{
             ledController.set(Relay.Value.kOff);
+            
         }
         SmartDashboard.putBoolean("cameraLEDOn", cameraOn);
     }

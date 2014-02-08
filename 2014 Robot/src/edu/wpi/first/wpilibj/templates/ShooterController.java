@@ -26,8 +26,9 @@ public class ShooterController implements IStep {
     private double point;
 
     public void step() {
-        System.out.println(potentiometer.get());
+
         if (potentiometer.get() < point) {
+
             victor.set(.5);
             
             
