@@ -143,21 +143,16 @@ public class Devices {
         //2- 3
         //make wheel encoders
         wheelEncoder1 = new NewEncoder();
-        wheelEncoder1.setEncoder1(ENCODER_3_PWM);
-        wheelEncoder1.setEncoder2(ENCODER_4_PWM);
+        wheelEncoder1.setEncoderAChannelPort(ENCODER_3_PWM);
+        wheelEncoder1.setEncoderBChannelPort(ENCODER_4_PWM);
         wheelEncoder1.init();
 
         
                 wheelEncoder2 = new NewEncoder();
-        wheelEncoder2.setEncoder1(ENCODER_1_PWM);
-        wheelEncoder2.setEncoder2(ENCODER_2_PWM);
+        wheelEncoder2.setEncoderAChannelPort(ENCODER_1_PWM);
+        wheelEncoder2.setEncoderBChannelPort(ENCODER_2_PWM);
         wheelEncoder2.init();
 
-        
-                wheelEncoder2 = new NewEncoder();
-        wheelEncoder2.setEncoder1(ENCODER_1_PWM);
-        wheelEncoder2.setEncoder2(ENCODER_2_PWM);
-        wheelEncoder2.init();
 
         //make camera
         cameraLED = new CameraLEDController(2, 1);

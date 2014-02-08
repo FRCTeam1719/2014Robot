@@ -9,15 +9,13 @@ package edu.wpi.first.wpilibj.templates;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.camera.AxisCamera;
-import edu.wpi.first.wpilibj.camera.AxisCameraException;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.tables.ITable;
 import edu.wpi.first.wpilibj.templates.testmode.TestMode;
 
-
+//TODO: what is the thingy printline
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,14 +30,14 @@ public class RobotTemplate extends IterativeRobot {
      * used for any initialization code.
      */
     //TODO clean up, move portions into their own class
-    AxisCamera camera = AxisCamera.getInstance();
     static SendableChooser driveMode;
     static SendableChooser robot;
     static SendableChooser autoTransmision;
     static SendableChooser logLevel;
-    NetworkTable testTable = NetworkTable.getTable("LiveWindow");
+    public NetworkTable testTable = NetworkTable.getTable("LiveWindow");
     Devices devices = new Devices();
-      static Controller controller = new Controller();;
+    static Controller controller = new Controller();;
+    
     public void robotInit() {
        
         
@@ -73,7 +71,9 @@ public class RobotTemplate extends IterativeRobot {
         System.out.println("TestInit");
         GearShiftController.setIsTest(true);
         
-        
+        //Test Mode boolean
+        boolean shouldLiveWindow = false;
+        SmartDashboard.putBoolean("shouldLiveWindow", shouldLiveWindow);
         
         
         
@@ -122,8 +122,9 @@ public class RobotTemplate extends IterativeRobot {
     public void testPeriodic() {
         Devices.testMode.step();
         devices.step();
-        
-        
+        if(!SmartDashboard.getBoolean("shouldLiveWindow")){
+        testTable.putBoolean("~STATUS~/LW Enabled", false);
+        }
         
         
         

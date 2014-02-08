@@ -20,8 +20,11 @@ public class NewEncoder implements IStep {
    DigitalInput di1;
     DigitalInput di2; 
     //TODO what are num1, num2?
-    int num1 = 0;
-    int num2 = 0;
+    int encoderAChannelPort = 0;
+    int encoderAChannelSlot = 1;
+    int encoderBChannelPort = 0;
+    int encoderBChannelSlot = 1;
+
     //Counter counter;
     public void step() {
         //send robot speed to dashboard
@@ -33,8 +36,8 @@ public class NewEncoder implements IStep {
     }
 
     public void init() {
-      di1 = new DigitalInput(1, num1);
-      di2 = new DigitalInput(1, num2);
+      di1 = new DigitalInput(encoderAChannelSlot, encoderAChannelPort);
+      di2 = new DigitalInput(encoderBChannelSlot, encoderBChannelPort);
       encoder = new Encoder(di2, di1);
       encoder.setSamplesToAverage(50);
       encoder.start();
@@ -48,11 +51,11 @@ public class NewEncoder implements IStep {
         return Math.abs(encoder.getRate());
     }
     //sets the port for the first encoder
-    public void setEncoder1(int encoderNumber){
-        num1 = encoderNumber;
+    public void setEncoderAChannelPort(int portNumber){
+        encoderAChannelPort = portNumber;
     }
     //sets the port for the second encoder
-     public void setEncoder2(int encoderNumber){
-        num2 = encoderNumber;
+     public void setEncoderBChannelPort(int portNumber){
+        encoderBChannelPort = portNumber;
     }
 }
