@@ -16,7 +16,6 @@ public class ReadEncoderAction extends Action{
     }
     public boolean doAct() {
         boolean toReturn = false;
-        System.out.println(outputLabel + ": " + Devices.wheelEncoder1.get());
         toReturn = true;
         return toReturn;
     }

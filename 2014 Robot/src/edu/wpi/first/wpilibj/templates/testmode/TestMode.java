@@ -3,8 +3,8 @@
  * and open the template in the editor.
  */
 package edu.wpi.first.wpilibj.templates.testmode;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.templates.IStep;
-import edu.wpi.first.wpilibj.templates.RobotTemplate;
 //import antigravity;
 import edu.wpi.first.wpilibj.templates.autonomous.Chain;
 import edu.wpi.first.wpilibj.templates.autonomous.Action;
@@ -18,11 +18,12 @@ public class TestMode implements IStep{
     private boolean doneAllActs;
     private boolean doneRunDrive;
     private Chain runDrive;
-    private int testModeInt;
+    public NetworkTable testTable = NetworkTable.getTable("LiveWindow");
+    double testNumber;
     public void init(){
         
-        //Integer testModeInti = (Integer) RobotTemplate.testMode.getSelected();
-        testModeInt = 1;//testModeInti.intValue();
+        //Init Networktable 
+        testTable.putNumber("testNumber", 0);
         runDrive = new Chain(new Action[]{
             new ReadEncoderAction("Stopped"),//Read the encoder when stopped
             new ArcadeDriveAction(0.75, 0),//Drive forward at 75% speed
@@ -49,14 +50,16 @@ public class TestMode implements IStep{
             new ArcadeDriveAction(0.75, 0),
             new TimerWaitAction(5),
             new ReadEncoderAction("High Gear"),
+            new ArcadeDriveAction(0.75, 0),
             new GearShiftAction(true),
             new AllActionsDoneAction()
         });
         doneAllActs = false;
     }
     public void step(){
-        if(!doneAllActs&&testModeInt!=0){
-            if(testModeInt==1){//Run all tests
+        testNumber = testTable.getNumber("testNumber");
+        if(!doneAllActs&&testNumber!=0){
+            if(testNumber==1){//Run all tests
                 if(!doneRunDrive){
                     doneRunDrive = runDrive.doAct();
                 }
@@ -70,9 +73,9 @@ public class TestMode implements IStep{
 //              else if(!doneFinalTest){
 //                  doneAllActs = finalTest.doAct();
 //              }
-            }else if(testModeInt==2){
+            }else if(testNumber==2){
                 doneAllActs = runDrive.doAct();
-            }else if(testModeInt==3){
+            }else if(testNumber==3){
                 //second type of test; replace with real code once we have
                 //another test
                 doneAllActs = true;

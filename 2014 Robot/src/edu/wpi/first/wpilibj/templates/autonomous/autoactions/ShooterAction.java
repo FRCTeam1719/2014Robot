@@ -22,7 +22,6 @@ public class ShooterAction extends Action{
         boolean toReturn = false;
         //Replace next line of code with code to change toReturn to true once
         //shooter is done shooting.
-        System.out.println("Shooting");
         toReturn = true;
         return toReturn;
     }
