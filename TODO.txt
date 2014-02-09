@@ -1,6 +1,8 @@
+Test integrated autonomous
 Test vision in different environments
     Validate in different lighting conditions
-    Validate with autonomous
 Add move to autonomous
 Make sure we drive straight in autonomous
 Clean up comments/Rename Variables
+    Abstract device
+        We have 3 of the form: Motor, potentiometer, setpoint
