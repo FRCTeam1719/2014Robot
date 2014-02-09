@@ -1,9 +1,3 @@
-Test Mode
-    Motors not working?
-Figure out intake system
-Change camera settings after (and during) autonomous (Done)
-Save video feed
-Implement Logging Levels (Done)
 Test vision in different environments
     Validate in different lighting conditions
     Validate with autonomous
