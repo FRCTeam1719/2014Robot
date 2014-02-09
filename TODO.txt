@@ -1,34 +1,24 @@
-Dashboard - Aaron
-    Add feedback:
-        Gear-mode
-Vision - Aaron
-Autonomous - Thomas
-	Modes?
-	Hot or not?
-    Drive until near wall
-cRios - Image (Done)
-Git
-	New Java project (Done)
-	New Dashboard project (Done)
-Code - Chance
-	Initial project
-	Drive train
-        Switch to tank drive
-    Encoders
-        PID
-
-Research two motors on single gearbox
-    should they be tuned to send same power
-    Does this require indepetnedt speed conrollers
+Implement:
+    ShooterAction
+    ReadEncoderAction
     
-Look into sensors:
-    encoders
-    distance sensors
-    gyro 
-    accelerometer
-    potentiometer
-    limit switch
+Build camera mount
+    It should include the potentiometer
+    Also, wiring must be done
 
-Logging
-    Corrolate log to video feed
-Scouting System
+Add init to IStep
+
+Test integrated autonomous
+Test vision in different environments
+    Validate in different lighting conditions
+Add move to autonomous
+Make sure we drive straight in autonomous
+Clean up comments/Rename Variables
+    Abstract device
+        We have 3 of the form: Motor, potentiometer, setpoint
+Thomas:
+    Disable template license header in new files
+
+Refactor API for:
+    UltrasonicWaitAction
+

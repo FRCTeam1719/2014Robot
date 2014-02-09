@@ -1,42 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package edu.wpi.first.wpilibj.templates.autonomous;
 
 /**
- *
- * @author Thomas
+ * This class provides a basic way to combine actions into more complicated ones,
+ * by running them in sequence
  */
 public class Chain extends Action{
     Action[] actions;
+    boolean done=false;
+    int index = 0;
     public Chain(Action[] acts){
-        //Constructor accepts array of Actions; class variable "actions" becomes
-        //that array.
         actions=acts;
     }
     public void init(){
-        i=0;
+        index=0;
     }
-    int i = 0;
-    //doAct is called in Autonomous' step() method and returns false if not done
-    //all acts.
     public boolean doAct(){
-        //If the current act has been finished... (steps current act, too)
-        if(actions[i].doAct()){
-            System.out.println("Done an act");
-            //...move on to the next act.
-            i++;
-            //If that wasn't the last act...
-            if(i!=actions.length){
-                //...initialize the next act.
-                actions[i].init();
+        if(done){
+            return true;
+        }
+        if(actions[index].doAct()){
+            index++;
+            if(index!=actions.length){
+                actions[index].init();
+            }else{
+                done=true;
             }
         }
-        //Return if we have moved on past the final act. (If true, stop stepping
-        //all acts.)
-        return i==actions.length;
+        return done;
     }
 }

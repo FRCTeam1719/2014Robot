@@ -9,10 +9,13 @@ package edu.wpi.first.wpilibj.templates;
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.tables.ITable;
+import edu.wpi.first.wpilibj.templates.testmode.TestMode;
 
-
+//TODO: what is the thingy printline
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,9 +32,12 @@ public class RobotTemplate extends IterativeRobot {
     //TODO clean up, move portions into their own class
     static SendableChooser driveMode;
     static SendableChooser robot;
-     static SendableChooser autoTransmision;
+    static SendableChooser autoTransmision;
+    static SendableChooser logLevel;
+    public NetworkTable testTable = NetworkTable.getTable("LiveWindow");
     Devices devices = new Devices();
-      static Controller controller = new Controller();;
+    static Controller controller = new Controller();;
+    
     public void robotInit() {
        
         
@@ -52,6 +58,21 @@ public class RobotTemplate extends IterativeRobot {
         robot.addObject("test robot 2", Integer.valueOf(3));
         SmartDashboard.putData("robot", robot);
         
+
+        //Leg Level
+        logLevel = new SendableChooser();
+        logLevel.addDefault("1 - Nothing", Integer.valueOf(1));
+        logLevel.addObject("2 - Sensor Logs", Integer.valueOf(2));
+        logLevel.addObject("3 - Physical Logs", Integer.valueOf(3));
+        logLevel.addObject("4 - Everything", Integer.valueOf(4));
+        SmartDashboard.putData("logLevel",logLevel);
+        SmartDashboard.putString("Log", "");
+        
+        
+        //Test Mode boolean
+        boolean shouldLiveWindow = false;
+        SmartDashboard.putBoolean("shouldLiveWindow", shouldLiveWindow);
+        
         
         
       controller.set(1).init();
@@ -59,17 +80,21 @@ public class RobotTemplate extends IterativeRobot {
     }
     
     
-    public void autonomousInit(){
-        Devices.autonomous.init();
+    public void autonomousInit(){      
+       SmartDashboard.putBoolean("isAtonomus", true);
+        
     }
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-       // Devices.autonomous.step();
+        devices.step();
+       
     }
     public void teleopInit(){
-       // Devices.autonomous.stop();
+        SmartDashboard.putBoolean("isAtonomus", false);
+         
+       
     }
     /**
      * This function is called periodically during operator control
@@ -77,13 +102,25 @@ public class RobotTemplate extends IterativeRobot {
     public void teleopPeriodic() {
         controller.step();
         devices.step();
+        devices.drive.DriveStraight(400);
     }
     
     /**
      * This function is called periodically during test mode
      */
-    public void testPeriodic() {
     
+    public void testInit() {
+        Devices.testMode.init();
+    }
+    public void testPeriodic() {
+        Devices.testMode.step();
+        devices.step();
+        if(!SmartDashboard.getBoolean("shouldLiveWindow")){
+        testTable.putBoolean("~STATUS~/LW Enabled", false);
+        }
+        
+        
+        
     }
     
     
