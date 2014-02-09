@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Controller implements IStep {
     int port;
     Joystick joyStick1;
-    
+    static int driveMode;
 
     public void init() {
         joyStick1 = new Joystick(port);
@@ -32,12 +32,10 @@ public class Controller implements IStep {
     
     
     public void step() {
-        //Change SendableChooser Object to an Integer, then to an int for reasions
-        Integer driveModeInti = (Integer) RobotTemplate.driveMode.getSelected();
-        int driveModeInt = driveModeInti.intValue();
+        
         
         //Pick DriveMode
-        if (driveModeInt == 1) {
+        if (driveMode == 1) {
             Devices.drive.moveArcade(joyStick1.getRawAxis(2), joyStick1.getRawAxis(1));
             Devices.logChecker.sendLog("Arcade mode activated",LogLevelCheck.sensor);
         } else {
@@ -52,9 +50,13 @@ public class Controller implements IStep {
         }
         
         Devices.gearShiftController.setFast(joyStick1.getRawAxis(3)<=0);
-        Devices.gearShiftController.setAutomatic(((Integer)RobotTemplate.autoTransmision.getSelected()).intValue()==1);        
+        //TODO: Chance told me to comment this out, yelll at him to fix it
+        // -- Aaron
+        //Devices.gearShiftController.setAutomatic(((Integer)RobotTemplate.autoTransmision.getSelected()).intValue()==1);        
     }
     
-    
+    public static void setDriveMode(int number){
+        driveMode = number;
+    }
     
 }

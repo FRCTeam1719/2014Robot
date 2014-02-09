@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Log implements IStep{
 
     StringBuffer logMessage = new StringBuffer();
-    
+    private static String currentLogMessage;
     
     
     public void sendMessage(String message){
@@ -25,8 +25,8 @@ public class Log implements IStep{
     
     public void send() {
         //Tests to see if the queue is empty, and then sends the next queue of logs to the Dashboard
-        if(SmartDashboard.getString("Log").equals("")) {
-            SmartDashboard.putString("Log",logMessage.toString());
+        if(currentLogMessage.equals("")) {
+            SmartDashboardReader.putString("Log",logMessage.toString());
             logMessage = new StringBuffer();
 
         }else{
@@ -40,6 +40,9 @@ public class Log implements IStep{
         send();
      }
 
+    public void setCurrentLogmessage(String message){
+        currentLogMessage = message;
+    }
 }
     
 
