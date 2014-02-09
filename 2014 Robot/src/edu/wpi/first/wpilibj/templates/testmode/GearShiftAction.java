@@ -7,7 +7,8 @@ package edu.wpi.first.wpilibj.templates.testmode;
 import edu.wpi.first.wpilibj.templates.Devices;
 import edu.wpi.first.wpilibj.templates.GearShiftController;
 import edu.wpi.first.wpilibj.templates.autonomous.Action;
-
+//TODO: IMPORTANT currently the testIsFast verible seems to have gone missing
+//We need to reimpliment this. 
 /**
  *
  * @author aaroneline

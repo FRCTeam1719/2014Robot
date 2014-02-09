@@ -5,7 +5,6 @@
 package edu.wpi.first.wpilibj.templates.testmode;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.templates.IStep;
-//import antigravity;
 import edu.wpi.first.wpilibj.templates.autonomous.Chain;
 import edu.wpi.first.wpilibj.templates.autonomous.Action;
 import edu.wpi.first.wpilibj.templates.autonomous.autoactions.*;
@@ -20,10 +19,18 @@ public class TestMode implements IStep{
     private Chain runDrive;
     public NetworkTable testTable = NetworkTable.getTable("LiveWindow");
     double testNumber;
+    
+    //Constants
+    private final int NO_TEST = 0;
+    private final int ALL_TEST = 1;
+    private final int DRIVE_TEST = 2;
+    //Temporary constant for non-existant tests
+    private final int NOT_A_TEST = 3;
     public void init(){
         
         //Init Networktable 
-        testTable.putNumber("testNumber", 0);
+        testTable.putNumber("testNumber", NO_TEST);
+        //Create the chain for drive system actions
         runDrive = new Chain(new Action[]{
             new ReadEncoderAction("Stopped"),//Read the encoder when stopped
             new ArcadeDriveAction(0.75, 0),//Drive forward at 75% speed
@@ -58,8 +65,8 @@ public class TestMode implements IStep{
     }
     public void step(){
         testNumber = testTable.getNumber("testNumber");
-        if(!doneAllActs&&testNumber!=0){
-            if(testNumber==1){//Run all tests
+        if(!doneAllActs&&testNumber!=NO_TEST){
+            if(testNumber==ALL_TEST){//Run all tests
                 if(!doneRunDrive){
                     doneRunDrive = runDrive.doAct();
                 }
@@ -73,9 +80,9 @@ public class TestMode implements IStep{
 //              else if(!doneFinalTest){
 //                  doneAllActs = finalTest.doAct();
 //              }
-            }else if(testNumber==2){
+            }else if(testNumber==DRIVE_TEST){
                 doneAllActs = runDrive.doAct();
-            }else if(testNumber==3){
+            }else if(testNumber==NOT_A_TEST){
                 //second type of test; replace with real code once we have
                 //another test
                 doneAllActs = true;
