@@ -1,35 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package edu.wpi.first.wpilibj.templates.autonomous.autoactions;
+
 import edu.wpi.first.wpilibj.templates.autonomous.Action;
 import edu.wpi.first.wpilibj.templates.*;
 
-/**
- *
- * @author Thomas
- */
 public class UltrasonicWaitAction extends Action{
+    private int targetDistance;
+    private boolean maxDist;
+    /**
+     * 
+     * @param waitForLessThan If true, wait until we are close enough to the wall, otherwise wait until we are far enough
+     * @param dist Target distance in sensor units
+     */
     public UltrasonicWaitAction(boolean waitForLessThan, int dist){
-        distance = dist;
+        targetDistance = dist;
         maxDist = waitForLessThan;
     }
-    private int distance;
-    private boolean maxDist;
+    
+    public void init(){
+        Devices.logChecker.sendLog("Begging UltrasonicWaitAction, dist="+targetDistance+",waitForLessThan="+maxDist, LogLevelCheck.physical);
+    }
+    
     public boolean doAct() {
-        boolean toReturn = false;
-        //If you're waiting for the value to be less than something
-        if(maxDist){
-            //Return if the value is less than that something
-            toReturn = Devices.ultraSonicSensor1.getValue()<distance;
-        //If you're waiting for the value to be greater than something
-        }else{
-            //Return if the value is greater than that something
-            toReturn = Devices.ultraSonicSensor1.getValue()>distance;
+        int distance=Devices.ultraSonicSensor1.getValue();
+        boolean done = distance<targetDistance;
+        if(!maxDist){
+            done = !done;
         }
-        return toReturn;
+        if(done){
+            Devices.logChecker.sendLog("Done ultrasonicWaitAction", LogLevelCheck.physical);
+        }
+        return done;
     }
 }

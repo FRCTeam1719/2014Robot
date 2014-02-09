@@ -1,12 +1,24 @@
-Test Mode
-    Motors not working?
-Figure out intake system
-Change camera settings after (and during) autonomous (Done)
-Save video feed
-Implement Logging Levels (Done)
+Implement:
+    ShooterAction
+    ReadEncoderAction
+    
+Build camera mount
+    It should include the potentiometer
+    Also, wiring must be done
+
+Add init to IStep
+
+Test integrated autonomous
 Test vision in different environments
     Validate in different lighting conditions
-    Validate with autonomous
 Add move to autonomous
 Make sure we drive straight in autonomous
 Clean up comments/Rename Variables
+    Abstract device
+        We have 3 of the form: Motor, potentiometer, setpoint
+Thomas:
+    Disable template license header in new files
+
+Refactor API for:
+    UltrasonicWaitAction
+
