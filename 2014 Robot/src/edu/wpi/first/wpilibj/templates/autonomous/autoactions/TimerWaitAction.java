@@ -1,29 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package edu.wpi.first.wpilibj.templates.autonomous.autoactions;
+
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.templates.Devices;
+import edu.wpi.first.wpilibj.templates.LogLevelCheck;
 import edu.wpi.first.wpilibj.templates.autonomous.Action;
 
-/**
- *
- * @author Thomas
- */
+
 public class TimerWaitAction extends Action{
+    double waitTime;
+    Timer timer;
+    
+    /**
+     * 
+     * @param timeAmt time to wait in seconds
+     */
     public TimerWaitAction(double timeAmt){
         timer = new Timer();
         waitTime = timeAmt;
     }
-    double waitTime;
-    Timer timer;
     public void init(){
+        Devices.logChecker.sendLog("Waiting: "+waitTime+"s", LogLevelCheck.physical);
         timer.reset();
         timer.start();
     }
     public boolean doAct(){
+        boolean done = timer.get()>waitTime;
+        if(done){
+            Devices.logChecker.sendLog("Done waiting", LogLevelCheck.physical);
+        }
         return timer.get()>=waitTime;
     }
 }

@@ -13,13 +13,13 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 public class NewPotenciomitor implements IStep {
 
     int port;
-    AnalogPotentiometer p;
+    AnalogPotentiometer pontentiometer;
     public void step() {
         
     }
 
     public NewPotenciomitor init() {
-        p = new AnalogPotentiometer(port);
+        pontentiometer = new AnalogPotentiometer(port);
         return this;
     }
 
@@ -28,6 +28,6 @@ public class NewPotenciomitor implements IStep {
         return this;
     }
     public double get(){
-        return p.get();
+        return pontentiometer.get();
     }
 }

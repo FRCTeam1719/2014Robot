@@ -14,47 +14,56 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class NewEncoder implements IStep {
     //TODO rename class
+
     NewEncoder() {
     }
     Encoder encoder;
-   DigitalInput di1;
-    DigitalInput di2; 
+    DigitalInput di1;
+    DigitalInput di2;
     //TODO what are num1, num2?
     int encoderAChannelPort = 0;
     int encoderAChannelSlot = 1;
     int encoderBChannelPort = 0;
     int encoderBChannelSlot = 1;
+    int samplesToAverage = 50;
 
-    //Counter counter;
     public void step() {
-        //send robot speed to dashboard
-       // SmartDashboard.putNumber("speed",Math.abs(encoder.getRate()));     
-
     }
 
     public NewEncoder init() {
-      di1 = new DigitalInput(encoderAChannelSlot, encoderAChannelPort);
-      di2 = new DigitalInput(encoderBChannelSlot, encoderBChannelPort);
-      encoder = new Encoder(di2, di1);
-      encoder.setSamplesToAverage(50);
-      encoder.start();
-      
-      Devices.logChecker.sendLog("Encoder started", LogLevelCheck.physical);
+
+        di1 = new DigitalInput(encoderAChannelSlot, encoderAChannelPort);
+        di2 = new DigitalInput(encoderBChannelSlot, encoderBChannelPort);
+
+        encoder = new Encoder(di2, di1);
+
+        encoder.setSamplesToAverage(samplesToAverage);
+
+        encoder.start();
+
+        Devices.logChecker.sendLog("Encoder started", LogLevelCheck.physical);
         return this;
 
     }
-    public double get(){
-        
+
+    public double get() {
+
         return Math.abs(encoder.getRate());
     }
     //sets the port for the first encoder
-    public NewEncoder setEncoderAChannelPort(int portNumber){
+
+    public NewEncoder setEncoderAChannelPort(int portNumber) {
         encoderAChannelPort = portNumber;
         return this;
     }
     //sets the port for the second encoder
-     public NewEncoder setEncoderBChannelPort(int portNumber){
+
+    public NewEncoder setEncoderBChannelPort(int portNumber) {
         encoderBChannelPort = portNumber;
         return this;
+    }
+
+    public void setAveragesToSample(int samplesToAverage) {
+        this.samplesToAverage = samplesToAverage;
     }
 }

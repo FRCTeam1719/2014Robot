@@ -21,8 +21,8 @@ public class Potentiometer implements IStep{
     public void step() {
         SmartDashboard.putNumber("potentiometer", potentiometer.getAverageValue());
     }
-    public Potentiometer setSlot(int s){
-        slot = s;
+    public Potentiometer setSlot(int slot){
+        this.slot = slot;
         return this;
     }
     public int getValue(){

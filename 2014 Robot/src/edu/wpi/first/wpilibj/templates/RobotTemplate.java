@@ -67,7 +67,7 @@ public class RobotTemplate extends IterativeRobot {
         logLevel.addObject("4 - Everything", Integer.valueOf(4));
         SmartDashboard.putData("logLevel",logLevel);
         SmartDashboard.putString("Log", "");
-        //Test
+        
         
         //Test Mode boolean
         boolean shouldLiveWindow = false;
@@ -82,19 +82,19 @@ public class RobotTemplate extends IterativeRobot {
     
     public void autonomousInit(){      
        SmartDashboard.putBoolean("isAtonomus", true);
-        //Devices.autonomous.init();
+        
     }
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
         devices.step();
-       // Devices.autonomous.step();
+       
     }
     public void teleopInit(){
         SmartDashboard.putBoolean("isAtonomus", false);
          
-       // Devices.autonomous.stop();
+       
     }
     /**
      * This function is called periodically during operator control
