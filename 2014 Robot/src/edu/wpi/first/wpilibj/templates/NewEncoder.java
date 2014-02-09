@@ -20,7 +20,7 @@ public class NewEncoder implements IStep {
     Encoder encoder;
     DigitalInput di1;
     DigitalInput di2;
-    //TODO what are num1, num2?
+
     int encoderAChannelPort = 0;
     int encoderAChannelSlot = 1;
     int encoderBChannelPort = 0;
@@ -41,7 +41,16 @@ public class NewEncoder implements IStep {
 
         encoder.start();
 
-        Devices.logChecker.sendLog("Encoder started", LogLevelCheck.physical);
+        Devices.logChecker.sendLog(
+                "Encoder started: AChannel: (" + 
+                        encoderAChannelSlot +
+                        "," +
+                        encoderAChannelPort +
+                        "), BChannel: (" +
+                        encoderBChannelSlot +
+                        "," +
+                        encoderBChannelPort, 
+                LogLevelCheck.physical);
         return this;
 
     }
