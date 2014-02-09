@@ -22,8 +22,8 @@ public class Devices {
     public static Autonomous autonomous;
     public static TestMode testMode;
     public static NewSolenoid gearShiftSolonoid;
-    public static NewEncoder leftWheelEncoder;
-    public static NewEncoder rightWheelEncoder;
+    public static NewEncoder wheelEncoder1;
+    public static NewEncoder wheelEncoder2;
     public static GearShiftController gearShiftController;
     public static UltrasonicSensor ultraSonicSensor1;
     public static CameraLEDController cameraLED;
@@ -142,14 +142,14 @@ public class Devices {
 
         
         
-        leftWheelEncoder = new NewEncoder()
+        wheelEncoder1 = new NewEncoder()
                 .setEncoderAChannelPort(LEFT_ENCODER_A_DIO)
                 .setEncoderBChannelPort(LEFT_ENCODER_B_DIO)
                 .init();
 
+
         
-        
-        rightWheelEncoder = new NewEncoder()
+        wheelEncoder2 = new NewEncoder()
                 .setEncoderAChannelPort(RIGHT_ENCODER_A_DIO)
                 .setEncoderBChannelPort(RIGHT_ENCODER_B_DIO)
                 .init();
@@ -157,8 +157,8 @@ public class Devices {
         
         
         gearShiftController = new GearShiftController()
-                .setLeftEncoder(leftWheelEncoder)
-                .setRightEncoder(rightWheelEncoder)
+                .setLeftEncoder(wheelEncoder1)
+                .setRightEncoder(wheelEncoder2)
                 .setSolenoid(gearShiftSolonoid)
                 .init();
 
@@ -201,8 +201,8 @@ public class Devices {
         devices = new IStep[]{
             drive,
             compressorController,
-            leftWheelEncoder,
-            rightWheelEncoder,
+            wheelEncoder1,
+            wheelEncoder2,
             gearShiftSolonoid,
             ultraSonicSensor1,
             cameraLED,

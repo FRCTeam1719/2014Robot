@@ -16,6 +16,7 @@ public class AllActionsDoneAction extends Action{
     public boolean doAct() {
         boolean toReturn = false;
         
+        //TODO IMPORTANT re impliment TestMode boolean
         toReturn = true;
         return toReturn;
     }

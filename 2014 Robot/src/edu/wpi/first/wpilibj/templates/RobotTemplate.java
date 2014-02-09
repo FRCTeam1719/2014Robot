@@ -102,6 +102,7 @@ public class RobotTemplate extends IterativeRobot {
     public void teleopPeriodic() {
         controller.step();
         devices.step();
+        devices.drive.DriveStraight(400);
     }
     
     /**

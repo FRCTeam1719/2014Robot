@@ -4,6 +4,7 @@
  */
 package edu.wpi.first.wpilibj.templates;
 
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 
@@ -24,7 +25,9 @@ public class Drive implements IStep {
     private boolean isEnabled = true;
     private double time = 0;
     private int steer = 0;
-    
+    private PIDController pid;
+    private PIDController pid2;
+
     
     
     Drive() {
@@ -41,8 +44,8 @@ public class Drive implements IStep {
             if (!isTankDrive) {
                 robotDrive.arcadeDrive(moveX, rotation);
             }
-        }else{
-          checkTime();
+        } else {
+            checkTime();
         }
     }
     
@@ -66,12 +69,21 @@ public class Drive implements IStep {
     
     public Drive init() {
         robotDrive = new RobotDrive(leftMotor, rightMotor);
+        pid = new PIDController(0, 0, 0, Devices.wheelEncoder1.encoder, leftMotor);
+        pid2 = new PIDController(0, 0, 0, Devices.wheelEncoder2.encoder, rightMotor);
+        pid.disable();
+        pid2.disable();
+        
+        // robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         return this;
     }
 
     
     
     public Drive moveArcade(double moveX, double rotation) {
+        pid.disable();
+        pid2.disable();
+        
         this.moveX = moveX;
         this.rotation = rotation;
         isTankDrive = false;
@@ -81,39 +93,48 @@ public class Drive implements IStep {
     
     
     public Drive moveTank(double leftWheelSpeed, double rightWheelSpeed) {
+         pid.disable();
+        pid2.disable();
+        
         this.leftWheelSpeed = leftWheelSpeed;
         this.rightWheelSpeed = rightWheelSpeed;
         isTankDrive = true;
         return this;
 
     }
+
     
     
+    public void checkTime() {
+        if (System.currentTimeMillis() >= time) {
+            isEnabled = true;
+        }
+    }
+
     
-  public void checkTime(){
-      if (System.currentTimeMillis()>=time ){
-          isEnabled = true;
-      }
-  }
-  
-  
-  
-  public void stop(double sTime){
-      time = System.currentTimeMillis() + sTime;
-  }
-  
-  
-  
-  public void driveStright(double speed){
-      moveArcade(speed, steer);
-       if(Devices.leftWheelEncoder.get()>Devices.rightWheelEncoder.get()){
-           steer+=.1;
-           
-       }else if(Devices.rightWheelEncoder.get()>Devices.leftWheelEncoder.get()){
-           steer-=.1;
-       }
-  }
-  
-  
-  
+    
+    public void stop(double sTime) {
+        time = System.currentTimeMillis() + sTime;
+    }
+
+    public void driveStrightD(double speed) {
+        moveArcade(speed, steer);
+        if (Devices.wheelEncoder1.get() > Devices.wheelEncoder2.get()) {
+            steer += .1;
+
+        } else if (Devices.wheelEncoder2.get() > Devices.wheelEncoder1.get()) {
+            steer -= .1;
+        }
+
+
+
+    }
+
+    public void DriveStraight(double speed) {
+        pid.enable();
+        pid2.enable();
+        pid.setSetpoint(speed);
+        pid2.setSetpoint(speed);
+        
+    }
 }

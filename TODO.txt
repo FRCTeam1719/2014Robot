@@ -1,12 +1,8 @@
-Test Mode
-    Motors not working?
-Figure out intake system
-Change camera settings after (and during) autonomous (Done)
-Save video feed
-Implement Logging Levels (Done)
+Test integrated autonomous
 Test vision in different environments
     Validate in different lighting conditions
-    Validate with autonomous
 Add move to autonomous
 Make sure we drive straight in autonomous
 Clean up comments/Rename Variables
+    Abstract device
+        We have 3 of the form: Motor, potentiometer, setpoint

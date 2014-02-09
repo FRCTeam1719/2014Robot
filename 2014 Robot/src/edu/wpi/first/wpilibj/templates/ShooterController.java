@@ -21,11 +21,14 @@ public class ShooterController implements IStep {
     private AnalogPotentiometer potentiometer;
     private int potentiometerPort;
     private int solonoidPort;
-    private static final double ALL_THE_WAY_BACK = .5;
+   
     private boolean isReleased = false;
+    private double point;
 
     public void step() {
-        if (potentiometer.get() < ALL_THE_WAY_BACK) {
+
+        if (potentiometer.get() < point) {
+
             victor.set(.5);
             
             
@@ -58,6 +61,9 @@ public class ShooterController implements IStep {
 
     public void setReleased(boolean value ) {
         isReleased = value;
+    }
+    public void setPoint(double point){
+        this.point = point;
     }
    
 }
