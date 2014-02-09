@@ -30,7 +30,7 @@ public class Devices {
     public static ShooterController shooterController;
     public static IntakeArm intakeArm;
     static Log logger = new Log();
-    static LogLevelCheck logChecker = new LogLevelCheck();
+    public static LogLevelCheck logChecker = new LogLevelCheck();
     private static int PRESSURE_SWITCH_SLOT = 1;
     private static int PRESSURE_SWITCH_DIO = 1;
     private static int RIGHT_ENCODER_A_DIO = 2;
