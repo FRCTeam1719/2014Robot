@@ -58,8 +58,7 @@ public class TestMode implements IStep{
             new TimerWaitAction(5),
             new ReadEncoderAction("High Gear"),
             new ArcadeDriveAction(0.75, 0),
-            new GearShiftAction(true),
-            new AllActionsDoneAction()
+            new GearShiftAction(true)
         });
         doneAllActs = false;
     }

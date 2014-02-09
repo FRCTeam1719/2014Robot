@@ -1,19 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.wpi.first.wpilibj.templates.testmode;
-import edu.wpi.first.wpilibj.templates.Devices;
+
 import edu.wpi.first.wpilibj.templates.autonomous.Action;
-/**
- *
- * @author aaroneline
- */
-public class ReadEncoderAction extends Action{
+
+public class ReadEncoderAction extends Action {
+
     String outputLabel;
-    public ReadEncoderAction(String label){
+
+    public ReadEncoderAction(String label) {
         outputLabel = label;
     }
+//TODO: Thomas please explain the function of this class
     public boolean doAct() {
         boolean toReturn = false;
         toReturn = true;
