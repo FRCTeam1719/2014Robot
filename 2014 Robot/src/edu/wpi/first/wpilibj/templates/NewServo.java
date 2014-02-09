@@ -12,14 +12,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author Thomas
  */
 public class NewServo implements IStep{
-    Servo s;
+    Servo servo;
     int port;
     public void init() {
-        s = new Servo(port);
+        servo = new Servo(port);
         SmartDashboard.putNumber("servoValue", 0);
     }
     public void step() {
-        s.set(SmartDashboard.getNumber("servoValue"));
+        servo.set(SmartDashboard.getNumber("servoValue"));
     }
     public NewServo setPort(int slot){
         port = slot;

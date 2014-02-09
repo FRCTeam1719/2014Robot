@@ -23,7 +23,7 @@ public class NewSolenoid implements IStep{
         return this;
         
     }
-    //TODO, rename
+    
     public NewSolenoid setPort(int a){
         solenoid = new Solenoid(a);
         return this;
