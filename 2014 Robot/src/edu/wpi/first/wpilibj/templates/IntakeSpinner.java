@@ -10,9 +10,11 @@ import edu.wpi.first.wpilibj.Relay;
  *
  * @author aaroneline
  */
-//TODO: Not implemented anywhere in code
+
 public class IntakeSpinner implements IStep{
 
+    
+    
     private int relayPort1;
     private int relayPort2;
     private int function;
@@ -21,7 +23,9 @@ public class IntakeSpinner implements IStep{
     private final int BACKWARDS_RELAYS = 2;
     Relay relay1;
     Relay relay2;
-    //CHECK WITH ELECTRICAL BOARD IF IT'S BROKEN
+    
+    
+    
     public void step(){
         if(function == STOP_RELAYS){
             //Stop relays
@@ -37,6 +41,9 @@ public class IntakeSpinner implements IStep{
             relay2.set(Relay.Value.kForward);
         }    
     }
+    
+    
+    
     public void init(){
         //Open relays, set them all as bidirectional, then tell them to stop
         relay1 = new Relay(relayPort1);
@@ -45,12 +52,20 @@ public class IntakeSpinner implements IStep{
         relay2.setDirection(Relay.Direction.kBoth);
         function = STOP_RELAYS;
     }
+    
+    
+    
     public void setRelayPorts(int port1, int port2){
         relayPort1 = port1;
         relayPort2 = port2;
     }
+    
+    
+    
     public void setDirection(int function){
         this.function = function;
     }
+    
+    
     
 }

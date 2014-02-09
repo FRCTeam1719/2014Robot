@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.SensorBase;
  *
  * @author Zach
  */
+
 public class CompressorController implements IStep{
 
     /*
@@ -20,6 +21,8 @@ public class CompressorController implements IStep{
     public void step() {
         
     }
+    
+    
     
     //TODO we shouldn't know about slots and channels in this class
     int pressureSwitchSlot;
@@ -39,19 +42,31 @@ public class CompressorController implements IStep{
        Devices.logChecker.sendLog("Compressor started",LogLevelCheck.physical);
        
     }
+    
+    
+    
     public CompressorController setPressureSwitchSlot(int psl){
         pressureSwitchSlot = psl;
         return this;
     }
+    
+    
+    
      public CompressorController setPressureSwitchChannel(int psc){
         pressureSwitchChannel = psc;
         return this;
     }
+     
+     
+     
       public CompressorController setCompressorRelaySlot(int crs){
         compresssorRelaySlot = crs;
         return this;
         
     }
+      
+      
+      
        public CompressorController setCompressorRelayChannel(int crc){
         compressorRelayChannel = crc;
         return this;

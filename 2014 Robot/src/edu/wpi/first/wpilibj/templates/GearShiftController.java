@@ -11,7 +11,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  * @author Chance
  */
+
 public class GearShiftController implements IStep{
+    
+    
+    
     private boolean isFastManual = false;
     private boolean isFastAutomatic = false;
     private boolean isAutomatic=false;
@@ -20,10 +24,14 @@ public class GearShiftController implements IStep{
     private double TRANSMITION_THRESHHOLD_LOW=600;
     private double TRANSMITION_THRESHHOLD_HIGH=800;
     
+    
+    
     public void step(){
         boolean isFast=isFastManual || checkAutomatic();
         transmition.set(isFast);
     }
+    
+    
     
     //Returns true if the automatic transmision thinks we should be fast
     public boolean checkAutomatic(){
@@ -40,26 +48,46 @@ public class GearShiftController implements IStep{
         return isFastAutomatic;
     }
     
+    
+    
+    
     public void setFast(boolean isFast){
         this.isFastManual=isFast;
     }
+    
+    
+    
     public void setAutomatic(boolean isAutomatic){
         this.isAutomatic=isAutomatic;
     }
+    
+    
     
     public GearShiftController setLeftEncoder(NewEncoder encoder){
         this.leftEncoder=encoder;
         return this;
     }
+    
+    
+    
     public GearShiftController setRightEncoder(NewEncoder encoder){
         this.rightEncoder=encoder;
         return this;
     }
+    
+    
+    
     public GearShiftController setSolenoid(NewSolenoid solenoid){
         this.transmition=solenoid;
         return this;
     }
+    
+    
+    
     public GearShiftController init(){
         return this;
     }
+    
+    
+    
 }
