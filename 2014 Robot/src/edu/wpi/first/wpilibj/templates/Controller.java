@@ -51,7 +51,7 @@ public class Controller implements IStep {
              Devices.shooterController.setReleased(false);
         }
         
-        Devices.gearShiftController.setFast(joyStick1.getRawAxis(3)<=0);
+        Devices.gearShiftController.setFast(joyStick1.getRawAxis(3)>0);
         Devices.gearShiftController.setAutomatic(((Integer)RobotTemplate.autoTransmision.getSelected()).intValue()==1);        
     }
     

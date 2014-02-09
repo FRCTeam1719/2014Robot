@@ -28,7 +28,7 @@ public class GearShiftController implements IStep{
     
     public void step(){
         boolean isFast=isFastManual || checkAutomatic();
-        transmition.set(!isFast);
+        transmition.set(isFast);
     }
     
     
