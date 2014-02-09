@@ -24,12 +24,13 @@ public class Devices {
     public static Autonomous autonomous;
     public static TestMode testMode;
     public static NewSolenoid gearShiftSolonoid;
-    public static NewEncoder leftWheelEncoder;
-    public static NewEncoder rightWheelEncoder;
+    public static NewEncoder wheelEncoder1;
+    public static NewEncoder wheelEncoder2;
     public static GearShiftController gearShiftController;
     public static UltrasonicSensor ultraSonicSensor1;
     public static CameraLEDController cameraLED;
     public static ShooterController shooterController;
+    public static IntakeArm intakeArm;
     static Log logger = new Log();
     static LogLevelCheck logChecker = new LogLevelCheck();
     // Integer selectedRobot=1;
@@ -41,6 +42,9 @@ public class Devices {
     private static int RIGHT_ENCODER_B_DIO = 3;
     private static int LEFT_ENCODER_A_DIO = 4;
     private static int LEFT_ENCODER_B_DIO = 5;
+    
+    private static int INTAKE_ARM_MOTOR_PORT = 4;
+    private static int INTAKE_POTENTIOMETER_PORT = 2;
     
     private static int WHEEL_lEFT_PWM = 10;
     private static int WHEEL_RIGHT_PWM = 8;
@@ -67,6 +71,7 @@ public class Devices {
         for (int i = 0; i < Devices.devices.length; i++) {
             Devices.devices[i].step();
         }
+
     }
 
     public void init() {
@@ -78,6 +83,11 @@ public class Devices {
         shooterController.setSolonoidPort(SHOOTER_SOLONOID_PORT);
         shooterController.init();
 
+        
+        intakeArm = new IntakeArm();
+        intakeArm.setMotorPort(INTAKE_ARM_MOTOR_PORT);
+        intakeArm.setPotentiometerPort(INTAKE_POTENTIOMETER_PORT);
+        
         //TODO which robot do these go to
         //TODO should we arrange these by module? 
         Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
@@ -139,19 +149,19 @@ public class Devices {
         //other encoders 1-2
         //2- 3
         //make wheel encoders
-        leftWheelEncoder = new NewEncoder()
+        wheelEncoder1 = new NewEncoder()
                 .setEncoderAChannelPort(LEFT_ENCODER_A_DIO)
                 .setEncoderBChannelPort(LEFT_ENCODER_B_DIO)
                 .init();
 
-        rightWheelEncoder = new NewEncoder()
+        wheelEncoder2 = new NewEncoder()
                 .setEncoderAChannelPort(RIGHT_ENCODER_A_DIO)
                 .setEncoderBChannelPort(RIGHT_ENCODER_B_DIO)
                 .init();
 
         gearShiftController = new GearShiftController()
-                .setLeftEncoder(leftWheelEncoder)
-                .setRightEncoder(rightWheelEncoder)
+                .setLeftEncoder(wheelEncoder1)
+                .setRightEncoder(wheelEncoder2)
                 .setSolenoid(gearShiftSolonoid)
                 .init();
 
@@ -183,8 +193,8 @@ public class Devices {
         devices = new IStep[]{
             drive,
             compressorController,
-            leftWheelEncoder,
-            rightWheelEncoder,
+            wheelEncoder1,
+            wheelEncoder2,
             gearShiftSolonoid,
             ultraSonicSensor1,
             cameraLED,

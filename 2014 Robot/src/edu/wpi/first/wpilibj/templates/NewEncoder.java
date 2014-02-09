@@ -39,7 +39,7 @@ public class NewEncoder implements IStep {
       encoder.setSamplesToAverage(50);
       encoder.start();
       
-      Devices.logChecker.sendLog("Encoder started", 3);
+      Devices.logChecker.sendLog("Encoder started", LogLevelCheck.physical);
         return this;
 
     }

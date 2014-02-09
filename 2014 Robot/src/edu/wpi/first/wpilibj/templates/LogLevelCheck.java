@@ -10,25 +10,20 @@ package edu.wpi.first.wpilibj.templates;
  */
 public class LogLevelCheck {
     
+    public static Integer none=new Integer(1);
+    public static Integer sensor=new Integer(2);
+    public static Integer physical=new Integer(3);
+    public static Integer all=new Integer(4);
     
-    
-    public void sendLog(String loggingMessage,int logLevel) {
+    public void sendLog(String loggingMessage,Integer logLevel) {
         
             Integer logLevelInti = (Integer) RobotTemplate.logLevel.getSelected();
-            int userLogLevel = logLevelInti.intValue();
-        
-            if(logLevel >= 4 && userLogLevel == 4){
+            Integer userLogLevel = logLevelInti;
+            if(logLevel.intValue() <= userLogLevel.intValue()){
                 Devices.logger.sendMessage(loggingMessage);
             }
-            if(logLevel >= 3 && userLogLevel == 3){
-                Devices.logger.sendMessage(loggingMessage);
-            }
-            if(logLevel >= 2 && userLogLevel == 2){
-                Devices.logger.sendMessage(loggingMessage);
-            }
-            if(logLevel >= 1 && userLogLevel == 1){
-               
-            }
+            
+            //Aaron ???
             
     }
     
