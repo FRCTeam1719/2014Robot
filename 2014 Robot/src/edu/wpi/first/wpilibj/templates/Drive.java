@@ -12,8 +12,11 @@ import edu.wpi.first.wpilibj.SpeedController;
  *
  * @author Chance
  */
+
 public class Drive implements IStep {
 
+    
+    
     private double moveX, rotation = 0;
     private double leftWheelSpeed, rightWheelSpeed = 0;
     private boolean isTankDrive = false;
@@ -25,40 +28,45 @@ public class Drive implements IStep {
     private PIDController pid;
     private PIDController pid2;
 
+    
+    
     Drive() {
+        
     }
 
+    
+    
     public void step() {
         if (isEnabled) {
-
-
             if (isTankDrive) {
-
                 robotDrive.tankDrive(leftWheelSpeed, rightWheelSpeed);
-
             }
             if (!isTankDrive) {
                 robotDrive.arcadeDrive(moveX, rotation);
-
             }
         } else {
             checkTime();
         }
     }
-    //sets the back left motor
-
+    
+    
+    
+    //Sets the back left motor
     public Drive SetBackLeft(SpeedController leftMotor) {
         this.leftMotor = leftMotor;
         return this;
     }
-    // sets the back right motor
-
+    
+    
+    
+    //Sets the back right motor
     public Drive SetBackRight(SpeedController rightMotor) {
         this.rightMotor = rightMotor;
-
         return this;
     }
 
+    
+    
     public Drive init() {
         robotDrive = new RobotDrive(leftMotor, rightMotor);
         pid = new PIDController(0, 0, 0, Devices.wheelEncoder1.encoder, leftMotor);
@@ -70,6 +78,8 @@ public class Drive implements IStep {
         return this;
     }
 
+    
+    
     public Drive moveArcade(double moveX, double rotation) {
         pid.disable();
         pid2.disable();
@@ -77,11 +87,11 @@ public class Drive implements IStep {
         this.moveX = moveX;
         this.rotation = rotation;
         isTankDrive = false;
-
-
         return this;
     }
 
+    
+    
     public Drive moveTank(double leftWheelSpeed, double rightWheelSpeed) {
          pid.disable();
         pid2.disable();
@@ -89,17 +99,20 @@ public class Drive implements IStep {
         this.leftWheelSpeed = leftWheelSpeed;
         this.rightWheelSpeed = rightWheelSpeed;
         isTankDrive = true;
-
         return this;
 
     }
 
+    
+    
     public void checkTime() {
         if (System.currentTimeMillis() >= time) {
             isEnabled = true;
         }
     }
 
+    
+    
     public void stop(double sTime) {
         time = System.currentTimeMillis() + sTime;
     }
@@ -112,7 +125,6 @@ public class Drive implements IStep {
         } else if (Devices.wheelEncoder2.get() > Devices.wheelEncoder1.get()) {
             steer -= .1;
         }
-
 
 
 

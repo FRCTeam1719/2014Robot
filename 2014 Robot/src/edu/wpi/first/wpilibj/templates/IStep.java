@@ -8,7 +8,7 @@ package edu.wpi.first.wpilibj.templates;
  *
  * @author Chance
  */
+
 public interface IStep {
-    public void step();
-    
+    public void step();   
 }
