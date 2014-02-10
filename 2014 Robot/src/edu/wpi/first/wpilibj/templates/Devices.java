@@ -27,8 +27,9 @@ public class Devices {
     public static GearShiftController gearShiftController;
     public static UltrasonicSensor ultraSonicSensor1;
     public static CameraLEDController cameraLED;
-    public static ShooterController shooterController;
+    public static SetPointMotor shooterController;
     public static IntakeArm intakeArm;
+    public static SmartDashboardReader smartDashboardReader;
     static Log logger = new Log();
     public static LogLevelCheck logChecker = new LogLevelCheck();
     private static int PRESSURE_SWITCH_SLOT = 1;
@@ -47,7 +48,7 @@ public class Devices {
     private static int COMPRESSOR_REL = 1;
     private static int ULTRASONIC_ANG = 7;
     private static int CONTROLLER_1 = 1;
-
+    private static int SELECTED_ROBOT;
     int foo = 0;
     private static int SHOOTER_MOTOR_PORT = 2;
     private static int SHOOTER_SOLONOID_PORT = 4;
@@ -67,9 +68,10 @@ public class Devices {
     public void init() {
         testMode = new TestMode();
 
+        smartDashboardReader = new SmartDashboardReader();
+        smartDashboardReader.init();
         
-        
-        shooterController = new ShooterController();
+        shooterController = new SetPointMotor();
         shooterController.setMotorPort(SHOOTER_MOTOR_PORT);
         shooterController.setPotentiometerPort(SHOOTER_POTENTIOMETER_PORT);
         shooterController.setSolonoidPort(SHOOTER_SOLONOID_PORT);
@@ -82,11 +84,11 @@ public class Devices {
         
 
         
-        Integer selectedRobot = (Integer) RobotTemplate.robot.getSelected();
         
-        int sri = selectedRobot.intValue();
         
-        if (sri == 1) {
+        
+        
+        if (SELECTED_ROBOT == 1) {
             RIGHT_ENCODER_A_DIO = 2;
             RIGHT_ENCODER_B_DIO = 3;
             LEFT_ENCODER_A_DIO = 4;
@@ -101,7 +103,7 @@ public class Devices {
             COMPRESSOR_REL = 1;
             ULTRASONIC_ANG = 7;
             CONTROLLER_1 = 1;
-        } else if (sri == 2) {
+        } else if (SELECTED_ROBOT == 2) {
             RIGHT_ENCODER_A_DIO = 2;
             RIGHT_ENCODER_B_DIO = 3;
             LEFT_ENCODER_A_DIO = 4;
@@ -116,7 +118,7 @@ public class Devices {
             COMPRESSOR_REL = 1;
             ULTRASONIC_ANG = 7;
             CONTROLLER_1 = 1;
-        } else if (sri == 3) {
+        } else if (SELECTED_ROBOT == 3) {
             RIGHT_ENCODER_A_DIO = 2;
             RIGHT_ENCODER_B_DIO = 3;
             LEFT_ENCODER_A_DIO = 4;
@@ -200,6 +202,7 @@ public class Devices {
         //Devices array
         devices = new IStep[]{
             drive,
+            smartDashboardReader,
             compressorController,
             wheelEncoder1,
             wheelEncoder2,
@@ -211,5 +214,8 @@ public class Devices {
             gearShiftController,
         };
         //Don't put anything after here
+    }
+    public static void setSelectedRobot(int selectedRobot){
+        SELECTED_ROBOT = selectedRobot;
     }
 }

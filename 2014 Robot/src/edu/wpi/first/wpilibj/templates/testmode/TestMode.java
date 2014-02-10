@@ -17,8 +17,8 @@ public class TestMode implements IStep{
     private boolean doneAllActs;
     private boolean doneRunDrive;
     private Chain runDrive;
-    public NetworkTable testTable = NetworkTable.getTable("LiveWindow");
-    double testNumber;
+    
+    static double testNumber;
     
     //Constants
     private final int NO_TEST = 0;
@@ -28,8 +28,7 @@ public class TestMode implements IStep{
     private final int NOT_A_TEST = 3;
     public void init(){
         
-        //Init Networktable 
-        testTable.putNumber("testNumber", NO_TEST);
+        
         //Create the chain for drive system actions
         runDrive = new Chain(new Action[]{
             new ReadEncoderAction("Stopped"),//Read the encoder when stopped
@@ -62,8 +61,7 @@ public class TestMode implements IStep{
         });
         doneAllActs = false;
     }
-    public void step(){
-        testNumber = testTable.getNumber("testNumber");
+    public void step(){        
         if(!doneAllActs&&testNumber!=NO_TEST){
             if(testNumber==ALL_TEST){//Run all tests
                 if(!doneRunDrive){
@@ -87,5 +85,8 @@ public class TestMode implements IStep{
                 doneAllActs = true;
             }
         }
+    }
+    public static void setTestNumber(double number){
+        testNumber = number;
     }
 }
