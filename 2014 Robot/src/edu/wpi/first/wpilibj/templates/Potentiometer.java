@@ -19,7 +19,7 @@ public class Potentiometer implements IStep{
         potentiometer = new AnalogChannel(slot);
     }
     public void step() {
-        SmartDashboard.putNumber("potentiometer", potentiometer.getAverageValue());
+        SmartDashboardReader.putDouble("potentiometer", potentiometer.getAverageValue());
     }
     public Potentiometer setSlot(int slot){
         this.slot = slot;
