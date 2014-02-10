@@ -74,7 +74,7 @@ public class Devices {
         shooterController = new SetPointMotor();
         shooterController.setMotorPort(SHOOTER_MOTOR_PORT);
         shooterController.setPotentiometerPort(SHOOTER_POTENTIOMETER_PORT);
-        shooterController.setSolonoidPort(SHOOTER_SOLONOID_PORT);
+        
         shooterController.init();
 
         
