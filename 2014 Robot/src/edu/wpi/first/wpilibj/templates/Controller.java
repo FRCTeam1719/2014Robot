@@ -43,11 +43,7 @@ public class Controller implements IStep {
             Devices.logChecker.sendLog("Tank mode activated",LogLevelCheck.sensor);
         }
         
-        if(joyStick1.getRawButton(1)){
-            Devices.shooterController.setReleased(true);
-        }else{
-             Devices.shooterController.setReleased(false);
-        }
+        
         
         Devices.gearShiftController.setFast(joyStick1.getRawAxis(3)<=0);
         //TODO: Chance told me to comment this out, yelll at him to fix it
