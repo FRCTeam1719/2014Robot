@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.interfaces.Potentiometer;
  *
  * @author Chance
  */
-public class ShooterController implements IStep {
+public class SetPointMotor implements IStep {
 
     private Victor victor;
     private int motorPort;
@@ -23,18 +23,20 @@ public class ShooterController implements IStep {
     private int solonoidPort;
     private boolean isReleased = false;
     private double point;
-    
+    private double speed = .5;
 
     public void step() {
-
         if (potentiometer.get() < point) {
+            
+            victor.set(speed);
 
-            victor.set(.5);
 
-
-        } else {
+        } else if (potentiometer.get() > point) {
+            victor.set(-speed);
+        }else{
             victor.set(0);
         }
+
         solonoid.set(isReleased);
 
 
@@ -65,5 +67,10 @@ public class ShooterController implements IStep {
 
     public void setPoint(double point) {
         this.point = point;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+
     }
 }
