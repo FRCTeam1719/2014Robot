@@ -27,7 +27,7 @@ public class Devices {
     public static GearShiftController gearShiftController;
     public static UltrasonicSensor ultraSonicSensor1;
     public static CameraLEDController cameraLED;
-    public static ShooterController shooterController;
+    public static SetPointMotor shooterController;
     public static IntakeArm intakeArm;
     public static SmartDashboardReader smartDashboardReader;
     static Log logger = new Log();
@@ -71,10 +71,10 @@ public class Devices {
         smartDashboardReader = new SmartDashboardReader();
         smartDashboardReader.init();
         
-        shooterController = new ShooterController();
+        shooterController = new SetPointMotor();
         shooterController.setMotorPort(SHOOTER_MOTOR_PORT);
         shooterController.setPotentiometerPort(SHOOTER_POTENTIOMETER_PORT);
-        shooterController.setSolonoidPort(SHOOTER_SOLONOID_PORT);
+        
         shooterController.init();
 
         
