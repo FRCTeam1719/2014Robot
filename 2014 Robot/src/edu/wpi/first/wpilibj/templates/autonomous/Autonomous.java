@@ -15,7 +15,7 @@ public class Autonomous implements IStep{
 //            new UltrasonicWaitAction(true, 300),
 //            new ArcadeDriveAction(0.0,0.0),
             new HotGoalWaitAction(),
-            new ShooterAction()
+//            new ShooterAction()
         });
         doneAllActs = false;
         run.init();
