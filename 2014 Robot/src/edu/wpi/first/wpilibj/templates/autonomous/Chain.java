@@ -15,9 +15,6 @@ public class Chain extends Action{
         index=0;
     }
     public boolean doAct(){
-        if(done){
-            return true;
-        }
         if(actions[index].doAct()){
             index++;
             if(index!=actions.length){

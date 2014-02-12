@@ -32,7 +32,7 @@ public class SmartDashboardReader implements IStep{
         Controller.setDriveMode(getSelectedFromChooser(driveMode));
         TestMode.setTestNumber(getSelectedFromChooser(testMode));
         LogLevelCheck.setUserLogLevel(getSelectedFromChooser(logLevel));
-        NewServo.setServoValue(SmartDashboard.getNumber("servoValue"));
+        //NewServo.setServoValue(SmartDashboard.getNumber("servoValue"));
     }
     
     public void init(){

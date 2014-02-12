@@ -17,7 +17,7 @@ public class ShooterController implements IStep {
     long timeToFire = 10000;
     long timeToReEngage = 0;
     public void step() {
-        if(timeToReEngage>System.currentTimeMillis()&&(timeToReEngage!=0)){
+        if(timeToReEngage<System.currentTimeMillis()&&(timeToReEngage!=0)){
             timeToReEngage = 0;
             isOn = true;
         }

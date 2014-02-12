@@ -7,17 +7,13 @@ import edu.wpi.first.wpilibj.templates.autonomous.Action;
 
 //TODO: implement ShooterAction
 public class ShooterAction extends Action{
-    ShooterController shooterController;
-    public ShooterAction(int motorPort, int potentiometerPort, int solenoidPort,
-            double point){
-        shooterController.setMotorPort(motorPort);
-        shooterController.setPotentiometerPort(potentiometerPort);
-        shooterController.setSolonoidPort(solenoidPort);
-        shooterController.setPoint(point);
-        shooterController.init();
+    ShooterController shooterController = Devices.shooterController;
+    public ShooterAction(int timeToFire){
+        shooterController.setTimeToFire(timeToFire);
     }
     public void init(){
         Devices.logChecker.sendLog("ShooterAction init", LogLevelCheck.physical);
+        shooterController.fire();
     }
     public boolean doAct(){
         shooterController.step();

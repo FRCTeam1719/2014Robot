@@ -37,7 +37,7 @@ public class Log implements IStep{
     
     
     public void step(){
-        send();
+        //send();
      }
 
     public void setCurrentLogmessage(String message){

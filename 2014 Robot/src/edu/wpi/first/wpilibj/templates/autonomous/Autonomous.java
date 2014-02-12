@@ -11,11 +11,18 @@ public class Autonomous implements IStep{
     private boolean doneAllActs;
     public void init(){
         run = new Chain(new Action[]{
-//            new ArcadeDriveAction(0.75,0.0),
-//            new UltrasonicWaitAction(true, 300),
-//            new ArcadeDriveAction(0.0,0.0),
+            new ArcadeDriveAction(0.75,0.0),//ArcadeDriveAction(forwardSpeed, rotationSpeed)
+            //forwardSpeed ranges from -1 (backwards) to 1 (forwards)
+            //rotationSpeed ranges from -1 (turn left) to 1 (turn right) (might be reversed)
+            new UltrasonicWaitAction(true, 150),//UltrasonicWaitAction(lessThan, distance)
+            //lessThan is if you want to wait for the distance to be less than the specified
+            //  number as opposed to waiting for the distance to be greater than the
+            //  specified number
+            //distance is how far away/how close you want the robot to be when you stop moving
+            new ArcadeDriveAction(0.0,0.0),
             new HotGoalWaitAction(),
-//            new ShooterAction()
+            new ShooterAction(1000)//ShooterAction(timeToFire)
+            //timeToFire is how long (in milliseconds) the shooter takes to fire
         });
         doneAllActs = false;
         run.init();

@@ -55,12 +55,13 @@ public class RobotTemplate extends IterativeRobot {
     
     public void autonomousInit(){      
        SmartDashboard.putBoolean("isAtonomus", true);
-        
+       Devices.autonomous.init();
     }
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+        Devices.autonomous.step();
         devices.step();
        
     }
