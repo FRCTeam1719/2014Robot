@@ -73,10 +73,10 @@ public class SmartDashboardReader implements IStep{
         
         //Log Level
         logLevel = new SendableChooser();
-        logLevel.addDefault("1 - Nothing", LogLevelCheck.none);
-        logLevel.addObject("2 - Sensor Logs", LogLevelCheck.sensor);
-        logLevel.addObject("3 - Physical Logs", LogLevelCheck.physical);
-        logLevel.addObject("4 - Everything", LogLevelCheck.all);
+        logLevel.addDefault(LogLevelCheck.none+" - Nothing", LogLevelCheck.none);
+        logLevel.addObject(LogLevelCheck.physical+" - Physical Logs", LogLevelCheck.physical);
+        logLevel.addObject(LogLevelCheck.sensor+" - Sensor Logs", LogLevelCheck.sensor);
+        logLevel.addObject(LogLevelCheck.all+" - Everything", LogLevelCheck.all);
         SmartDashboard.putData("logLevel",logLevel);
         SmartDashboard.putString("Log", "");
         
