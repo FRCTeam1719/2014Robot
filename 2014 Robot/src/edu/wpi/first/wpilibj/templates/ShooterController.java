@@ -9,6 +9,7 @@ package edu.wpi.first.wpilibj.templates;
  * @author Chance
  */
 public class ShooterController implements IStep {
+
     NewSolenoid solonoid;
     int solonoidPort;
     int motorPort;
@@ -16,37 +17,48 @@ public class ShooterController implements IStep {
     private boolean isOn = true;
     long timeToFire = 10000;
     long timeToReEngage = 0;
+
     public void step() {
-        if(timeToReEngage<System.currentTimeMillis()&&(timeToReEngage!=0)){
+        if (timeToReEngage < System.currentTimeMillis() && (timeToReEngage != 0)) {
             timeToReEngage = 0;
             isOn = true;
         }
         solonoid.set(isOn);
- 
-        
+
+
     }
-    public void init(){
+
+    public void init() {
         solonoid = new NewSolenoid();
         solonoid.setPort(solonoidPort);
-                
-                
+
+
     }
-    public void setSolonoidPort(int solonoidPort){
+
+    public void setSolonoidPort(int solonoidPort) {
         this.solonoidPort = solonoidPort;
     }
-    public void setMotorPort(int motorPort){
+
+    public void setMotorPort(int motorPort) {
         this.motorPort = motorPort;
     }
-    public void setPotentiometerPort(int potentiometerPort){
+
+    public void setPotentiometerPort(int potentiometerPort) {
         this.potentiometerPort = potentiometerPort;
     }
-    public void fire(){
-        isOn = false;
-        timeToReEngage = System.currentTimeMillis()+ timeToFire;
-        
-        
+
+    public void fire() {
+        if (!isOn) {
+            isOn = false;
+
+            timeToReEngage = System.currentTimeMillis() + timeToFire;
+        }
+
+
+
     }
-    public void setTimeToFire(int timeToFire){
+
+    public void setTimeToFire(int timeToFire) {
         this.timeToFire = timeToFire;
     }
 }

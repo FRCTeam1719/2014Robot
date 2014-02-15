@@ -61,7 +61,7 @@ public class IntakeArm implements IStep{
         this.solenoidPort = solenoidPort;
     }
     
-    public void setUp(boolean isUp){
+    public void setArmUp(boolean isUp){
         this.isUp = isUp;
     }
 
