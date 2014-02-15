@@ -32,27 +32,27 @@ public class Devices {
     public static SmartDashboardReader smartDashboardReader;
     static Log logger = new Log();
     public static LogLevelCheck logChecker = new LogLevelCheck();
-    private static int PRESSURE_SWITCH_SLOT = 1;
-    private static int PRESSURE_SWITCH_DIO = 1;
-    private static int RIGHT_ENCODER_A_DIO = 2;
-    private static int RIGHT_ENCODER_B_DIO = 3;
-    private static int LEFT_ENCODER_A_DIO = 4;
-    private static int LEFT_ENCODER_B_DIO = 5;
-    private static int INTAKE_ARM_MOTOR_PORT = 4;
-    private static int INTAKE_SOLENOID_PORT = 2;
-    private static int WHEEL_lEFT_PWM = 10;
-    private static int WHEEL_RIGHT_PWM = 8;
-    private static int GEAR_SHIFT_SOLONOID_A_SOL = 1;
-    private static int GEAR_SHIFT_SOLONOID_B_SOL = 2;
-    private static int COMPRESSOR_RELAY_SLOT = 1;
-    private static int COMPRESSOR_REL = 1;
-    private static int ULTRASONIC_ANG = 7;
-    private static int CONTROLLER_1 = 1;
-    private static int SELECTED_ROBOT;
+    public static int PRESSURE_SWITCH_SLOT = 1;
+    public static int PRESSURE_SWITCH_DIO = 1;
+    public static int RIGHT_ENCODER_A_DIO = 2;
+    public static int RIGHT_ENCODER_B_DIO = 3;
+    public static int LEFT_ENCODER_A_DIO = 4;
+    public static int LEFT_ENCODER_B_DIO = 5;
+    public static int INTAKE_ARM_MOTOR_PORT = 4;
+    public static int INTAKE_SOLENOID_PORT = 2;
+    public static int WHEEL_lEFT_PWM = 10;
+    public static int WHEEL_RIGHT_PWM = 8;
+    public static int GEAR_SHIFT_SOLONOID_A_SOL = 1;
+    public static int GEAR_SHIFT_SOLONOID_B_SOL = 2;
+    public static int COMPRESSOR_RELAY_SLOT = 1;
+    public static int COMPRESSOR_REL = 1;
+    public static int ULTRASONIC_ANG = 7;
+    public static int CONTROLLER_1 = 1;
+    public static int SELECTED_ROBOT;
     int foo = 0;
-    private static int SHOOTER_MOTOR_PORT = 2;
-    private static int SHOOTER_SOLONOID_PORT = 4;
-    private static int SHOOTER_POTENTIOMETER_PORT = 3;
+    public static int SHOOTER_MOTOR_PORT = 2;
+    public static int SHOOTER_SOLONOID_PORT = 4;
+    public static int SHOOTER_POTENTIOMETER_PORT = 3;
 
     
     

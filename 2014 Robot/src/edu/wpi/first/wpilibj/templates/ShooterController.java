@@ -17,12 +17,20 @@ public class ShooterController implements IStep {
     private boolean isOn = true;
     long timeToFire = 10000;
     long timeToReEngage = 0;
+    public boolean isReadyToShoot = false;
+    public boolean isDoneShooting = false;
 
     public void step() {
         if (timeToReEngage < System.currentTimeMillis() && (timeToReEngage != 0)) {
             timeToReEngage = 0;
             isOn = true;
+            isReadyToShoot = false;
+            isDoneShooting = true;
+        }else{
+            isOn = false;
+            isReadyToShoot = true;
         }
+       
         solonoid.set(isOn);
 
 
@@ -50,7 +58,7 @@ public class ShooterController implements IStep {
     public void fire() {
         if (!isOn) {
             isOn = false;
-
+            isReadyToShoot = false;
             timeToReEngage = System.currentTimeMillis() + timeToFire;
         }
 
@@ -60,5 +68,6 @@ public class ShooterController implements IStep {
 
     public void setTimeToFire(int timeToFire) {
         this.timeToFire = timeToFire;
+        isDoneShooting = false;
     }
 }
