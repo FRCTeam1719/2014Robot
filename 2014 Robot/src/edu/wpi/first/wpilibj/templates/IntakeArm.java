@@ -18,9 +18,10 @@ public class IntakeArm implements IStep{
     
     private int motorPort;
     private int solenoidPort;
-    private int position;
-    private final int UP_POSITION = 1;
-    private final double VICTOR_ON = 1;
+    private double spinnerSpeed=0;
+    private boolean isUp=false;
+    private final double VICTOR_FORWARD = 1;
+    private final double VICTOR_REVERSE = -1;
     private final double VICTOR_OFF = 0;
     Victor victor;
     NewSolenoid solenoid;
@@ -28,17 +29,20 @@ public class IntakeArm implements IStep{
     
     
     public void step(){
-        if(position==UP_POSITION){
-            victor.set(VICTOR_OFF);
-            solenoid.set(true);
-        }else{
-            victor.set(VICTOR_ON);
-            solenoid.set(false);
-        }
+        solenoid.set(isUp);
+        victor.set(spinnerSpeed);
     }
     
     
-    
+    public void runIntake(){
+        this.spinnerSpeed=VICTOR_FORWARD;
+    }
+    public void reverseIntake(){
+        this.spinnerSpeed=VICTOR_REVERSE;
+    }
+    public void stopIntake(){
+        this.spinnerSpeed=VICTOR_OFF;
+    }
     
     public IntakeArm init(){
         //Setup devices
@@ -47,8 +51,6 @@ public class IntakeArm implements IStep{
         solenoid.setPort(solenoidPort);
         return this;
     }
-    
-    
     
     //Seters for ports
     public void setMotorPort(int motorPort){
@@ -59,8 +61,8 @@ public class IntakeArm implements IStep{
         this.solenoidPort = solenoidPort;
     }
     
-    public void setPosition(int position){
-        this.position = position;
+    public void setUp(boolean isUp){
+        this.isUp = isUp;
     }
 
 }
