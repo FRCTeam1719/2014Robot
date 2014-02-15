@@ -27,8 +27,7 @@ public class HotGoalWaitAction extends Action{
      * @return We found the target, or are timing out
      */
     public boolean doAct() {
-        //boolean found = SmartDashboard.getBoolean("found");
-        boolean found = false;
+        boolean found = SmartDashboard.getBoolean("found");
         boolean timeout = timer.get()>=9;
         if(found){
             Devices.logChecker.sendLog("Found hotgoal", LogLevelCheck.physical);
