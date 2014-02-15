@@ -1,24 +1,8 @@
-Implement:
-    ShooterAction
-    ReadEncoderAction
-    
+Test autonomous
+Check Intake system
 Build camera mount
-    It should include the potentiometer
-    Also, wiring must be done
+Add controller code
 
-Add init to IStep
-
-Test integrated autonomous
 Test vision in different environments
     Validate in different lighting conditions
-Add move to autonomous
-Make sure we drive straight in autonomous
-Clean up comments/Rename Variables
-    Abstract device
-        We have 3 of the form: Motor, potentiometer, setpoint
-Thomas:
-    Disable template license header in new files
-
-Refactor API for:
-    UltrasonicWaitAction
-
+Drive straight in autonomous

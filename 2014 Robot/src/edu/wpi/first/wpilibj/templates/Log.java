@@ -33,7 +33,6 @@ public class Log implements IStep{
     
     
     public void step(){
-        System.out.println("Log.step() beginning");
         send();
      }
 }
