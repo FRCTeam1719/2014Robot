@@ -17,20 +17,23 @@ public class IntakeArm implements IStep{
     
     
     private int motorPort;
-    private int potentiometerPort;
-    private int height;
-    private final double VICTOR_ON = 5;
+    private int solenoidPort;
+    private int position;
+    private final int UP_POSITION = 1;
+    private final double VICTOR_ON = 1;
     private final double VICTOR_OFF = 0;
     Victor victor;
-    AnalogPotentiometer potent;
+    NewSolenoid solenoid;
 
     
     
     public void step(){
-        if(height > potent.get()){
-            victor.set(VICTOR_ON);
-        }else{
+        if(position==UP_POSITION){
             victor.set(VICTOR_OFF);
+            solenoid.set(true);
+        }else{
+            victor.set(VICTOR_ON);
+            solenoid.set(false);
         }
     }
     
@@ -40,7 +43,8 @@ public class IntakeArm implements IStep{
     public IntakeArm init(){
         //Setup devices
         victor = new Victor(motorPort);
-        AnalogPotentiometer potent = new AnalogPotentiometer(potentiometerPort);
+        solenoid = new NewSolenoid();
+        solenoid.setPort(solenoidPort);
         return this;
     }
     
@@ -51,20 +55,13 @@ public class IntakeArm implements IStep{
         this.motorPort = motorPort;
     }
     
-    
-    
-    public void setPotentiometerPort(int PotPort){
-        this.potentiometerPort = PotPort;
+    public void setSolenoidPort(int solenoidPort){
+        this.solenoidPort = solenoidPort;
     }
     
-    
-    
-    //How high the arm should go
-    public void setLevel(int height){
-        this.height = height;
+    public void setPosition(int position){
+        this.position = position;
     }
-    
-    
 
 }
 

@@ -39,7 +39,7 @@ public class Devices {
     private static int LEFT_ENCODER_A_DIO = 4;
     private static int LEFT_ENCODER_B_DIO = 5;
     private static int INTAKE_ARM_MOTOR_PORT = 4;
-    private static int INTAKE_POTENTIOMETER_PORT = 2;
+    private static int INTAKE_SOLENOID_PORT = 2;
     private static int WHEEL_lEFT_PWM = 10;
     private static int WHEEL_RIGHT_PWM = 8;
     private static int GEAR_SHIFT_SOLONOID_A_SOL = 1;
@@ -82,7 +82,7 @@ public class Devices {
         
         intakeArm = new IntakeArm();
         intakeArm.setMotorPort(INTAKE_ARM_MOTOR_PORT);
-        intakeArm.setPotentiometerPort(INTAKE_POTENTIOMETER_PORT);
+        intakeArm.setSolenoidPort(INTAKE_SOLENOID_PORT);
         
 
         
