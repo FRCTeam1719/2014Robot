@@ -92,6 +92,10 @@ public class SmartDashboardReader implements IStep{
         //Weather or not to switch to the LiveWindow networktable during test mode
         SmartDashboard.putBoolean("shouldLiveWindow", RobotTemplate.shouldLiveWindow);
         
+        SmartDashboard.putNumber("P", 0);
+        SmartDashboard.putNumber("I", 0);
+        SmartDashboard.putNumber("D", 0);
+        SmartDashboard.putNumber("TargetSpeed", 0);
     }
     
     static public void putBoolean(String name, boolean value, boolean networktable){
@@ -119,6 +123,9 @@ public class SmartDashboardReader implements IStep{
     }
     public static void putDouble(String name, double value){
         SmartDashboard.putNumber(name, value);
+    }
+    public static double getDouble(String name){
+        return SmartDashboard.getNumber(name);
     }
     
 }

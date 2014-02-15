@@ -34,12 +34,14 @@ public class NewEncoder implements IStep {
 
         di1 = new DigitalInput(encoderAChannelSlot, encoderAChannelPort);
         di2 = new DigitalInput(encoderBChannelSlot, encoderBChannelPort);
+        
 
         encoder = new Encoder(di2, di1);
 
         encoder.setSamplesToAverage(samplesToAverage);
-
         encoder.start();
+        encoder.setPIDSourceParameter(Encoder.PIDSourceParameter.kDistance);
+        
 
         Devices.logChecker.sendLog(
                 "Encoder started: AChannel: (" + 
