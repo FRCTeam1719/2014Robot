@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.templates.testmode.TestMode;
  */
 
 public class Devices {
-
+    public static OperatorController operatorController;
     public static IStep[] devices;
     public static Drive drive;
     public static Autonomous autonomous;
@@ -66,6 +66,9 @@ public class Devices {
     
     
     public void init() {
+        operatorController = new OperatorController();
+        operatorController.setNumber(2);
+        operatorController.init();
         testMode = new TestMode();
         autonomous = new Autonomous();
         
@@ -214,6 +217,7 @@ public class Devices {
             logger,
             shooterController,
             gearShiftController,
+            operatorController
         };
         //Don't put anything after here
     }
