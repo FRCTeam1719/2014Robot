@@ -42,9 +42,31 @@ public class Controller implements IStep {
             Devices.drive.moveTank(joyStick1.getRawAxis(2), joyStick1.getRawAxis(5));
             Devices.logChecker.sendLog("Tank mode activated",LogLevelCheck.sensor);
         }
-        
-        
-        
+        if(joyStick1.getRawButton(4)){
+            Devices.intakeArm.setArmUp(true);
+            System.out.println("ARM UP TRUE");
+        }
+        if(joyStick1.getRawButton(3)){
+            Devices.intakeArm.setArmUp(false);
+            System.out.println("ARM UP FALSE");
+        }
+        if(joyStick1.getRawButton(1)){
+            Devices.shooterController.setMotorOn(true);
+        }else{
+            Devices.shooterController.setMotorOn(false);
+        }
+        if(joyStick1.getRawButton(2)){
+            Devices.shooterController.fire();
+        }else{
+            Devices.shooterController.unfire();
+        }
+        /*
+        if(joyStick1.getRawButton(1)){
+            Devices.
+        }
+        if(joyStick1.getRawButton(2)){
+            Devices.intakeArm.setArmUp(true);
+        } */
         Devices.gearShiftController.setFast(joyStick1.getRawAxis(3)<=0);
         //TODO: Chance told me to comment this out, yelll at him to fix it
         // -- Aaron

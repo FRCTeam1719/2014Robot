@@ -43,14 +43,14 @@ public class Devices {
     public static int WHEEL_lEFT_PWM = 10;
     public static int WHEEL_RIGHT_PWM = 8;
     public static int GEAR_SHIFT_SOLONOID_A_SOL = 1;
-    public static int GEAR_SHIFT_SOLONOID_B_SOL = 2;
+    public static int GEAR_SHIFT_SOLONOID_B_SOL = 5;//TODO we do not use this
     public static int COMPRESSOR_RELAY_SLOT = 1;
     public static int COMPRESSOR_REL = 1;
     public static int ULTRASONIC_ANG = 7;
     public static int CONTROLLER_1 = 1;
     public static int SELECTED_ROBOT;
     int foo = 0;
-    public static int SHOOTER_MOTOR_PORT = 2;
+    public static int SHOOTER_MOTOR_PORT = 3;
     public static int SHOOTER_SOLONOID_PORT = 4;
     public static int SHOOTER_POTENTIOMETER_PORT = 3;
 
@@ -86,6 +86,7 @@ public class Devices {
         intakeArm = new IntakeArm();
         intakeArm.setMotorPort(INTAKE_ARM_MOTOR_PORT);
         intakeArm.setSolenoidPort(INTAKE_SOLENOID_PORT);
+        intakeArm.init();
         
 
         
@@ -93,52 +94,52 @@ public class Devices {
         
         
         
-        if (SELECTED_ROBOT == 1) {
-            RIGHT_ENCODER_A_DIO = 2;
-            RIGHT_ENCODER_B_DIO = 3;
-            LEFT_ENCODER_A_DIO = 4;
-            LEFT_ENCODER_B_DIO = 5;
-            WHEEL_lEFT_PWM = 10;
-            WHEEL_RIGHT_PWM = 8;
-            GEAR_SHIFT_SOLONOID_A_SOL = 1;
-            GEAR_SHIFT_SOLONOID_B_SOL = 2;
-            PRESSURE_SWITCH_SLOT = 1;
-            PRESSURE_SWITCH_DIO = 1;
-            COMPRESSOR_RELAY_SLOT = 1;
-            COMPRESSOR_REL = 1;
-            ULTRASONIC_ANG = 7;
-            CONTROLLER_1 = 1;
-        } else if (SELECTED_ROBOT == 2) {
-            RIGHT_ENCODER_A_DIO = 2;
-            RIGHT_ENCODER_B_DIO = 3;
-            LEFT_ENCODER_A_DIO = 4;
-            LEFT_ENCODER_B_DIO = 5;
-            WHEEL_lEFT_PWM = 10;
-            WHEEL_RIGHT_PWM = 8;
-            GEAR_SHIFT_SOLONOID_A_SOL = 1;
-            GEAR_SHIFT_SOLONOID_B_SOL = 2;
-            PRESSURE_SWITCH_SLOT = 1;
-            PRESSURE_SWITCH_DIO = 1;
-            COMPRESSOR_RELAY_SLOT = 1;
-            COMPRESSOR_REL = 1;
-            ULTRASONIC_ANG = 7;
-            CONTROLLER_1 = 1;
-        } else if (SELECTED_ROBOT == 3) {
-            RIGHT_ENCODER_A_DIO = 2;
-            RIGHT_ENCODER_B_DIO = 3;
-            LEFT_ENCODER_A_DIO = 4;
-            LEFT_ENCODER_B_DIO = 5;
-            WHEEL_lEFT_PWM = 10;
-            WHEEL_RIGHT_PWM = 8;
-            GEAR_SHIFT_SOLONOID_A_SOL = 1;
-            GEAR_SHIFT_SOLONOID_B_SOL = 2;
-            PRESSURE_SWITCH_SLOT = 1;
-            PRESSURE_SWITCH_DIO = 1;
-            COMPRESSOR_RELAY_SLOT = 1;
-            COMPRESSOR_REL = 1;
-            ULTRASONIC_ANG = 7;
-            CONTROLLER_1 = 1;
-        }
+//        if (SELECTED_ROBOT == 1) {
+//            RIGHT_ENCODER_A_DIO = 2;
+//            RIGHT_ENCODER_B_DIO = 3;
+//            LEFT_ENCODER_A_DIO = 4;
+//            LEFT_ENCODER_B_DIO = 5;
+//            WHEEL_lEFT_PWM = 10;
+//            WHEEL_RIGHT_PWM = 8;
+//            GEAR_SHIFT_SOLONOID_A_SOL = 1;
+//            GEAR_SHIFT_SOLONOID_B_SOL = 2;
+//            PRESSURE_SWITCH_SLOT = 1;
+//            PRESSURE_SWITCH_DIO = 1;
+//            COMPRESSOR_RELAY_SLOT = 1;
+//            COMPRESSOR_REL = 1;
+//            ULTRASONIC_ANG = 7;
+//            CONTROLLER_1 = 1;
+//        } else if (SELECTED_ROBOT == 2) {
+//            RIGHT_ENCODER_A_DIO = 2;
+//            RIGHT_ENCODER_B_DIO = 3;
+//            LEFT_ENCODER_A_DIO = 4;
+//            LEFT_ENCODER_B_DIO = 5;
+//            WHEEL_lEFT_PWM = 10;
+//            WHEEL_RIGHT_PWM = 8;
+//            GEAR_SHIFT_SOLONOID_A_SOL = 1;
+//            GEAR_SHIFT_SOLONOID_B_SOL = 2;
+//            PRESSURE_SWITCH_SLOT = 1;
+//            PRESSURE_SWITCH_DIO = 1;
+//            COMPRESSOR_RELAY_SLOT = 1;
+//            COMPRESSOR_REL = 1;
+//            ULTRASONIC_ANG = 7;
+//            CONTROLLER_1 = 1;
+//        } else if (SELECTED_ROBOT == 3) {
+//            RIGHT_ENCODER_A_DIO = 2;
+//            RIGHT_ENCODER_B_DIO = 3;
+//            LEFT_ENCODER_A_DIO = 4;
+//            LEFT_ENCODER_B_DIO = 5;
+//            WHEEL_lEFT_PWM = 10;
+//            WHEEL_RIGHT_PWM = 8;
+//            GEAR_SHIFT_SOLONOID_A_SOL = 1;
+//            GEAR_SHIFT_SOLONOID_B_SOL = 2;
+//            PRESSURE_SWITCH_SLOT = 1;
+//            PRESSURE_SWITCH_DIO = 1;
+//            COMPRESSOR_RELAY_SLOT = 1;
+//            COMPRESSOR_REL = 1;
+//            ULTRASONIC_ANG = 7;
+//            CONTROLLER_1 = 1;
+//        }
 
         
         
@@ -218,7 +219,8 @@ public class Devices {
             logger,
             shooterController,
             gearShiftController,
-            operatorController
+            operatorController,
+            intakeArm
         };
         //Don't put anything after here
     }
