@@ -45,10 +45,12 @@ public class Controller implements IStep {
         if(joyStick1.getRawButton(4)){
             Devices.intakeArm.setArmUp(true);
             System.out.println("ARM UP TRUE");
+            Devices.intakeArm.stopIntake();
         }
         if(joyStick1.getRawButton(3)){
             Devices.intakeArm.setArmUp(false);
             System.out.println("ARM UP FALSE");
+            Devices.intakeArm.runIntake();
         }
         if(joyStick1.getRawButton(1)){
             Devices.shooterController.setMotorOn(true);
