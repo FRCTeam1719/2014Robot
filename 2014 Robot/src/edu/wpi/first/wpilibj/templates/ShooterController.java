@@ -4,6 +4,10 @@
  */
 package edu.wpi.first.wpilibj.templates;
 
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Victor;
+
 /**
  *
  * @author Chance
@@ -19,6 +23,9 @@ public class ShooterController implements IStep {
     long timeToReEngage = 0;
     public boolean isReadyToShoot = false;
     public boolean isDoneShooting = false;
+    SpeedController motor;
+    private boolean motorOn;
+    boolean fire=false;
 
     public void step() {
         if (timeToReEngage < System.currentTimeMillis() && (timeToReEngage != 0)) {
@@ -30,15 +37,25 @@ public class ShooterController implements IStep {
             isOn = false;
             isReadyToShoot = true;
         }
-       
-        solonoid.set(isOn);
-
-
+        
+        solonoid.set(fire);
+        if(motorOn){
+            motor.set(1);
+        }else{
+            motor.set(0);
+        }
+        solonoid.step();
     }
 
+    public void setMotorOn(boolean b){
+        this.motorOn=b;
+    }
+    
+    
     public void init() {
         solonoid = new NewSolenoid();
         solonoid.setPort(solonoidPort);
+        motor= new Victor(motorPort);
 
 
     }
@@ -61,11 +78,13 @@ public class ShooterController implements IStep {
             isReadyToShoot = false;
             timeToReEngage = System.currentTimeMillis() + timeToFire;
         }
-
+        fire=true;
 
 
     }
-
+    public void unfire(){
+        fire=false;
+    }
     public void setTimeToFire(int timeToFire) {
         this.timeToFire = timeToFire;
         isDoneShooting = false;

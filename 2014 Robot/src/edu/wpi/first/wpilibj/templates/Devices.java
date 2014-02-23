@@ -44,7 +44,7 @@ public class Devices {
     public static int WHEEL_lEFT_PWM = 2;
     public static int WHEEL_RIGHT_PWM = 5;
     public static int GEAR_SHIFT_SOLONOID_A_SOL = 1;
-    public static int GEAR_SHIFT_SOLONOID_B_SOL = 2;
+    public static int GEAR_SHIFT_SOLONOID_B_SOL = 8;//TODO we do not use this
     public static int COMPRESSOR_RELAY_SLOT = 1;
     public static int COMPRESSOR_REL = 1;
     public static int ULTRASONIC_ANG = 7;
@@ -87,6 +87,7 @@ public class Devices {
         intakeArm = new IntakeArm();
         intakeArm.setMotorPort(INTAKE_ARM_MOTOR_PORT);
         intakeArm.setSolenoidPort(INTAKE_SOLENOID_PORT);
+        intakeArm.init();
         
 
         
@@ -171,7 +172,8 @@ public class Devices {
             logger,
             shooterController,
             gearShiftController,
-            operatorController
+            operatorController,
+            intakeArm
         };
         //Don't put anything after here
     }

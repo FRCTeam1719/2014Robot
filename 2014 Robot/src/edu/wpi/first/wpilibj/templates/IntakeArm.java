@@ -29,8 +29,11 @@ public class IntakeArm implements IStep{
     
     
     public void step(){
-        solenoid.set(isUp);
+        solenoid.set(!isUp);
+        solenoid.step();
+        System.out.println("IS UP"+ isUp);
         victor.set(spinnerSpeed);
+//        victor.set(1);
     }
     
     
@@ -63,6 +66,11 @@ public class IntakeArm implements IStep{
     
     public void setArmUp(boolean isUp){
         this.isUp = isUp;
+        if(isUp){
+            spinnerSpeed=VICTOR_OFF;
+        }else{
+            spinnerSpeed=VICTOR_FORWARD;
+        }
     }
 
 }
