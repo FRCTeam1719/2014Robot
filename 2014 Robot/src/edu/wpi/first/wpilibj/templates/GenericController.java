@@ -22,6 +22,8 @@ public class GenericController implements IStep{
         this.joystickNumber = joystickNumber;
     }
     public void step(){
+        if(joystick.getRawButton(5)){leftBumperPressed();}
+        if(joystick.getRawButton(6)){rightBumperPressed();}
         if(joystick.getRawButton(1)){aPressed();}
         if(joystick.getRawButton(2)){bPressed();}
         if(joystick.getRawButton(3)){xPressed();}
@@ -34,6 +36,8 @@ public class GenericController implements IStep{
        
         
     }
+    public void leftBumperPressed(){/*don't put anything in here*/}
+    public void rightBumperPressed(){/*don't put anything in here*/}
     public void aPressed(){/*don't put anything in here*/}
     public void bPressed(){/*don't put anything in here*/}
     public void xPressed(){/*don't put anything in here*/}

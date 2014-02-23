@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.Victor;
  */
 public class ShooterController implements IStep {
 
+    private double distanceBack = 0;
     NewSolenoid solonoid;
     int solonoidPort;
     int motorPort;
@@ -22,10 +23,11 @@ public class ShooterController implements IStep {
     long timeToFire = 10000;
     long timeToReEngage = 0;
     public boolean isReadyToShoot = false;
-    public boolean isDoneShooting = false;
-    SpeedController motor;
+    public boolean isDoneShooting = true;
+    ;
+    SetPointMotor motor;
     private boolean motorOn;
-    boolean fire=false;
+    boolean fire = false;
 
     public void step() {
         if (timeToReEngage < System.currentTimeMillis() && (timeToReEngage != 0)) {
@@ -33,29 +35,30 @@ public class ShooterController implements IStep {
             isOn = true;
             isReadyToShoot = false;
             isDoneShooting = true;
-        }else{
+        } else {
             isOn = false;
             isReadyToShoot = true;
         }
-        
-        solonoid.set(fire);
-        if(motorOn){
-            motor.set(1);
-        }else{
-            motor.set(0);
+        if (isDoneShooting) {
+            motor.setPoint(0);
         }
+
+        solonoid.set(fire);
+        motor.step();
         solonoid.step();
     }
 
-    public void setMotorOn(boolean b){
-        this.motorOn=b;
+    public void setMotorOn(boolean b) {
+        this.motorOn = b;
     }
-    
-    
+
     public void init() {
         solonoid = new NewSolenoid();
         solonoid.setPort(solonoidPort);
-        motor= new Victor(motorPort);
+        motor = new SetPointMotor();
+        motor.setMotorPort(motorPort);
+        motor.setSpeed(1);
+        motor.init();
 
 
     }
@@ -73,20 +76,32 @@ public class ShooterController implements IStep {
     }
 
     public void fire() {
-        if (!isOn) {
-            isOn = false;
-            isReadyToShoot = false;
-            timeToReEngage = System.currentTimeMillis() + timeToFire;
+        motor.setPoint(distanceBack);
+        if (motor.getIsAtPoint()) {
+            if (!isOn) {
+                isOn = false;
+                isReadyToShoot = false;
+                timeToReEngage = System.currentTimeMillis() + timeToFire;
+                motor.setPoint(0);
+            }
+        }else{
+            fire();
         }
-        fire=true;
+        fire = true;
 
 
     }
-    public void unfire(){
-        fire=false;
+
+    public void unfire() {
+        fire = false;
     }
+
     public void setTimeToFire(int timeToFire) {
         this.timeToFire = timeToFire;
         isDoneShooting = false;
+    }
+
+    public void setDistanceBack(double value) {
+        distanceBack = value;
     }
 }
