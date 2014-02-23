@@ -24,10 +24,11 @@ public class ShooterController implements IStep {
     long timeToReEngage = 0;
     public boolean isReadyToShoot = false;
     public boolean isDoneShooting = true;
-    ;
+    public boolean isFiring = false;
     SetPointMotor motor;
     private boolean motorOn;
     boolean fire = false;
+    public int firingMode = 0;
 
     public void step() {
         if (timeToReEngage < System.currentTimeMillis() && (timeToReEngage != 0)) {
@@ -35,6 +36,7 @@ public class ShooterController implements IStep {
             isOn = true;
             isReadyToShoot = false;
             isDoneShooting = true;
+            
         } else {
             isOn = false;
             isReadyToShoot = true;
@@ -42,7 +44,19 @@ public class ShooterController implements IStep {
         if (isDoneShooting) {
             motor.setPoint(0);
         }
-
+        if(firingMode == 1 && motor.getIsAtPoint()){
+            firingMode = 2;
+        }
+        if(firingMode == 2){
+            fire = true;
+            firingMode = 3;
+            timeToReEngage = System.currentTimeMillis() + timeToFire;
+            
+        }
+        if((firingMode ==3)&&(timeToReEngage < System.currentTimeMillis() && (timeToReEngage != 0))){
+            firingMode = 0;
+            motor.setPoint(0);
+        }
         solonoid.set(fire);
         motor.step();
         solonoid.step();
@@ -58,6 +72,7 @@ public class ShooterController implements IStep {
         motor = new SetPointMotor();
         motor.setMotorPort(motorPort);
         motor.setSpeed(1);
+        motor.setIsRatchet(true);
         motor.init();
 
 
@@ -77,17 +92,17 @@ public class ShooterController implements IStep {
 
     public void fire() {
         motor.setPoint(distanceBack);
-        if (motor.getIsAtPoint()) {
-            if (!isOn) {
-                isOn = false;
-                isReadyToShoot = false;
-                timeToReEngage = System.currentTimeMillis() + timeToFire;
-                motor.setPoint(0);
-            }
-        }else{
-            fire();
-        }
-        fire = true;
+        isFiring = true;
+        firingMode = 1;
+        
+        
+        
+        
+        
+        
+        
+        
+       
 
 
     }

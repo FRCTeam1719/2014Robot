@@ -22,10 +22,10 @@ public class OperatorController extends GenericController {
             if(fireRange == SHORT_RANGE){
                 Devices.shooterController.setDistanceBack(10);
             }
-            else if(fireRange == SHORT_RANGE){
+            else if(fireRange == MEDIUM_RANGE){
                 Devices.shooterController.setDistanceBack(20);
             }
-            else if(fireRange == SHORT_RANGE){
+            else if(fireRange == LONG_RANGE){
                 Devices.shooterController.setDistanceBack(30);
             }
         
