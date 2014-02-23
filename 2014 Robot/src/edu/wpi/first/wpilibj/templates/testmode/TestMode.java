@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.templates.autonomous.Chain;
 import edu.wpi.first.wpilibj.templates.autonomous.Action;
 import edu.wpi.first.wpilibj.templates.autonomous.autoactions.*;
 import edu.wpi.first.wpilibj.templates.Constants;
+import edu.wpi.first.wpilibj.templates.IntakeArm;
 
 /**
  *
@@ -21,8 +22,9 @@ public class TestMode implements IStep {
     private boolean doneAllActs;
     private boolean doneRunDrive;
     private Chain runDrive;
-
+    private Chain runKicker;
     static double testNumber;
+    private Chain runIntakeArm;
 
     //Constants
     private final int NO_TEST = 0;
@@ -35,6 +37,16 @@ public class TestMode implements IStep {
         TestResults acc = new TestResults();
 
         //Create the chain for drive system actions
+        runKicker = new Chain(new Action[]{
+            new KickerAction()
+        });
+        runIntakeArm = new Chain(new Action[]{
+                new IntakeDown(),
+                new TimerWaitAction(1),
+                new IntakeUp()
+                });
+        
+        
         runDrive = new Chain(new Action[]{
             new TestEncoderAction(Devices.wheelEncoder1, 0, Constants.EQUAL, "LeftWheelStopped", acc),
             new TestEncoderAction(Devices.wheelEncoder2, 0, Constants.EQUAL, "RightWheelStopped", acc),
@@ -67,8 +79,19 @@ public class TestMode implements IStep {
         });
         doneAllActs = false;
     }
-
+private boolean isIntakeDown = false;
+    IntakeArm intakeArm =  new IntakeArm();
     public void step() {
+       
+        
+        
+       
+       
+        
+        
+        
+        
+        
         if (!doneAllActs && testNumber != NO_TEST) {
             if (testNumber == ALL_TEST) {//Run all tests
                 if (!doneRunDrive) {
