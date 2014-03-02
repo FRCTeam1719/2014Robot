@@ -8,15 +8,13 @@ import edu.wpi.first.wpilibj.templates.autonomous.Action;
 //TODO: implement ShooterAction
 public class ShooterAction extends Action{
     ShooterController shooterController = Devices.shooterController;
-    public ShooterAction(int timeToFire){
-        shooterController.setTimeToFire(timeToFire);
-    }
     public void init(){
         Devices.logChecker.sendLog("ShooterAction init", LogLevelCheck.physical);
+        shooterController.setDistanceBack(shooterController.DISTANCE_MEDIUM);
         shooterController.fire();
     }
     public boolean doAct(){
         shooterController.step();
-        return true;
+        return shooterController.isIdle();
     }
 }

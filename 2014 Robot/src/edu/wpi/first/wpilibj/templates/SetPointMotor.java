@@ -17,7 +17,7 @@ public class SetPointMotor implements IStep {
 
     private Victor victor;
     private int motorPort;
-  
+
     private AnalogPotentiometer potentiometer;
     private int potentiometerPort;
     private int solonoidPort;
@@ -25,56 +25,54 @@ public class SetPointMotor implements IStep {
     private double point;
     private double speed = .5;
     private boolean isAtPoint;
+
     public void step() {
         if (potentiometer.get() < point) {
             isAtPoint = false;
             victor.set(speed);
 
-
-        } else if ((potentiometer.get() > point)&&!isRatchet) {
+        } else if ((potentiometer.get() > point) && !isRatchet) {
             isAtPoint = false;
             victor.set(-speed);
-        }else{
+        } else {
             isAtPoint = true;
             victor.set(0);
         }
-
-        
-
-
-
     }
 
-    public void init() {
+    public SetPointMotor init() {
         victor = new Victor(motorPort);
         potentiometer = new AnalogPotentiometer(potentiometerPort);
-        
+        return this;
     }
 
-    public void setMotorPort(int motorPort) {
+    public SetPointMotor setMotorPort(int motorPort) {
         this.motorPort = motorPort;
+        return this;
     }
 
-    public void setPotentiometerPort(int potentiometerPort) {
+    public SetPointMotor setPotentiometerPort(int potentiometerPort) {
         this.potentiometerPort = potentiometerPort;
+        return this;
     }
 
-   
-
-    
     public void setPoint(double point) {
         this.point = point;
     }
 
-    public void setSpeed(double speed) {
+    public SetPointMotor setSpeed(double speed) {
         this.speed = speed;
+        return this;
 
     }
-    public boolean getIsAtPoint(){
+
+    public boolean getIsAtPoint() {
         return isAtPoint;
     }
-    public void setIsRatchet(boolean isRatchet){
+
+    public SetPointMotor setIsRatchet(boolean isRatchet) {
         this.isRatchet = isRatchet;
+        return this;
     }
-    
+
 }

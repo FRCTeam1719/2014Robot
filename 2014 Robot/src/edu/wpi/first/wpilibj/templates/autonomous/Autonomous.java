@@ -21,8 +21,7 @@ public class Autonomous implements IStep{
             //distance is how far away/how close you want the robot to be when you stop moving
             new ArcadeDriveAction(0.0,0.0),
             new HotGoalWaitAction(),
-            new ShooterAction(1000)//ShooterAction(timeToFire)
-            //timeToFire is how long (in milliseconds) the shooter takes to fire
+            new ShooterAction()
         });
         doneAllActs = false;
         run.init();

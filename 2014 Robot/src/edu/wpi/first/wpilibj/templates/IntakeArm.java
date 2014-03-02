@@ -30,10 +30,8 @@ public class IntakeArm implements IStep{
     
     public void step(){
         solenoid.set(!isUp);
-        solenoid.step();
-        System.out.println("IS UP"+ isUp);
         victor.set(spinnerSpeed);
-//        victor.set(1);
+        solenoid.step();
     }
     
     

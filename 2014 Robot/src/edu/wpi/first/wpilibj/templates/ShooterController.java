@@ -15,67 +15,56 @@ import edu.wpi.first.wpilibj.Victor;
 public class ShooterController implements IStep {
 
     private double distanceBack = 0;
-    NewSolenoid solonoid;
-    int solonoidPort;
-    int motorPort;
-    int potentiometerPort;
-    private boolean isOn = true;
-    long timeToFire = 10000;
-    long timeToReEngage = 0;
-    public boolean isReadyToShoot = false;
-    public boolean isDoneShooting = true;
-    public boolean isFiring = false;
-    SetPointMotor motor;
-    private boolean motorOn;
-    boolean fire = false;
-    public int firingMode = 0;
+    private NewSolenoid solonoid;
+    private int solonoidPort;
+    private int motorPort;
+    private long timeToReEngage = 0;
+    private SetPointMotor motor;
+    private int firingMode = 0;
+    private int potentiometerPort=0;
+    
+    private final boolean SHIFTER_ENGAGED = true; //Signal to the solenoid for the motor to engage the gear
 
+    private long timeToFire = 1000;
+    
+    public final int MODE_IDLE = 0;
+    public final int MODE_COCKING = 1;
+    public final int MODE_FIRING = 2;
+
+    public final static double DISTANCE_SHORT=10;
+    public final static double DISTANCE_MEDIUM=20;
+    public final static double DISTANCE_LONG=30;
+    
     public void step() {
-        if (timeToReEngage < System.currentTimeMillis() && (timeToReEngage != 0)) {
-            timeToReEngage = 0;
-            isOn = true;
-            isReadyToShoot = false;
-            isDoneShooting = true;
-            
-        } else {
-            isOn = false;
-            isReadyToShoot = true;
+        switch (firingMode) {
+            case (MODE_IDLE):
+                break;
+            case (MODE_COCKING):
+                solonoid.set(SHIFTER_ENGAGED);
+                if (motor.getIsAtPoint()) {
+                    firingMode = MODE_FIRING;
+                    timeToReEngage = System.currentTimeMillis() + timeToFire;
+                }
+                break;
+            case (MODE_FIRING):
+                solonoid.set(!SHIFTER_ENGAGED);
+                if (timeToReEngage < System.currentTimeMillis()) {
+                    firingMode = MODE_IDLE;
+                }
         }
-        if (isDoneShooting) {
-            motor.setPoint(0);
-        }
-        if(firingMode == 1 && motor.getIsAtPoint()){
-            firingMode = 2;
-        }
-        if(firingMode == 2){
-            fire = true;
-            firingMode = 3;
-            timeToReEngage = System.currentTimeMillis() + timeToFire;
-            
-        }
-        if((firingMode ==3)&&(timeToReEngage < System.currentTimeMillis() && (timeToReEngage != 0))){
-            firingMode = 0;
-            motor.setPoint(0);
-        }
-        solonoid.set(fire);
         motor.step();
         solonoid.step();
     }
 
-    public void setMotorOn(boolean b) {
-        this.motorOn = b;
-    }
-
     public void init() {
-        solonoid = new NewSolenoid();
-        solonoid.setPort(solonoidPort);
-        motor = new SetPointMotor();
-        motor.setMotorPort(motorPort);
-        motor.setSpeed(1);
-        motor.setIsRatchet(true);
-        motor.init();
-
-
+        solonoid = new NewSolenoid()
+                .setPort(solonoidPort);
+        motor = new SetPointMotor()
+                .setMotorPort(motorPort)
+                .setPotentiometerPort(potentiometerPort)
+                .setSpeed(1)
+                .setIsRatchet(true)
+                .init();
     }
 
     public void setSolonoidPort(int solonoidPort) {
@@ -92,31 +81,13 @@ public class ShooterController implements IStep {
 
     public void fire() {
         motor.setPoint(distanceBack);
-        isFiring = true;
-        firingMode = 1;
-        
-        
-        
-        
-        
-        
-        
-        
-       
-
-
-    }
-
-    public void unfire() {
-        fire = false;
-    }
-
-    public void setTimeToFire(int timeToFire) {
-        this.timeToFire = timeToFire;
-        isDoneShooting = false;
+        firingMode=MODE_COCKING;
     }
 
     public void setDistanceBack(double value) {
         distanceBack = value;
+    }
+    public boolean isIdle(){
+        return firingMode==MODE_IDLE;
     }
 }
