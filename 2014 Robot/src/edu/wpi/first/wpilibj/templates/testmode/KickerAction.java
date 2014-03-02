@@ -14,18 +14,14 @@ public class KickerAction extends Action{
    
     private boolean hasShot = false;
     public void init(){
-       
+       Devices.shooterController.fire();
        
         
         
     }
     public boolean doAct() {
         Devices.shooterController.step();
-        if(Devices.shooterController.isReadyToShoot){
-            Devices.shooterController.fire();
-            hasShot = true;
-        }
-        if(hasShot&&Devices.shooterController.isDoneShooting){
+        if(Devices.shooterController.isIdle()){
             isDone = true;
         }
         return isDone;
