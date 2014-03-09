@@ -19,7 +19,7 @@ public class GenericController implements IStep{
         joystick = new Joystick(joystickNumber);
     }
     public void setNumber(int JoystickNumber){
-        this.joystickNumber = joystickNumber;
+        this.joystickNumber = JoystickNumber;
     }
     public void step(){
         if(joystick.getRawButton(5)){leftBumperPressed();}

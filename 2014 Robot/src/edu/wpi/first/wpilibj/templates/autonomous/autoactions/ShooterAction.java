@@ -10,7 +10,6 @@ public class ShooterAction extends Action{
     ShooterController shooterController = Devices.shooterController;
     public void init(){
         Devices.logChecker.sendLog("ShooterAction init", LogLevelCheck.physical);
-        shooterController.setDistanceBack(shooterController.DISTANCE_MEDIUM);
         shooterController.fire();
     }
     public boolean doAct(){

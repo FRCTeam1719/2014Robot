@@ -21,24 +21,6 @@ public class UltrasonicWaitAction extends Action{
     }
     
     public boolean doAct() {
-        int distance=Devices.ultraSonicSensor1.getValue();
-        boolean done = false;
-        if(waitForLessThan){
-            done = distance<=targetDistance;
-        }else{
-            done = distance>targetDistance;
-        }
-        System.out.println(distance);
-        /*
-        //This code is confusing. I've replaced it with (IMO) a less confusing
-        //version, but if you want to change it back, your version is still here.
-        boolean done = distance<targetDistance;
-        if(!waitForLessThan){
-            done = !done;
-        }*/
-        if(done){
-            Devices.logChecker.sendLog("Done ultrasonicWaitAction", LogLevelCheck.physical);
-        }
-        return done;
+        return true;
     }
 }

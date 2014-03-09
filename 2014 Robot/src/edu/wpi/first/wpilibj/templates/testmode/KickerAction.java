@@ -11,22 +11,16 @@ import edu.wpi.first.wpilibj.templates.*;
  */
 public class KickerAction extends Action{
     public boolean isDone = false;
-   
-    private boolean hasShot = false;
     public void init(){
-       
+       Devices.shooterController.fire();
        
         
         
     }
     public boolean doAct() {
         Devices.shooterController.step();
-        if(Devices.shooterController.isReadyToShoot){
-            Devices.shooterController.fire();
-            hasShot = true;
-        }
-        if(hasShot&&Devices.shooterController.isDoneShooting){
-            isDone = true;
+        if(Devices.shooterController.isIdle()){
+            isDone=true;
         }
         return isDone;
     }

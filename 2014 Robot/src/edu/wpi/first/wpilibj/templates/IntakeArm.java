@@ -4,72 +4,79 @@
  */
 package edu.wpi.first.wpilibj.templates;
 
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 
 /**
  *
  * @author aaroneline
  */
+public class IntakeArm implements IStep {
 
-public class IntakeArm implements IStep{
-    
-    
-    
     private int motorPort;
     private int solenoidPort;
-    private double spinnerSpeed=0;
-    private boolean isUp=false;
+    private double spinnerSpeed = 0;
+    private boolean isUp = false;
     private final double VICTOR_FORWARD = 1;
     private final double VICTOR_REVERSE = -1;
     private final double VICTOR_OFF = 0;
-    Victor victor;
+    SpeedController spinner;
     NewSolenoid solenoid;
+    LimitedMotor arm;
 
-    
-    
-    public void step(){
+    public void step() {
         solenoid.set(!isUp);
-        victor.set(spinnerSpeed);
+        System.out.println(isUp);
+        spinner.set(spinnerSpeed);
         solenoid.step();
+        arm.step();
     }
-    
-    
-    public void runIntake(){
-        this.spinnerSpeed=VICTOR_FORWARD;
+
+    public void runIntake() {
+        this.spinnerSpeed = VICTOR_FORWARD;
     }
-    public void reverseIntake(){
-        this.spinnerSpeed=VICTOR_REVERSE;
+
+    public void reverseIntake() {
+        this.spinnerSpeed = VICTOR_REVERSE;
     }
-    public void stopIntake(){
-        this.spinnerSpeed=VICTOR_OFF;
+
+    public void stopIntake() {
+        this.spinnerSpeed = VICTOR_OFF;
     }
-    
-    public IntakeArm init(){
+
+    public IntakeArm init() {
         //Setup devices
-        victor = new Victor(motorPort);
-        solenoid = new NewSolenoid();
-        solenoid.setPort(solenoidPort);
+        solenoid = new NewSolenoid()
+                    .setPort(solenoidPort)
+                    .init();
         return this;
     }
-    
+
     //Seters for ports
-    public void setMotorPort(int motorPort){
-        this.motorPort = motorPort;
+    public IntakeArm setSpinner(SpeedController spinner) {
+        this.spinner=spinner;
+        return this;
     }
-    
-    public void setSolenoidPort(int solenoidPort){
+
+    public IntakeArm setSolenoidPort(int solenoidPort) {
         this.solenoidPort = solenoidPort;
+        return this;
+    }
+
+    public void setArmUp(boolean isUp) {
+        this.isUp = isUp;
+        if (isUp) {
+            spinnerSpeed = VICTOR_OFF;
+            arm.set(-.5);
+        } else {
+            spinnerSpeed = VICTOR_FORWARD;
+            arm.set(.5);
+        }
     }
     
-    public void setArmUp(boolean isUp){
-        this.isUp = isUp;
-        if(isUp){
-            spinnerSpeed=VICTOR_OFF;
-        }else{
-            spinnerSpeed=VICTOR_FORWARD;
-        }
+    public IntakeArm setArm(LimitedMotor arm){
+        this.arm=arm;
+        return this;
     }
 
 }
-

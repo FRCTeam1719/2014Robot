@@ -41,7 +41,6 @@ public class SmartDashboardReader implements IStep {
 
         startSendableChoosers();
         startVaribles();
-        Devices.setSelectedRobot(getSelectedFromChooser(robot));
 
     }
 
