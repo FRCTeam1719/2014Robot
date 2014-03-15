@@ -21,18 +21,42 @@ public class TestMode implements IStep {
 
     private boolean doneAllActs;
     private boolean doneRunDrive;
+    private boolean doneRunKicker;
+    private boolean doneRunIntakeArm;
     private Chain runDrive;
     private Chain runKicker;
-    static double testNumber;
     private Chain runIntakeArm;
+    static double testNumber;
 
     //Constants
     private final int NO_TEST = 0;
     private final int ALL_TEST = 1;
     private final int DRIVE_TEST = 2;
-    //Temporary constant for non-existant tests
-    private final int NOT_A_TEST = 3;
-
+    private final int KICKER_TEST = 3;
+    private final int INTAKE_TEST = 4;
+   
+    public void step() {
+        if (!doneAllActs && testNumber != NO_TEST) {
+            if (testNumber == ALL_TEST) {//Run all tests
+                if (!doneRunDrive) {
+                    doneRunDrive = runDrive.doAct();
+                }else if(!doneRunKicker){
+                    doneRunKicker = runKicker.doAct();
+                }else if(!doneRunIntakeArm){
+                    //Use doneAllActs for final act instead of corresponding
+                    //    boolean (in this case, instead of doneRunIntakeArm)
+                    doneAllActs = runIntakeArm.doAct();
+                }
+            } else if (testNumber == DRIVE_TEST) {
+                doneAllActs = runDrive.doAct();
+            } else if(testNumber == KICKER_TEST) {
+                doneAllActs = runKicker.doAct();
+            } else if(testNumber == INTAKE_TEST) {
+                doneAllActs = runIntakeArm.doAct();
+            }
+        }
+    }
+    
     public void init() {
         TestResults acc = new TestResults();
 
@@ -41,10 +65,10 @@ public class TestMode implements IStep {
             new KickerAction()
         });
         runIntakeArm = new Chain(new Action[]{
-                new IntakeDown(),
-                new TimerWaitAction(1),
-                new IntakeUp()
-                });
+            new IntakeDown(),
+            new TimerWaitAction(1),
+            new IntakeUp()
+        });
         
         
         runDrive = new Chain(new Action[]{
@@ -79,43 +103,9 @@ public class TestMode implements IStep {
         });
         doneAllActs = false;
     }
-private boolean isIntakeDown = false;
+    private boolean isIntakeDown = false;
     IntakeArm intakeArm =  new IntakeArm();
-    public void step() {
-       
-        
-        
-       
-       
-        
-        
-        
-        
-        
-        if (!doneAllActs && testNumber != NO_TEST) {
-            if (testNumber == ALL_TEST) {//Run all tests
-                if (!doneRunDrive) {
-                    doneRunDrive = runDrive.doAct();
-                }
-//Replace with real code once we have more tests
-//              else if(!doneSecondTest){
-//                  doneSecondTest = secondTest.doAct();
-//              }
-//              
-//              {...}
-//                
-//              else if(!doneFinalTest){
-//                  doneAllActs = finalTest.doAct();
-//              }
-            } else if (testNumber == DRIVE_TEST) {
-                doneAllActs = runDrive.doAct();
-            } else if (testNumber == NOT_A_TEST) {
-                //second type of test; replace with real code once we have
-                //another test
-                doneAllActs = true;
-            }
-        }
-    }
+    
 
     public static void setTestNumber(double number) {
         testNumber = number;
