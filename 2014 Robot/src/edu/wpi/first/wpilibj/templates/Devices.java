@@ -127,8 +127,8 @@ public class Devices {
 
         //Make drive
         drive = new Drive().
-                SetBackLeft(new Talon(WHEEL_LEFT_PWM))
-                .SetBackRight(new Talon(WHEEL_RIGHT_PWM))
+                SetBackLeft(new Jaguar(WHEEL_LEFT_PWM))
+                .SetBackRight(new Jaguar(WHEEL_RIGHT_PWM))
                 .init();
 
 
