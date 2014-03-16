@@ -72,6 +72,7 @@ public class IntakeArm implements IStep {
             spinnerSpeed = VICTOR_FORWARD;
             arm.set(.5);
         }
+        solenoid.set(isUp);
     }
     
     public IntakeArm setArm(LimitedMotor arm){
