@@ -50,8 +50,7 @@ public class Devices {
     public static int ULTRASONIC_ANG = 7;
     public static int CONTROLLER_1 = 1;
     public static int SELECTED_ROBOT;
-    int foo = 0;
-    public static int SHOOTER_MOTOR_PORT = 4;
+    public static int SHOOTER_MOTOR_PORT = 3;
     public static int SHOOTER_SOLONOID_PORT = 3;
     public static int SHOOTER_POTENTIOMETER_PORT = 1;
 

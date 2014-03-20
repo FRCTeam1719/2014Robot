@@ -61,11 +61,11 @@ public class RobotTemplate extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-//        Devices.autonomous.step();
+        Devices.autonomous.step();
         devices.step();
         
-        double speed=SmartDashboard.getNumber("TargetSpeed");
-        devices.drive.DriveStraight(speed);
+//        double speed=SmartDashboard.getNumber("TargetSpeed");
+//        devices.drive.DriveStraight(speed);
     }
     public void teleopInit(){
         SmartDashboard.putBoolean("isAtonomus", false);
@@ -79,7 +79,7 @@ public class RobotTemplate extends IterativeRobot {
         controller.step();
         devices.step();
         //TODO: magic numbers
-        devices.drive.DriveStraight(400);
+//        devices.drive.DriveStraight(400);
     }
     
     /**

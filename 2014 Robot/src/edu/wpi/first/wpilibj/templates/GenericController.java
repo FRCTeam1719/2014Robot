@@ -18,7 +18,7 @@ public class GenericController implements IStep{
     public void init(){
         joystick = new Joystick(joystickNumber);
     }
-    public void setNumber(int JoystickNumber){
+    public void setNumber(int joystickNumber){
         this.joystickNumber = joystickNumber;
     }
     public void step(){
@@ -43,7 +43,7 @@ public class GenericController implements IStep{
     public void xPressed(){/*don't put anything in here*/}
     public void yPressed(){/*don't put anything in here*/}
     public void triggerPressed(){/*don't put anything in here*/}
-    public void leftJoystickX(double value){/*don't put anything in here*/}
+    public void leftJoystickX(double value){System.out.println("Foo:"+value);}
     public void leftJoysticky(double value){/*don't put anything in here*/}
     public void rightJoystickX(double value){/*don't put anything in here*/}
     public void rightJoystickY(double value){/*don't put anything in here*/}

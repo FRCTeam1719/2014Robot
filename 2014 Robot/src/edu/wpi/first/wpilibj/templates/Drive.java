@@ -34,7 +34,6 @@ public class Drive implements IStep {
 
     public void step() {
         if (isEnabled) {
-            System.out.println(mode);
             if (mode==MODE_TANK) {
                 robotDrive.tankDrive(leftWheelSpeed, rightWheelSpeed);
             }
@@ -132,8 +131,5 @@ public class Drive implements IStep {
          pid.enable();
          pid2.enable();
         
-        
-        
-        System.out.println("Foo: "+pid.get());
     }
 }

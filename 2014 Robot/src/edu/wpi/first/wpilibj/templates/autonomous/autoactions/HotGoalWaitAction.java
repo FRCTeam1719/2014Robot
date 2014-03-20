@@ -20,6 +20,7 @@ public class HotGoalWaitAction extends Action{
     }
     
     public void init(){
+        SmartDashboard.putBoolean("found", false);
         Devices.logChecker.sendLog("Beggining HotGoalWaitAction", LogLevelCheck.physical);
     }
     

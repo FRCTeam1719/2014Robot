@@ -20,8 +20,8 @@ public class Autonomous implements IStep{
             //  specified number
             //distance is how far away/how close you want the robot to be when you stop moving
             new ArcadeDriveAction(0.0,0.0),
-            new HotGoalWaitAction(),
-            new ShooterAction()
+           new HotGoalWaitAction(),
+           new ShooterAction()
         });
         doneAllActs = false;
         run.init();
@@ -31,7 +31,7 @@ public class Autonomous implements IStep{
     }
     public void step(){
         if(!doneAllActs){
-            doneAllActs = run.doAct();
+           doneAllActs = run.doAct();
         }
     }
 }

@@ -23,10 +23,15 @@ public class SetPointMotor implements IStep {
     private int solonoidPort;
     private boolean isRatchet = false;
     private double point;
-    private double speed = .5;
+    private double speed = 1;
     private boolean isAtPoint;
+    private boolean enabled=false;
 
     public void step() {
+        if(!enabled){
+            victor.set(0);
+            return;
+        }
         if (potentiometer.get() < point) {
             isAtPoint = false;
             victor.set(speed);
@@ -75,4 +80,14 @@ public class SetPointMotor implements IStep {
         return this;
     }
 
+    public double getPotVal(){
+        return potentiometer.get();
+    }
+    
+    public void enable(){
+        this.enabled=true;
+    }
+    public void disable(){
+        this.enabled=false;
+    }
 }

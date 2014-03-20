@@ -7,6 +7,7 @@ package edu.wpi.first.wpilibj.templates;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -38,8 +39,10 @@ public class ShooterController implements IStep {
     public void step() {
         switch (firingMode) {
             case (MODE_IDLE):
+                motor.disable();
                 break;
             case (MODE_COCKING):
+                motor.enable();
                 solonoid.set(SHIFTER_ENGAGED);
                 if (motor.getIsAtPoint()) {
                     firingMode = MODE_FIRING;
@@ -54,9 +57,13 @@ public class ShooterController implements IStep {
         }
         motor.step();
         solonoid.step();
+        
+        distanceBack=SmartDashboard.getNumber("Kicker Target");
+        SmartDashboard.putNumber("Kicker Potentiometer: ", motor.getPotVal());
     }
 
     public void init() {
+        SmartDashboard.putNumber("Kicker Target",0);
         solonoid = new NewSolenoid()
                 .setPort(solonoidPort);
         motor = new SetPointMotor()
