@@ -35,7 +35,7 @@ public class ShooterController implements IStep {
     public final static double DISTANCE_SHORT=10;
     public final static double DISTANCE_MEDIUM=20;
     public final static double DISTANCE_LONG=30;
-    
+    public final static double ALL_THE_WAY_FORWARD = 1.25;
     public void step() {
         switch (firingMode) {
             case (MODE_IDLE):
@@ -44,16 +44,22 @@ public class ShooterController implements IStep {
             case (MODE_COCKING):
                 motor.enable();
                 solonoid.set(SHIFTER_ENGAGED);
+                
                 if (motor.getIsAtPoint()) {
                     firingMode = MODE_FIRING;
                     timeToReEngage = System.currentTimeMillis() + timeToFire;
                 }
                 break;
             case (MODE_FIRING):
+                System.out.println("fireing");
                 solonoid.set(!SHIFTER_ENGAGED);
-                if (timeToReEngage < System.currentTimeMillis()) {
+                motor.isGoingBack = false;
+                motor.setPoint(ALL_THE_WAY_FORWARD);
+                motor.step();
+                if (motor.getIsAtPoint()) {
                     firingMode = MODE_IDLE;
                 }
+                
         }
         motor.step();
         solonoid.step();
@@ -70,7 +76,7 @@ public class ShooterController implements IStep {
                 .setMotorPort(motorPort)
                 .setPotentiometerPort(potentiometerPort)
                 .setSpeed(1)
-                .setIsRatchet(true)
+                .setIsRatchet(false)
                 .init();
     }
 
@@ -87,6 +93,7 @@ public class ShooterController implements IStep {
     }
 
     public void fire() {
+        motor.isGoingBack = true;
         motor.setPoint(distanceBack);
         firingMode=MODE_COCKING;
     }

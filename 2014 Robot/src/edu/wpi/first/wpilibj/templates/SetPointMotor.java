@@ -26,17 +26,19 @@ public class SetPointMotor implements IStep {
     private double speed = 1;
     private boolean isAtPoint;
     private boolean enabled=false;
+    public boolean isGoingBack = false;
+    
 
     public void step() {
         if(!enabled){
             victor.set(0);
             return;
         }
-        if (potentiometer.get() < point) {
+        if (potentiometer.get() < point && isGoingBack) {
             isAtPoint = false;
             victor.set(speed);
 
-        } else if ((potentiometer.get() > point) && !isRatchet) {
+        } else if ((potentiometer.get() > point) && !isRatchet && !isGoingBack) {
             isAtPoint = false;
             victor.set(-speed);
         } else {
@@ -72,6 +74,7 @@ public class SetPointMotor implements IStep {
     }
 
     public boolean getIsAtPoint() {
+        
         return isAtPoint;
     }
 
