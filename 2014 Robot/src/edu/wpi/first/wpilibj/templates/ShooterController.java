@@ -36,10 +36,12 @@ public class ShooterController implements IStep {
     public final static double DISTANCE_MEDIUM=20;
     public final static double DISTANCE_LONG=30;
     public final static double ALL_THE_WAY_FORWARD = 1.25;
+    public final static double DISTANCE_IDLE=2.0;
     public void step() {
         switch (firingMode) {
             case (MODE_IDLE):
-                motor.disable();
+                motor.isGoingBack=true;
+                motor.setPoint(DISTANCE_IDLE);
                 break;
             case (MODE_COCKING):
                 motor.enable();
@@ -69,7 +71,7 @@ public class ShooterController implements IStep {
     }
 
     public void init() {
-        SmartDashboard.putNumber("Kicker Target",0);
+        SmartDashboard.putNumber("Kicker Target",2.5);
         solonoid = new NewSolenoid()
                 .setPort(solonoidPort);
         motor = new SetPointMotor()

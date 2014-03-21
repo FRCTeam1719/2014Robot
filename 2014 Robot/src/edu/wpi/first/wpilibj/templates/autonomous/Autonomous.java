@@ -14,7 +14,8 @@ public class Autonomous implements IStep{
             new ArcadeDriveAction(0.75,0.0),//ArcadeDriveAction(forwardSpeed, rotationSpeed)
             //forwardSpeed ranges from -1 (backwards) to 1 (forwards)
             //rotationSpeed ranges from -1 (turn left) to 1 (turn right) (might be reversed)
-            new UltrasonicWaitAction(true, 150),//UltrasonicWaitAction(lessThan, distance)
+            //new UltrasonicWaitAction(true, 150),//UltrasonicWaitAction(lessThan, distance)
+            new TimerWaitAction(3),
             //lessThan is if you want to wait for the distance to be less than the specified
             //  number as opposed to waiting for the distance to be greater than the
             //  specified number
