@@ -32,9 +32,9 @@ public class ShooterController implements IStep {
     public final int MODE_COCKING = 1;
     public final int MODE_FIRING = 2;
 
-    public final static double DISTANCE_SHORT=10;
-    public final static double DISTANCE_MEDIUM=20;
-    public final static double DISTANCE_LONG=30;
+    public final static double DISTANCE_SHORT=2.5;
+    public final static double DISTANCE_MEDIUM=2.5;
+    public final static double DISTANCE_LONG=2.5;
     public final static double ALL_THE_WAY_FORWARD = 1.25;
     public final static double DISTANCE_IDLE=2.0;
     public void step() {
