@@ -6,6 +6,7 @@ package edu.wpi.first.wpilibj.templates;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -27,6 +28,8 @@ public class ShooterController implements IStep {
     private final boolean SHIFTER_ENGAGED = true; //Signal to the solenoid for the motor to engage the gear
 
     private long timeToFire = 1000;
+    private Timer saftyTimeout = new Timer();
+    private double maxTime=1; 
     
     public final int MODE_IDLE = 0;
     public final int MODE_COCKING = 1;
@@ -45,15 +48,25 @@ public class ShooterController implements IStep {
                 break;
             case (MODE_COCKING):
                 motor.enable();
+                System.out.println("Foo: "+saftyTimeout.get());
+                if(saftyTimeout.get()>maxTime){
+                    firingMode=MODE_IDLE;
+                    motor.disable();
+                }
                 solonoid.set(SHIFTER_ENGAGED);
                 
                 if (motor.getIsAtPoint()) {
                     firingMode = MODE_FIRING;
                     timeToReEngage = System.currentTimeMillis() + timeToFire;
+                    saftyTimeout.reset();
+                    saftyTimeout.start();
                 }
                 break;
             case (MODE_FIRING):
-                System.out.println("fireing");
+                if(saftyTimeout.get()>maxTime){
+                    firingMode=MODE_IDLE;
+                    motor.disable();
+                }
                 solonoid.set(!SHIFTER_ENGAGED);
                 motor.isGoingBack = false;
                 motor.setPoint(ALL_THE_WAY_FORWARD);
@@ -98,6 +111,8 @@ public class ShooterController implements IStep {
         motor.isGoingBack = true;
         motor.setPoint(distanceBack);
         firingMode=MODE_COCKING;
+        saftyTimeout.reset();
+        saftyTimeout.start();
     }
 
     public void setDistanceBack(double value) {
