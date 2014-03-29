@@ -37,7 +37,7 @@ public class RobotTemplate extends IterativeRobot {
     public static boolean shouldLiveWindow = false;
     public void robotInit() {
        
-        
+        SmartDashboard.putBoolean("KickerTestMode", false);
         //Create new SendableChooser, with two options.
         
         
