@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.templates.autonomous.*;
 import edu.wpi.first.wpilibj.templates.testmode.TestMode;
+import edu.wpi.first.wpilibj.Gyro;
 
 /**
  *
@@ -31,6 +32,7 @@ public class Devices {
     public static ShooterController shooterController;
     public static IntakeArm intakeArm;
     public static SmartDashboardReader smartDashboardReader;
+    public static Gyro gyro;
     static Log logger = new Log();
     public static LogLevelCheck logChecker = new LogLevelCheck();
     public static int PRESSURE_SWITCH_SLOT = 1;
@@ -53,7 +55,8 @@ public class Devices {
     public static int SHOOTER_MOTOR_PORT = 3;
     public static int SHOOTER_SOLONOID_PORT = 3;
     public static int SHOOTER_POTENTIOMETER_PORT = 1;
-
+    public static int GYRO_SLOT = 1;
+    public static int GYRO_CHANNEL = 2;
     
     
     public void step() {
@@ -66,6 +69,7 @@ public class Devices {
     
     
     public void init() {
+        gyro = new Gyro(GYRO_SLOT, GYRO_CHANNEL);
         operatorController = new OperatorController();
         operatorController.setNumber(2);
         operatorController.init();
@@ -88,7 +92,6 @@ public class Devices {
         intakeArm.setSolenoidPort(INTAKE_SOLENOID_PORT);
         intakeArm.init();
         
-
         
         
         

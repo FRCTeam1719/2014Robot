@@ -36,7 +36,7 @@ public class RobotTemplate extends IterativeRobot {
     static Controller controller = new Controller();;
     public static boolean shouldLiveWindow = false;
     public void robotInit() {
-       
+       SmartDashboard.putNumber("gyro", 0);
         
         //Create new SendableChooser, with two options.
         
