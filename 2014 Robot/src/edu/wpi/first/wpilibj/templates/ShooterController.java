@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class ShooterController implements IStep {
 
-    private double distanceBack = 0;
+    private double distanceBack = DISTANCE_IDLE;
     private NewSolenoid solonoid;
     private int solonoidPort;
     private int motorPort;
@@ -29,26 +29,36 @@ public class ShooterController implements IStep {
 
     private long timeToFire = 1000;
     private Timer saftyTimeout = new Timer();
-    private double maxTime=1; 
+    private double maxTime=2; 
     
     public final int MODE_IDLE = 0;
     public final int MODE_COCKING = 1;
     public final int MODE_FIRING = 2;
 
-    public final static double DISTANCE_SHORT=2.5;
-    public final static double DISTANCE_MEDIUM=2.5;
-    public final static double DISTANCE_LONG=2.5;
-    public final static double ALL_THE_WAY_FORWARD = 1.25;
-    public final static double DISTANCE_IDLE=2.0;
+    public final static double DISTANCE_SHORT=.83;
+    public final static double DISTANCE_MEDIUM=.83;
+    public final static double DISTANCE_LONG=.83;
+    public final static double ALL_THE_WAY_FORWARD = .7;
+    public final static double DISTANCE_IDLE=.83;
+    public final static double BACK_SPEED = 1;
+    public final static double FORWARD_SPEED = 1;
+    public void setBack(boolean isGoingBack){
+        if(isGoingBack){
+            motor.setSpeed(BACK_SPEED);
+      }else{
+            motor.setSpeed(FORWARD_SPEED);
+        }
+        motor.isGoingBack = isGoingBack;
+    }
     public void step() {
         switch (firingMode) {
             case (MODE_IDLE):
-                motor.isGoingBack=true;
-                motor.setPoint(DISTANCE_IDLE);
+                motor.disable();
+              setBack(true);
+                //motor.setPoint(DISTANCE_IDLE);
                 break;
             case (MODE_COCKING):
-                motor.enable();
-                System.out.println("Foo: "+saftyTimeout.get());
+                motor.enable(); 
                 if(saftyTimeout.get()>maxTime){
                     firingMode=MODE_IDLE;
                     motor.disable();
@@ -68,7 +78,7 @@ public class ShooterController implements IStep {
                     motor.disable();
                 }
                 solonoid.set(!SHIFTER_ENGAGED);
-                motor.isGoingBack = false;
+                setBack(false);
                 motor.setPoint(ALL_THE_WAY_FORWARD);
                 motor.step();
                 if (motor.getIsAtPoint()) {
@@ -116,7 +126,7 @@ public class ShooterController implements IStep {
     }
 
     public void setDistanceBack(double value) {
-        distanceBack = value;
+        //distanceBack = value;
     }
     public boolean isIdle(){
         return firingMode==MODE_IDLE;

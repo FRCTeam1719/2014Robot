@@ -35,13 +35,13 @@ public class OperatorController extends GenericController {
     }
 
     public void leftBumperPressed() {
-        System.out.println("A");
+        System.out.println("left bumper pressed");
         Devices.intakeArm.setArmUp(false);
         Devices.intakeArm.runIntake();
     }
 
     public void rightBumperPressed() {
-        System.out.println("B");
+        System.out.println("right bumber pressed");
         Devices.intakeArm.setArmUp(true);
         Devices.intakeArm.stopIntake();
     }
