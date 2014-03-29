@@ -27,11 +27,11 @@ public class OperatorController extends GenericController {
     }
 
     public void aPressed() {
-        Devices.shooterController.setDistanceBack(ShooterController.DISTANCE_SHORT);
+       
     }
 
     public void xPressed() {
-        Devices.shooterController.setDistanceBack(ShooterController.DISTANCE_MEDIUM);
+        Devices.shooterController.setDistanceBack(ShooterController.DISTANCE_SHORT);
     }
 
     public void leftBumperPressed() {

@@ -27,11 +27,13 @@ public class SetPointMotor implements IStep {
     private boolean isAtPoint;
     private boolean enabled=false;
     public boolean isGoingBack = false;
+    public final double IDLE_SPEED = .1;
     
 
     public void step() {
         if(!enabled){
-            victor.set(0);
+            victor.set(IDLE_SPEED);
+            
             return;
         }
         if (potentiometer.get() < point && isGoingBack) {
