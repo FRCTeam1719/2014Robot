@@ -43,8 +43,8 @@ public class Devices {
     public static int LEFT_ENCODER_B_DIO = 3;
     public static int INTAKE_ARM_MOTOR_PORT = 4;
     public static int INTAKE_SOLENOID_PORT = 2;
-    public static int WHEEL_lEFT_PWM = 2;
-    public static int WHEEL_RIGHT_PWM = 5;
+    public static int WHEEL_lEFT_PWM = 10;
+    public static int WHEEL_RIGHT_PWM = 8;
     public static int GEAR_SHIFT_SOLONOID_A_SOL = 1;
     public static int GEAR_SHIFT_SOLONOID_B_SOL = 8;//TODO we do not use this
     public static int COMPRESSOR_RELAY_SLOT = 1;
