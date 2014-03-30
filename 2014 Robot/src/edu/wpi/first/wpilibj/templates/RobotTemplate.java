@@ -38,6 +38,8 @@ public class RobotTemplate extends IterativeRobot {
     public void robotInit() {
        SmartDashboard.putNumber("gyro", 0);
         SmartDashboard.putBoolean("KickerTestMode", false);
+        SmartDashboard.putBoolean("resetGyro",false);
+        SmartDashboard.putNumber("rotationlessen", 180);
         //Create new SendableChooser, with two options.
         
         
