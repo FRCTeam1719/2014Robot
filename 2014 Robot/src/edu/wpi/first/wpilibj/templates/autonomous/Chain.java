@@ -19,6 +19,9 @@ public class Chain extends Action {
 
     public void init() {
         index = 0;
+        if(actions.length>0){
+            actions[0].init();
+        }
     }
 
     public boolean doAct() {

@@ -74,31 +74,31 @@ public class TestMode implements IStep {
         runDrive = new Chain(new Action[]{
             new TestEncoderAction(Devices.wheelEncoder1, 0, Constants.EQUAL, "LeftWheelStopped", acc),
             new TestEncoderAction(Devices.wheelEncoder2, 0, Constants.EQUAL, "RightWheelStopped", acc),
-            new ArcadeDriveAction(0.75, 0),
+            new ArcadeDriveAction(0.75, 0, 1500),
             new TimerWaitAction(3),//Wait
 //            new TestEncoderAction("Forwards"),//Read the encoder when moving forwards
-            new ArcadeDriveAction(0, 0),//Stop
+            new ArcadeDriveAction(0, 0, 1500),//Stop
             new TimerWaitAction(1),//Wait 1 sec
-            new ArcadeDriveAction(-0.75, 0),//Drive backwards at 75% speed
+            new ArcadeDriveAction(-0.75, 0, 1500),//Drive backwards at 75% speed
             new TimerWaitAction(3),//Wait for 3 secs
 //            new TestEncoderAction("Backwards"),//Read encoder when moving backwards
-            new ArcadeDriveAction(0, 0),//Stop
+            new ArcadeDriveAction(0, 0, 1500),//Stop
             new TimerWaitAction(1),//Wait 1 sec
-            new ArcadeDriveAction(0, 1),//Turn right
+            new ArcadeDriveAction(0, 1, 1500),//Turn right
             new TimerWaitAction(3),//Wait 3 secs
 //            new TestEncoderAction("Turning right"),//Read encoder when turning right
-            new ArcadeDriveAction(0, 0),//Stop
+            new ArcadeDriveAction(0, 0, 1500),//Stop
             new TimerWaitAction(1),//Wait 1 sec
-            new ArcadeDriveAction(0, -1),//Turn left
+            new ArcadeDriveAction(0, -1, 1500),//Turn left
             new TimerWaitAction(3),//Wait 3 secs
 //            new TestEncoderAction("Turning left"),//Read encoder when turning left
-            new ArcadeDriveAction(0, 0),//Stop
+            new ArcadeDriveAction(0, 0, 1500),//Stop
             new TimerWaitAction(5),//Wait 5 secs
             new GearShiftAction(false),
-            new ArcadeDriveAction(0.75, 0),
+            new ArcadeDriveAction(0.75, 0, 1500),
             new TimerWaitAction(5),
 //            new TestEncoderAction("High Gear"),
-            new ArcadeDriveAction(0.75, 0),
+            new ArcadeDriveAction(0.75, 0, 1500),
             new GearShiftAction(true)
         });
         doneAllActs = false;

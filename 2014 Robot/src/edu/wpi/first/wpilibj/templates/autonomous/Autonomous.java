@@ -11,7 +11,9 @@ public class Autonomous implements IStep{
     private boolean doneAllActs;
     public void init(){
         run = new Chain(new Action[]{
-            new ArcadeDriveAction(0.75,0.0),//ArcadeDriveAction(forwardSpeed, rotationSpeed)
+            new ArcadeDriveAction(0.75,0.0,1500.0),//ArcadeDriveAction(forwardSpeed, rotationSpeed)
+            new ShooterAction(),
+            new ArcadeDriveAction(0.0,0.0,0.0)
             //forwardSpeed ranges from -1 (backwards) to 1 (forwards)
             //rotationSpeed ranges from -1 (turn left) to 1 (turn right) (might be reversed)
             //new UltrasonicWaitAction(true, 150),//UltrasonicWaitAction(lessThan, distance)

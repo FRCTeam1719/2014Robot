@@ -31,6 +31,7 @@ public class ShooterController implements IStep {
     public final int MODE_IDLE = 0;
     public final int MODE_COCKING = 1;
     public final int MODE_FIRING = 2;
+    public final int MODE_LOWERING_ARM=3;
     public final static double DISTANCE_SHORT = 3.6;
     public final static double DISTANCE_MEDIUM = 3.6;
     public final static double DISTANCE_LONG = 3.6;
@@ -38,6 +39,8 @@ public class ShooterController implements IStep {
     public final static double DISTANCE_IDLE = .83;
     public final static double BACK_SPEED = 1;
     public final static double FORWARD_SPEED = 1;
+    private final double LOWER_ARM_TIME=.75;
+    private Timer lowerArmTimer = new Timer();
 
     public void setBack(boolean isGoingBack) {
         if (isGoingBack) {
@@ -55,6 +58,13 @@ public class ShooterController implements IStep {
                 motor.disable();
                 setBack(true);
                 //motor.setPoint(DISTANCE_IDLE);
+                break;
+            case (MODE_LOWERING_ARM):
+                if (lowerArmTimer.get()>LOWER_ARM_TIME){
+                    firingMode=MODE_COCKING;
+                    saftyTimeout.reset();
+                    saftyTimeout.start();
+                }
                 break;
             case (MODE_COCKING):
                 motor.enable();
@@ -128,10 +138,10 @@ public class ShooterController implements IStep {
         motor.setPoint(distanceBack);
         System.out.println("distanceBack: " + distanceBack);
         if (firingMode == MODE_IDLE) {
-            firingMode = MODE_COCKING;
-            saftyTimeout.reset();
-            saftyTimeout.start();
+            firingMode = MODE_LOWERING_ARM;
         }
+        lowerArmTimer.reset();
+        lowerArmTimer.start();
     }
 
     public void setDistanceBack(double value) {
