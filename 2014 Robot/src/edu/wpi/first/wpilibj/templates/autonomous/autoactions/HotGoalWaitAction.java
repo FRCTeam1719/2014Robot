@@ -29,7 +29,7 @@ public class HotGoalWaitAction extends Action{
      */
     public boolean doAct() {
         boolean found = SmartDashboard.getBoolean("found");
-        boolean timeout = timer.get()>=9;
+        boolean timeout = timer.get()>=2;
         if(found){
             Devices.logChecker.sendLog("Found hotgoal", LogLevelCheck.physical);
         }

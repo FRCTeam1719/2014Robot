@@ -31,15 +31,15 @@ public class ShooterController implements IStep {
     public final int MODE_IDLE = 0;
     public final int MODE_COCKING = 1;
     public final int MODE_FIRING = 2;
-    public final int MODE_LOWERING_ARM=3;
+    public final int MODE_LOWERING_ARM = 3;
     public final static double DISTANCE_SHORT = 3.6;
     public final static double DISTANCE_MEDIUM = 3.6;
     public final static double DISTANCE_LONG = 3.6;
     public final static double ALL_THE_WAY_FORWARD = .7;
-    public final static double DISTANCE_IDLE = .83;
+    public final static double DISTANCE_IDLE = 2.2;
     public final static double BACK_SPEED = 1;
     public final static double FORWARD_SPEED = 1;
-    private final double LOWER_ARM_TIME=.75;
+    private final double LOWER_ARM_TIME = .75;
     private Timer lowerArmTimer = new Timer();
 
     public void setBack(boolean isGoingBack) {
@@ -52,7 +52,7 @@ public class ShooterController implements IStep {
     }
 
     public void step() {
-        System.out.println("Mode: "+firingMode);
+        
         switch (firingMode) {
             case (MODE_IDLE):
                 motor.disable();
@@ -60,16 +60,27 @@ public class ShooterController implements IStep {
                 //motor.setPoint(DISTANCE_IDLE);
                 break;
             case (MODE_LOWERING_ARM):
-                if (lowerArmTimer.get()>LOWER_ARM_TIME){
-                    firingMode=MODE_COCKING;
+                motor.isGoingBack = false;
+                motor.enable();
+                motor.setSpeed(.125);
+//                motor.setPoint(DISTANCE_IDLE);
+                
+                motor.setPoint(1);
+                if (lowerArmTimer.get() > LOWER_ARM_TIME) {
+                  
+                    firingMode = MODE_COCKING;
+                    
                     saftyTimeout.reset();
                     saftyTimeout.start();
                 }
                 break;
             case (MODE_COCKING):
+                motor.isGoingBack = true;
+                motor.setPoint(distanceBack);
+                motor.setSpeed(1);
                 motor.enable();
                 motor.step();
-                System.out.println("Is at point: "+motor.getIsAtPoint());
+                System.out.println("Is at point: " + motor.getIsAtPoint());
                 if (saftyTimeout.get() > maxTime) {
                     firingMode = MODE_IDLE;
                     motor.disable();
@@ -81,9 +92,9 @@ public class ShooterController implements IStep {
                     timeToReEngage = System.currentTimeMillis() + timeToFire;
                     saftyTimeout.reset();
                     saftyTimeout.start();
-               
+
                 }
-                
+
                 break;
             case (MODE_FIRING):
                 if (saftyTimeout.get() > maxTime) {
@@ -93,7 +104,7 @@ public class ShooterController implements IStep {
                 solonoid.set(!SHIFTER_ENGAGED);
                 setBack(false);
                 motor.setPoint(ALL_THE_WAY_FORWARD);
-                
+
                 motor.step();
                 if (motor.getIsAtPoint()) {
                     firingMode = MODE_IDLE;

@@ -11,7 +11,8 @@ public class Autonomous implements IStep{
     private boolean doneAllActs;
     public void init(){
         run = new Chain(new Action[]{
-            new ArcadeDriveAction(0.75,0.0,1500.0),//ArcadeDriveAction(forwardSpeed, rotationSpeed)
+            new ArcadeDriveAction(0.75,0.0,1300.0),//ArcadeDriveAction(forwardSpeed, rotationSpeed)
+             
             new ShooterAction(),
             new ArcadeDriveAction(0.0,0.0,0.0)
             //forwardSpeed ranges from -1 (backwards) to 1 (forwards)
@@ -23,7 +24,7 @@ public class Autonomous implements IStep{
             //  specified number
             //distance is how far away/how close you want the robot to be when you stop moving
 //            new ArcadeDriveAction(0.0,0.0),
-//           new HotGoalWaitAction(),
+         
 //           new ShooterAction()
         });
         doneAllActs = false;
