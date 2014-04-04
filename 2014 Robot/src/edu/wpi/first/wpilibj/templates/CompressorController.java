@@ -39,7 +39,7 @@ public class CompressorController implements IStep{
        
        compressor = new Compressor(pressureSwitchSlot,pressureSwitchChannel,compresssorRelaySlot,compressorRelayChannel);
        compressor.start();
-       Devices.logChecker.sendLog("Compressor started",LogLevelCheck.physical);
+       //Devices.logChecker.sendLog("Compressor started",LogLevelCheck.physical);
        
     }
     

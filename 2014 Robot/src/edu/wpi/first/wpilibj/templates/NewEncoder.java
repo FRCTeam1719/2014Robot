@@ -43,7 +43,7 @@ public class NewEncoder implements IStep {
         encoder.setPIDSourceParameter(Encoder.PIDSourceParameter.kDistance);
         
 
-        Devices.logChecker.sendLog(
+        /*Devices.logChecker.sendLog(
                 "Encoder started: AChannel: (" + 
                         encoderAChannelSlot +
                         "," +
@@ -52,7 +52,7 @@ public class NewEncoder implements IStep {
                         encoderBChannelSlot +
                         "," +
                         encoderBChannelPort, 
-                LogLevelCheck.physical);
+                LogLevelCheck.physical); */
         return this;
 
     }
