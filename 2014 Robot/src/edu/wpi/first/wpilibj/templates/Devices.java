@@ -80,11 +80,9 @@ public class Devices {
         smartDashboardReader.init();
         
         shooterController = new ShooterController();
-        shooterController.setMotorPort(SHOOTER_MOTOR_PORT);
-        shooterController.setPotentiometerPort(SHOOTER_POTENTIOMETER_PORT);
-        shooterController.setSolonoidPort(SHOOTER_SOLONOID_PORT);
-        
-        shooterController.init();
+        shooterController.setPort(SHOOTER_MOTOR_PORT);
+       
+         shooterController.init();
 
         
         intakeArm = new IntakeArm();

@@ -13,17 +13,24 @@ public class OperatorController extends GenericController {
     public void step() {
         super.step();
     }
-
-    public void triggerPressed() {
-        Devices.shooterController.fire();
+   public void leftTriggerPressed(){
+       Devices.shooterController.forward();
+   }
+    public void rightTriggerPressed(){
+           Devices.shooterController.back();
     }
-
+    public void triggerPressed() {
+      
+    }
+    public void noTriggerPressed(){
+    Devices.shooterController.stop();
+    }
     public void bPressed() {
         Devices.intakeArm.reverseIntake();
     }
 
     public void yPressed() {
-        Devices.shooterController.setDistanceBack(ShooterController.DISTANCE_LONG);
+      
     }
 
     public void aPressed() {
@@ -31,7 +38,7 @@ public class OperatorController extends GenericController {
     }
 
     public void xPressed() {
-        Devices.shooterController.setDistanceBack(ShooterController.DISTANCE_SHORT);
+       
     }
 
     public void leftBumperPressed() {

@@ -29,6 +29,14 @@ public class GenericController implements IStep{
         if(joystick.getRawButton(3)){xPressed();}
         if(joystick.getRawButton(4)){yPressed();}
         if(joystick.getRawAxis(3) != 0){triggerPressed();}
+        if(joystick.getRawAxis(3)>0){
+            leftTriggerPressed();
+        }
+        else if(joystick.getRawAxis(3)<0){
+            rightTriggerPressed();
+        }else{
+          noTriggerPressed();
+        }
        leftJoystickX(joystick.getRawAxis(1));
        leftJoysticky(joystick.getRawAxis(2));
        rightJoystickX(joystick.getRawAxis(4));
@@ -36,6 +44,7 @@ public class GenericController implements IStep{
        
         
     }
+    public void noTriggerPressed(){}
     public void leftBumperPressed(){/*don't put anything in here*/}
     public void rightBumperPressed(){/*don't put anything in here*/}
     public void aPressed(){/*don't put anything in here*/}
@@ -43,6 +52,8 @@ public class GenericController implements IStep{
     public void xPressed(){/*don't put anything in here*/}
     public void yPressed(){/*don't put anything in here*/}
     public void triggerPressed(){/*don't put anything in here*/}
+    public void leftTriggerPressed(){/*don't put anything in here*/}
+    public void rightTriggerPressed(){/*don't put anything in here*/}
     public void leftJoystickX(double value){}
     public void leftJoysticky(double value){/*don't put anything in here*/}
     public void rightJoystickX(double value){/*don't put anything in here*/}

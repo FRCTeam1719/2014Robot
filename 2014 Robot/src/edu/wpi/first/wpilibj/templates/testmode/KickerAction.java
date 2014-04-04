@@ -14,17 +14,17 @@ public class KickerAction extends Action{
    
     private boolean hasShot = false;
     public void init(){
-       Devices.shooterController.fire();
+      // Devices.shooterController.fire();
        
         
         
     }
     public boolean doAct() {
-        Devices.shooterController.step();
-        if(Devices.shooterController.isIdle()){
-            isDone = true;
-        }
-        return isDone;
+      //  Devices.shooterController.step();
+     //   if(Devices.shooterController.isIdle()){
+       //     isDone = true;
+       // }
+        return true;
     }
     
 }

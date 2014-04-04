@@ -9,13 +9,14 @@ import edu.wpi.first.wpilibj.templates.autonomous.Action;
 public class ShooterAction extends Action{
     ShooterController shooterController = Devices.shooterController;
     public void init(){
-        Devices.logChecker.sendLog("ShooterAction init", LogLevelCheck.physical);
-        shooterController.setDistanceBack(shooterController.DISTANCE_MEDIUM);
-        shooterController.step();
-        shooterController.fire();
+ //       Devices.logChecker.sendLog("ShooterAction init", LogLevelCheck.physical);
+ //       shooterController.setDistanceBack(shooterController.DISTANCE_MEDIUM);
+ //       shooterController.step();
+   //     shooterController.fire();
     }
     public boolean doAct(){
-        shooterController.step();
-        return shooterController.isIdle();
+   //     shooterController.step();
+     //   return shooterController.isIdle();
+        return true;
     }
 }
