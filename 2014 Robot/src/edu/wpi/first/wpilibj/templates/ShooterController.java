@@ -63,9 +63,10 @@ public class ShooterController implements IStep {
                 motor.isGoingBack = false;
                 motor.enable();
                 motor.setSpeed(.125);
-//                motor.setPoint(DISTANCE_IDLE);
-                
+////                motor.setPoint(DISTANCE_IDLE);
+//                
                 motor.setPoint(1);
+                motor.disable();
                 if (lowerArmTimer.get() > LOWER_ARM_TIME) {
                   
                     firingMode = MODE_COCKING;
@@ -75,6 +76,7 @@ public class ShooterController implements IStep {
                 }
                 break;
             case (MODE_COCKING):
+                motor.enable();
                 motor.isGoingBack = true;
                 motor.setPoint(distanceBack);
                 motor.setSpeed(1);

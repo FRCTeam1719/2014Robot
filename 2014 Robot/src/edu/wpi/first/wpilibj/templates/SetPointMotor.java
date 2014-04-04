@@ -68,7 +68,7 @@ public class SetPointMotor implements IStep {
     public void setPoint(double point) {
         this.point = point;
     }
-
+    
     public SetPointMotor setSpeed(double speed) {
         this.speed = speed;
         return this;
