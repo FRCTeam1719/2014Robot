@@ -79,6 +79,7 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void teleopPeriodic() {
         controller.step();
+        Devices.operatorController.step();
         devices.step();
         //TODO: magic numbers
 //        devices.drive.DriveStraight(400);
