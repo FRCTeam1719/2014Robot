@@ -172,7 +172,7 @@ public class Devices {
             logger,
             shooterController,
             gearShiftController,
-            operatorController,
+//            operatorController,
             intakeArm
         };
         //Don't put anything after here

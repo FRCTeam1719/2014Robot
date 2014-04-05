@@ -7,16 +7,31 @@ import edu.wpi.first.wpilibj.templates.autonomous.Action;
 
 //TODO: implement ShooterAction
 public class ShooterAction extends Action{
+    private boolean isGoingUp;
+    private long milliseconds;
+    private long startTime;
+    
+    public ShooterAction(boolean isGoingUp, long milliseconds) {
+        this.isGoingUp = isGoingUp;
+        this.milliseconds = milliseconds;
+    }
+    
     ShooterController shooterController = Devices.shooterController;
+    
     public void init(){
- //       Devices.logChecker.sendLog("ShooterAction init", LogLevelCheck.physical);
- //       shooterController.setDistanceBack(shooterController.DISTANCE_MEDIUM);
- //       shooterController.step();
-   //     shooterController.fire();
+        startTime = System.currentTimeMillis();
+       
     }
     public boolean doAct(){
-   //     shooterController.step();
-     //   return shooterController.isIdle();
-        return true;
+        if(isGoingUp){
+            shooterController.back();
+        } else {
+            shooterController.forward();
+        }
+        if (System.currentTimeMillis() > (startTime + milliseconds)){
+            shooterController.stop();
+            return true;
+        }
+        return false;
     }
 }

@@ -17,7 +17,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class ShooterController implements IStep {
     private int shooterPort;
     public SpeedController victor;
-    public double speed = .6;
+    public double speedForward = 1;
+    public double speedBackward = .75;
     public void step() {
         
     }
@@ -28,10 +29,10 @@ public class ShooterController implements IStep {
         shooterPort = port;
     }
     public void forward(){
-        victor.set(speed);
+        victor.set(speedForward);
     }
     public void back(){
-        victor.set(-speed);
+        victor.set(-speedBackward);
     } 
     
    public void stop(){
