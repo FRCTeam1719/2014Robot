@@ -28,7 +28,7 @@ public class ArcadeDriveAction extends Action{
         
     }
     public boolean doAct(){
-    
+        Devices.gearShiftController.setFast(true);
         rotation = SmartDashboard.getNumber("rotationlessen");
         if(SmartDashboard.getBoolean("resetGyro")== true){
             Devices.gyro.reset();
