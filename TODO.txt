@@ -1,7 +1,5 @@
 Test autonomous
 Check Intake system
-Build camera mount
-Add controller code
 
 Test vision in different environments
     Validate in different lighting conditions
