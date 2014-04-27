@@ -4,66 +4,38 @@
  */
 package edu.wpi.first.wpilibj.templates;
 
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.interfaces.Potentiometer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  * @author Chance
  */
 public class ShooterController implements IStep {
-
-    private Victor victor;
-    private int motorPort;
-    private Solenoid solonoid;
-    private AnalogPotentiometer potentiometer;
-    private int potentiometerPort;
-    private int solonoidPort;
-    private boolean isReleased = false;
-    private double point;
-    
-
+    private int shooterPort;
+    public SpeedController victor;
+    public double speedForward = 1;
+    public double speedBackward = .75;
     public void step() {
-
-        if (potentiometer.get() < point) {
-
-            victor.set(.5);
-
-
-        } else {
-            victor.set(0);
-        }
-        solonoid.set(isReleased);
-
-
-
+        
     }
-
-    public void init() {
-        victor = new Victor(motorPort);
-        potentiometer = new AnalogPotentiometer(potentiometerPort);
-        solonoid = new Solenoid(solonoidPort);
+    public void init(){
+        victor = new Victor(shooterPort);
     }
-
-    public void setMotorPort(int motorPort) {
-        this.motorPort = motorPort;
+    public void setPort(int port){
+        shooterPort = port;
     }
-
-    public void setPotentiometerPort(int potentiometerPort) {
-        this.potentiometerPort = potentiometerPort;
+    public void forward(){
+        victor.set(speedForward);
     }
-
-    public void setSolonoidPort(int solonoidPort) {
-        this.solonoidPort = solonoidPort;
-    }
-
-    public void setReleased(boolean value) {
-        isReleased = value;
-    }
-
-    public void setPoint(double point) {
-        this.point = point;
-    }
+    public void back(){
+        victor.set(-speedBackward);
+    } 
+    
+   public void stop(){
+       victor.set(0);
+   }
 }

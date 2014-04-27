@@ -30,66 +30,44 @@ public class RobotTemplate extends IterativeRobot {
      * used for any initialization code.
      */
     //TODO clean up, move portions into their own class
-    static SendableChooser driveMode;
-    static SendableChooser robot;
-    static SendableChooser autoTransmision;
-    static SendableChooser logLevel;
-    public NetworkTable testTable = NetworkTable.getTable("LiveWindow");
+    
+    
     Devices devices = new Devices();
     static Controller controller = new Controller();;
-    
+    public static boolean shouldLiveWindow = false;
     public void robotInit() {
-       
-        
+       SmartDashboard.putNumber("gyro", 0);
+        SmartDashboard.putBoolean("KickerTestMode", false);
+        SmartDashboard.putBoolean("resetGyro",false);
+        SmartDashboard.putNumber("rotationlessen", 180);
         //Create new SendableChooser, with two options.
-        driveMode = new SendableChooser();
-        driveMode.addDefault("Arcade Mode", Integer.valueOf(1));
-        driveMode.addObject("Tank Mode", Integer.valueOf(2));
-        SmartDashboard.putData("Drive Mode Options", driveMode);
         
-        autoTransmision = new SendableChooser();
-        autoTransmision.addDefault("Automatic transmition", Integer.valueOf(1));
-        autoTransmision.addObject("Manual transmition", Integer.valueOf(2));
-        SmartDashboard.putData("Transmition options", autoTransmision);
-        
-        robot = new SendableChooser();
-        robot.addDefault("compotition robot 1", Integer.valueOf(1));
-        robot.addObject("test robot 1", Integer.valueOf(2));
-        robot.addObject("test robot 2", Integer.valueOf(3));
-        SmartDashboard.putData("robot", robot);
-        
-
-        //Leg Level
-        logLevel = new SendableChooser();
-        logLevel.addDefault("1 - Nothing", Integer.valueOf(1));
-        logLevel.addObject("2 - Sensor Logs", Integer.valueOf(2));
-        logLevel.addObject("3 - Physical Logs", Integer.valueOf(3));
-        logLevel.addObject("4 - Everything", Integer.valueOf(4));
-        SmartDashboard.putData("logLevel",logLevel);
-        SmartDashboard.putString("Log", "");
         
         
         //Test Mode boolean
-        boolean shouldLiveWindow = false;
-        SmartDashboard.putBoolean("shouldLiveWindow", shouldLiveWindow);
         
         
         
-      controller.set(1).init();
+        
+        //TODO magic numbers
+        controller.set(1).init();
         devices.init();
     }
     
     
     public void autonomousInit(){      
        SmartDashboard.putBoolean("isAtonomus", true);
-        
+       Devices.autonomous.init();
     }
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+        Devices.autonomous.step();
         devices.step();
-       
+        
+//        double speed=SmartDashboard.getNumber("TargetSpeed");
+//        devices.drive.DriveStraight(speed);
     }
     public void teleopInit(){
         SmartDashboard.putBoolean("isAtonomus", false);
@@ -101,8 +79,10 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void teleopPeriodic() {
         controller.step();
+        Devices.operatorController.step();
         devices.step();
-        devices.drive.DriveStraight(400);
+        //TODO: magic numbers
+//        devices.drive.DriveStraight(400);
     }
     
     /**
@@ -115,8 +95,8 @@ public class RobotTemplate extends IterativeRobot {
     public void testPeriodic() {
         Devices.testMode.step();
         devices.step();
-        if(!SmartDashboard.getBoolean("shouldLiveWindow")){
-        testTable.putBoolean("~STATUS~/LW Enabled", false);
+        if(!SmartDashboardReader.getBoolean("shouldLiveWindow", false)){
+        SmartDashboardReader.putBoolean("~STATUS~/LW Enabled", false, false);
         }
         
         

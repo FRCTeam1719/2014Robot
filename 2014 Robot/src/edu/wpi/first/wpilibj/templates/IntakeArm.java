@@ -17,54 +17,59 @@ public class IntakeArm implements IStep{
     
     
     private int motorPort;
-    private int potentiometerPort;
-    private int height;
-    private final double VICTOR_ON = 5;
+    private int solenoidPort;
+    private double spinnerSpeed=0;
+    private boolean isUp=false;
+    private final double VICTOR_FORWARD = 1;
+    private final double VICTOR_REVERSE = -1;
     private final double VICTOR_OFF = 0;
     Victor victor;
-    AnalogPotentiometer potent;
+    NewSolenoid solenoid;
 
     
     
     public void step(){
-        if(height > potent.get()){
-            victor.set(VICTOR_ON);
-        }else{
-            victor.set(VICTOR_OFF);
-        }
+        solenoid.set(!isUp);
+        victor.set(spinnerSpeed);
+        solenoid.step();
     }
     
     
-    
+    public void runIntake(){
+        this.spinnerSpeed=VICTOR_FORWARD;
+    }
+    public void reverseIntake(){
+        this.spinnerSpeed=VICTOR_REVERSE;
+    }
+    public void stopIntake(){
+        this.spinnerSpeed=VICTOR_OFF;
+    }
     
     public IntakeArm init(){
         //Setup devices
         victor = new Victor(motorPort);
-        AnalogPotentiometer potent = new AnalogPotentiometer(potentiometerPort);
+        solenoid = new NewSolenoid();
+        solenoid.setPort(solenoidPort);
         return this;
     }
-    
-    
     
     //Seters for ports
     public void setMotorPort(int motorPort){
         this.motorPort = motorPort;
     }
     
-    
-    
-    public void setPotentiometerPort(int PotPort){
-        this.potentiometerPort = PotPort;
+    public void setSolenoidPort(int solenoidPort){
+        this.solenoidPort = solenoidPort;
     }
     
-    
-    
-    //How high the arm should go
-    public void setLevel(int height){
-        this.height = height;
+    public void setArmUp(boolean isUp){
+        this.isUp = isUp;
+        if(isUp){
+            spinnerSpeed=VICTOR_OFF;
+        }else{
+            spinnerSpeed=VICTOR_FORWARD;
+        }
     }
-    
-    
 
 }
 

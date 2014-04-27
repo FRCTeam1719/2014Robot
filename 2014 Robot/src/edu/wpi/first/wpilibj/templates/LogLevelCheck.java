@@ -13,20 +13,23 @@ public class LogLevelCheck {
 
     
     public static Integer none=new Integer(1);
-    public static Integer sensor=new Integer(2);
-    public static Integer physical=new Integer(3);
+    public static Integer physical=new Integer(2);
+    public static Integer sensor=new Integer(3);
     public static Integer all=new Integer(4);
-    
+    private static int userLogLevel;
     
     
     public void sendLog(String loggingMessage,Integer logLevel) {
-            Integer logLevelInti = (Integer) RobotTemplate.logLevel.getSelected();
-            Integer userLogLevel = logLevelInti;
-            if(logLevel.intValue() <= userLogLevel.intValue()){
+            //TODO: This needs to be tested, some logic was modified.
+            //In its previous state, this if was always triggered
+            
+            if(logLevel.intValue() <= userLogLevel){
                 Devices.logger.sendMessage(loggingMessage);
             }            
     }
-    
+    public static void setUserLogLevel(int level){
+        userLogLevel = level;
+    }
     
     
 }

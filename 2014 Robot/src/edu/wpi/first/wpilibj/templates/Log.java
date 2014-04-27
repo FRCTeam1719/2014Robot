@@ -15,7 +15,6 @@ public class Log implements IStep{
     StringBuffer logMessage = new StringBuffer();
     
     
-    
     public void sendMessage(String message){
         //Apends message to the queue of log messages
         logMessage.append(", ").append("[").append(System.currentTimeMillis()/3600000).append(":").append(System.currentTimeMillis()/600000).append("]").append(" ") .append(message).append("\r\n");
@@ -25,12 +24,9 @@ public class Log implements IStep{
     
     public void send() {
         //Tests to see if the queue is empty, and then sends the next queue of logs to the Dashboard
-        if(SmartDashboard.getString("Log").equals("")) {
-            SmartDashboard.putString("Log",logMessage.toString());
+        if(SmartDashboardReader.getString("Log").equals("")) {
+            SmartDashboardReader.putString("Log",logMessage.toString());
             logMessage = new StringBuffer();
-
-        }else{
-            
         }
     }
      
@@ -39,7 +35,6 @@ public class Log implements IStep{
     public void step(){
         send();
      }
-
 }
     
 
