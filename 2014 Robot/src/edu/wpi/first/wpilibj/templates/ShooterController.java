@@ -38,4 +38,5 @@ public class ShooterController implements IStep {
    public void stop(){
        victor.set(0);
    }
+   
 }

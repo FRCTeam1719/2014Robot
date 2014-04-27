@@ -16,10 +16,11 @@ public class ShooterAction extends Action{
         this.milliseconds = milliseconds;
     }
     
-    ShooterController shooterController = Devices.shooterController;
     
+     ShooterController shooterController;
     public void init(){
         startTime = System.currentTimeMillis();
+        shooterController = Devices.shooterController;
        
     }
     public boolean doAct(){

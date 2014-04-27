@@ -70,6 +70,9 @@ public class IntakeArm implements IStep{
             spinnerSpeed=VICTOR_FORWARD;
         }
     }
+    public boolean isUp(){
+        return isUp;
+    }
 
 }
 
