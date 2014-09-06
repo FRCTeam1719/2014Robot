@@ -57,7 +57,9 @@ public class Devices {
     public static int SHOOTER_POTENTIOMETER_PORT = 1;
     public static int GYRO_SLOT = 1;
     public static int GYRO_CHANNEL = 2;
-    
+    public static int CONTROLLER_MODE = 1;
+    // 1 for 1 controller mode
+    // 2 for 2 controller mode
     
     public void step() {
         for (int i = 0; i < Devices.devices.length; i++) {
@@ -71,7 +73,7 @@ public class Devices {
     public void init() {
         gyro = new Gyro(GYRO_SLOT, GYRO_CHANNEL);
         operatorController = new OperatorController();
-        operatorController.setNumber(2);
+        operatorController.setNumber(CONTROLLER_MODE); //Mess with this number
         operatorController.init();
         testMode = new TestMode();
         autonomous = new Autonomous();
