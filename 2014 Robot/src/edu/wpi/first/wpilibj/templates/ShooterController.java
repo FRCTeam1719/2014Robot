@@ -18,7 +18,7 @@ public class ShooterController implements IStep {
     private int shooterPort;
     public SpeedController victor;
     public double speedForward = 1;
-    public double speedBackward = .75;
+    public double speedBackward = .623;
     public void step() {
         
     }
