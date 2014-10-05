@@ -16,7 +16,7 @@ public class Autonomous implements IStep {
     private final boolean KICK_FORWARD = true;
     private final double SPEED = 1.0;
     private final double ROTATION = -1.0;
-    private final double TIME = 00.0;
+    private final double TIME = 2000.0;  //in milis
 
     public void init() {
         run = new Chain(new Action[]{
