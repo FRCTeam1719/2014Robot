@@ -27,9 +27,9 @@ public class Autonomous implements IStep {
             new IntakeArmAction(ARM_DOWN), // lower the intake arm
             new TimerWaitAction(2.5),   // wait to allow the arm to get out of the way
             new HotGoalWaitAction(),
-            new ShooterAction(KICK_BACK, 2000), // raise the kicker
+            new ShooterAction(KICK_BACK, 2000), // raise the kicker magic nums
             //Out of time in auton mode
-            new ShooterAction(KICK_FORWARD, 1000) // kick
+            new ShooterAction(KICK_FORWARD, 1000) // kick magic nums
         });
         doneAllActs = false;
         run.init();
