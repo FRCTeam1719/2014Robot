@@ -18,6 +18,7 @@ public class Autonomous implements IStep {
     private final double ROTATION = -1.0;
     private final double TIME_2S = 2000.0;  //in milis
     private final int TIME_1S = 1000;
+    private final double ARM_DOWN_WAIT_TIME = 2.5;
 
     public void init() {
         run = new Chain(new Action[]{
@@ -26,11 +27,11 @@ public class Autonomous implements IStep {
             new ArcadeDriveAction(SPEED, ROTATION, TIME_2S), // drive forward for a period of time
             new ArcadeDriveAction(0.0, 0.0, 0), // stop driving
             new IntakeArmAction(ARM_DOWN), // lower the intake arm
-            new TimerWaitAction(2.5),   // wait to allow the arm to get out of the way
+            new TimerWaitAction(ARM_DOWN_WAIT_TIME),   // wait to allow the arm to get out of the way
             new HotGoalWaitAction(),
-            new ShooterAction(KICK_BACK, (int) TIME_2S), // raise the kicker magic nums
+            new ShooterAction(KICK_BACK, (int) TIME_2S), // raise the kicker
             //Out of time in auton mode
-            new ShooterAction(KICK_FORWARD, TIME_1S) // kick magic nums
+            new ShooterAction(KICK_FORWARD, TIME_1S) // kick
         });
         doneAllActs = false;
         run.init();

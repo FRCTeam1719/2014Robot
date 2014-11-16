@@ -34,6 +34,7 @@ public class TestMode implements IStep {
     private final int DRIVE_TEST = 2;
     private final int KICKER_TEST = 3;
     private final int INTAKE_TEST = 4;
+    private final int ARM_DOWN_WAIT = 1;
    
     public void step() {
         if (!doneAllActs && testNumber != NO_TEST) {
@@ -66,7 +67,7 @@ public class TestMode implements IStep {
         });
         runIntakeArm = new Chain(new Action[]{
             new IntakeDown(),
-            new TimerWaitAction(1),
+            new TimerWaitAction(ARM_DOWN_WAIT),
             new IntakeUp()
         });
         
