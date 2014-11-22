@@ -1,6 +1,7 @@
-Test autonomous
-Check Intake system
+Test autonomous [?]
+Check Intake system [?]
 
-Test vision in different environments
+Test vision in different environments [ ]
     Validate in different lighting conditions
-Drive straight in autonomous
+Drive straight in autonomous [X]
+    - Set defualt correctionValue to 12 and resetGyro to true
