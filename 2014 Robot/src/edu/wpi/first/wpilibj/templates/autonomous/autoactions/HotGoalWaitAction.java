@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.templates.autonomous.Action;
  */
 public class HotGoalWaitAction extends Action{
     Timer timer;
+    private static final int TIMEOUT_LENGTH = 2;
     
     public HotGoalWaitAction(){
         timer = new Timer();
@@ -29,7 +30,7 @@ public class HotGoalWaitAction extends Action{
      */
     public boolean doAct() {
         boolean found = SmartDashboard.getBoolean("found");
-        boolean timeout = timer.get()>=2;
+        boolean timeout = timer.get() >= TIMEOUT_LENGTH;
         if(found){
             Devices.logChecker.sendLog("Found hotgoal", LogLevelCheck.physical);
         }

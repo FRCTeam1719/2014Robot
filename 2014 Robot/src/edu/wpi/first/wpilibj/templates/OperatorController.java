@@ -21,13 +21,15 @@ private boolean doneAllActs = true;
     private final boolean ARM_UP = true;
     private final boolean KICK_BACK = false;
     private final boolean KICK_FORWARD = true;
+    private final int TIME_1S = 1000;
+    private final int TIME_2S = 2000;
     private Chain run = new Chain(new Action[]{
           
             
     
-            new ShooterAction(KICK_BACK, 2000), // raise the kicker
+            new ShooterAction(KICK_BACK, TIME_2S), // raise the kicker
             //Out of time in auton mode
-            new ShooterAction(KICK_FORWARD, 1000) // kick
+            new ShooterAction(KICK_FORWARD, TIME_1S) // kick
         });
     //public void init(){
       //   run.init();
@@ -47,9 +49,9 @@ private boolean doneAllActs = true;
           
             
             
-            new ShooterAction(KICK_BACK, 2000), // raise the kicker
+            new ShooterAction(KICK_BACK, TIME_2S), // raise the kicker
             //Out of time in auton mode
-            new ShooterAction(KICK_FORWARD, 1000) // kick
+            new ShooterAction(KICK_FORWARD, TIME_1S) // kick
                     
         });
    
@@ -83,13 +85,13 @@ private boolean doneAllActs = true;
 
     public void leftBumperPressed() {
         System.out.println("left bumper pressed");
-        Devices.intakeArm.setArmUp(false);
+        Devices.intakeArm.setArmUp(ARM_DOWN);
         Devices.intakeArm.runIntake();
     }
 
     public void rightBumperPressed() {
         System.out.println("right bumber pressed");
-        Devices.intakeArm.setArmUp(true);
+        Devices.intakeArm.setArmUp(ARM_UP);
         Devices.intakeArm.stopIntake();
     }
 }

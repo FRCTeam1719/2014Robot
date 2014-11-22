@@ -34,9 +34,10 @@ public class RobotTemplate extends IterativeRobot {
     
     Devices devices = new Devices();
     static Controller controller = new Controller();;
+    final int PORT_1 = 1;
     public static boolean shouldLiveWindow = false;
     public void robotInit() {
-       SmartDashboard.putNumber("gyro", 0);
+        SmartDashboard.putNumber("gyro", 0);
         SmartDashboard.putBoolean("KickerTestMode", false);
         SmartDashboard.putBoolean("resetGyro",false);
         SmartDashboard.putNumber("rotationlessen", 180);
@@ -50,8 +51,7 @@ public class RobotTemplate extends IterativeRobot {
         
         
         
-        //TODO magic numbers
-        controller.set(1).init();
+        controller.set(PORT_1).init();
         devices.init();
     }
     

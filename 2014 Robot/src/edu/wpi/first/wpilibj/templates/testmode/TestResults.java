@@ -31,7 +31,7 @@ public class TestResults {
         String msg;
         boolean pass;
         Node next;
-        public Node(String msg, boolean pass){
+        Node(String msg, boolean pass){
             this.msg=msg;
             this.pass=pass;
         }

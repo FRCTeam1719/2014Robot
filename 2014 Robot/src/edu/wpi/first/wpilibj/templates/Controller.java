@@ -16,6 +16,7 @@ public class Controller implements IStep {
     int port;
     Joystick joyStick1;
     static int driveMode;
+    public static final int MODE_ARCADE = 1;
 
     public void init() {
         joyStick1 = new Joystick(port);
@@ -31,7 +32,7 @@ public class Controller implements IStep {
     public void step() {
 
         //Pick DriveMode
-        if (driveMode == 1) {
+        if (driveMode == MODE_ARCADE) {
             Devices.drive.moveArcade(joyStick1.getRawAxis(2), joyStick1.getRawAxis(1));
             Devices.logChecker.sendLog("Arcade mode activated", LogLevelCheck.sensor);
         } else {

@@ -60,6 +60,8 @@ public class Devices {
     // 1 for 1 controller mode
     // 2 for 2 controller mode
     public static int CONTROLLER_MODE = 2;
+    private static final int CAMERA_CHANNEL = 1;
+    private static final int CAMERA_SLOT = 2;
     
     
     public void step() {
@@ -130,7 +132,7 @@ public class Devices {
         
         
         //Make camera
-        cameraLED = new CameraLEDController(2, 1);
+        cameraLED = new CameraLEDController(CAMERA_SLOT, CAMERA_CHANNEL);
         cameraLED.init();
 
         
