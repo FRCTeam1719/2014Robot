@@ -28,6 +28,7 @@ public class NewEncoder implements IStep {
     int samplesToAverage = 50;
 
     public void step() {
+        
     }
 
     public NewEncoder init() {

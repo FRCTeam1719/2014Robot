@@ -40,6 +40,7 @@ public class RobotTemplate extends IterativeRobot {
         SmartDashboard.putBoolean("KickerTestMode", false);
         SmartDashboard.putBoolean("resetGyro",false);
         SmartDashboard.putNumber("rotationlessen", 180);
+        SmartDashboard.putNumber("Correction Value", 6);
         //Create new SendableChooser, with two options.
         
         
@@ -57,6 +58,7 @@ public class RobotTemplate extends IterativeRobot {
     
     public void autonomousInit(){      
        SmartDashboard.putBoolean("isAtonomus", true);
+       System.out.println("Initial Angle: " + Devices.gyro.getAngle());
        Devices.autonomous.init();
     }
     /**
